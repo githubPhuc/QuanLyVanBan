@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f5d0abacd7545f582cd5f9081457f21" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLYKHOModel.ct_phieuNhap_QLK" Width="1.5" PointX="12.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.Donvinhap_QLK" Width="1.5" PointX="7.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.Giamgia_QLK" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.Kekho_QLK" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.kho_QLK" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.loaisp_QLK" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.phieuNhap_QLK" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.sanpham_QLK" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.Sanphamgiamgia_QLK" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.Tangkekho_QLK" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYKHOModel.Hangtang_QLK" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_pn" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_MADV" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_giamgia" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_kekho" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_tangkekho" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_kekhos" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_hanghang" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_spGiamgia" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYKHOModel.fk_ctpn_hangtang" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,97 @@
+﻿
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_LoadUserCheckPatrol_Result>;
+    var countIsConfirm = ViewData["isConfirm"];
+    var countIsNotConfirm = ViewData["isNotConfirm"];
+}
+<div class="total">
+    <div>
+        <label class="mb-3">Tổng kết quả:</label> <label class="total-item"> @data.Count()</label>
+    </div>
+    <div>
+        <label class="mb-3">Đã xác nhận:</label> <label class="total-item"> @countIsConfirm</label>
+    </div>
+    <div>
+        <label class="mb-3">Chưa xác nhận:</label> <label class="total-item"> @countIsNotConfirm</label>
+    </div>
+</div>
+<table id="myTable" class="table table-bordered table-timekeeping ">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên nhân viên</th>
+            <th>Tên tài khoản</th>
+            <th>Nơi làm việc</th>
+            <th>Tên QR đã check</th>
+            <th>Thời gian check</th>
+            <th>Vị trí User</th>
+            <th>Gd Xác nhận</th>
+            <th>Thời gian xác nhận</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in data)
+        {
+        <tr style=@(item.Is_Confim == true?"background-color:#8EE5EE; ":"background-color:#F4A460")>
+            <td width="150">
+
+                <a onclick="checkImage('@item.Id')" class="btn">
+                    <i class="fas fa-list"></i> Kiểm tra hình ảnh
+                </a>
+            </td>
+            <td>@item.Fullname</td>
+            <td>@item.Username_Check</td>
+            <td>@item.NameLocation</td>
+            <td>@item.Description</td>
+            <td>@item.Time_Check.ToString("dd-MM-yyyy HH:mm:ss")</td>
+            <td class="clickable" style=@(item.isLocation==null?"background-color:#FFFF00":item.isLocation>=5?"background-color:#00FF80":(item.isLocation>=4&&item.isLocation<5?"background-color:#FF3E96":(item.isLocation>=3&&item.isLocation<4?"background-color:#FF00FF":(item.isLocation<3&&item.isLocation>=2?"background-color:#FF83FA":"background-color:#FFBBFF"))))>
+                @{
+                    if (!string.IsNullOrEmpty(item.location_X_Check) && !string.IsNullOrEmpty(item.location_Y_Check))
+                    {
+                        <text>@item.location_X_Check, @item.location_Y_Check</text>
+                        <span onclick="redirectToGoogleMaps(event)" class="searchmap"><i class="fa-solid fa-location-dot"></i></span>
+                    }
+                }
+            </td>
+             <td>
+                @{
+                    if (item.Is_Confim == true)
+                    {
+                        <span>Đã xác nhận &nbsp;<i class='fa-solid fa-check' style='color: #0bb116;'></i> </span>;
+                    }
+                    else
+                    {
+                        <button onclick='Confirm(@item.Id)' type='button' class='btn btn-primary btn-sm'>Xác nhận</button>;
+                    }
+                }
+            </td>
+             <td>
+                 @(item.TimeConfim.Year == 2010 && item.TimeConfim.Month == 1 && item.TimeConfim.Day == 1 && item.TimeConfim.Hour == 1 && item.TimeConfim.Minute == 1 && item.TimeConfim.Second == 1 ? "" : item.TimeConfim.ToString("dd-MM-yyyy HH:mm:ss"))
+             </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function redirectToGoogleMaps(event) {
+        var clickedTd = event.target.closest('.clickable');
+
+        if (clickedTd) {
+            var inputValue = $(clickedTd).text().trim();
+            if (inputValue == ",") {
+                notify("Chưa có tọa độ để kiểm tra")
+            }
+            else {
+                var googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(inputValue);
+                window.open(googleMapsUrl, '_blank');
+            }
+
+        }
+    }
+</script>
+
+
+
+
+

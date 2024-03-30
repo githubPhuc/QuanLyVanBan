@@ -1,0 +1,106 @@
+﻿@using ToolsApp.Helper;
+
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="~/Content/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/Content/plugins/toastr/toastr.min.css">
+    <!-- TeamCode -->
+    <link rel="stylesheet" href="~/Content/TeamCode.css" />
+    <link rel="stylesheet" href="~/Content/Login.css" />
+</head>
+<body id="bodyLogin">
+   
+    <div class="form-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center form-login">
+                    <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8">
+
+                        <div class="form-container">
+                            <div class="form-icon">
+                             
+                                <img src="~/Content/images/logo-BINH PHUONG-2.png" alt="Alternate Text" width="250" height="250" /><br />
+                                <span class="signup">Bản quyền thuộc về Bình Phương AZ</span>
+                            </div>
+                            <form id="fLogin" name="fLogin" method="post" class="form-horizontal">
+                                @Html.Hidden("ReturnUrl", (string)ViewBag.ReturnUrl)
+                                <h3 class="title">Admin - Binh Phuong AZ</h3>
+                                <div class="form-group">
+                                    <span class="input-icon"><i class="fa fa-envelope"></i></span>
+                                    <input id="fLogin_tUsername" name="fLogin_tUsername" placeholder="Username, Email..."
+                                           data-val="true" data-val-required="This field is required." class="form-control">
+                                </div>
+                                <div class="input-group">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="fLogin_tUsername" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="form-group">
+                                    <span class="input-icon"><i class="fa fa-lock"></i></span>
+                                    <input id="fLogin_pPassword" name="fLogin_pPassword" placeholder="Password"
+                                           data-val="true" data-val-required="This field is required."
+                                           type="password" class="form-control" autocomplete="off">
+                                </div>
+                                <div class="input-group">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="fLogin_pPassword" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="row">
+                                        <div class="icheck-primary d-flex align-items-center ml-3 mb-3">
+                                            <input id="fLogin_cRemember" name="fLogin_cRemember" type="checkbox" value="False">
+                                            <label for="fLogin_cRemember">
+                                            </label>
+                                            <span style="display:inline" class="forgot-pass text-bold ">Lưu đăng nhập</span>
+                                        </div>
+                                </div>
+                                <button onclick="funfLogin_bLogin('@Url.Action("_FunLogin")')" id="fLogin_bLogin" name="fLogin_bLogin" type="button"  class="btn signin">Đăng nhập</button>
+                               
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*<script src="~/Content/plugins/sweetalert2/sweetalert2.min.js"></script>*@
+    <script src="~/Content/plugins/toastr/toastr.min.js"></script>
+    <script src="~/Scripts/TeamCode.js"></script>
+        <div class="divLoading"></div>
+            <script>
+                var inputUsername = document.getElementById("fLogin_tUsername");
+                var inputPassword = document.getElementById("fLogin_pPassword");
+                inputUsername.addEventListener("keypress", function (event) {
+                    if (event.key === "Enter") {
+                    event.preventDefault();
+                document.getElementById("fLogin_bLogin").click();
+                    }
+                    });
+                inputPassword.addEventListener("keypress", function (event) {
+                    if (event.key === "Enter") {
+                    event.preventDefault();
+                document.getElementById("fLogin_bLogin").click();
+                    }
+                });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,370 @@
+﻿
+
+@{
+    ViewBag.Title = "Báo Cáo Công Làm Nhân Viên Trong Công Ty";
+    var DataUser = ViewBag.DataUser as List<ToolsApp.EntityFramework.AspNetUser>;
+
+
+}
+<style>
+    /* CSS để căn giữa modal */
+    #modalChoosen {
+        text-align: center;
+    }
+
+    #modalChoosen:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+        }
+
+    .dialog-choosen {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .choosen-btn {
+        border: 1px solid #aaa;
+        background: -webkit-linear-gradient(top,#fff 20%,#f6f6f6 50%,#eee 52%,#f4f4f4 100%);
+        box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0,0,0,.1);
+        width:300px;
+        padding:15px
+        
+    }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary border-no-color card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>BỘ LỌC</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-bodysearch">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>KẾT QUẢ</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        @*<div class="row">
+                                <div class="col-md-4">
+                                    <button id="btnCreate" onclick="" type="button" class="btn bg-gradient-success"><i class="fa fa-plus"></i>&nbsp;Thêm nhân viên</button>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-body table-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div id="myModalDetail" class="modal fade modal-wide" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" style="font-size: 17px;text-transform:uppercase;color:#3c8dbc"><strong id="myModalTitleDetail"></strong></div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="myModalContentDetail">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button type="button" id="btPrint" onclick="javascript:CallPrint('myModalContentDetail');" class="btn btn-sm btn-success"><i class="fa fa-print"></i>&nbsp;In</button>
+
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalSalaries" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalTitleSalaries"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalContentSalaries">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" onclick="ExportCustom()" id="btSave" class="btn btn-sm btn-success"><i class="fa-solid fa-file-excel"></i>&nbsp;&nbsp;Xuất</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalChoosen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog dialog-choosen" role="document">
+        <div class="modal-content custom-modal-css">
+            <div class="modal-header custom-modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" id="myModalTitleChoosen">Chọn mục tiêu cần xuất bảng lương</h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div id="myModalContentChoosen">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5 mt-4 mb-4">
+                            <button id="btn-personal-export" onclick="LoadModalSalaries()" type="button" class="btn btn-light choosen-btn">Cá nhân</button>
+                        </div>
+                        <div class="col-lg-5 mt-4 mb-4">
+                            <button id="btn-all-export" onclick="LoadModalSalariesAllUser()" type="button" class="btn btn-light  choosen-btn">Tất cả nhân viên</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modal-custom-footer footer d-flex ">
+             
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script language="javascript" type="text/javascript">
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+        }
+    </script>
+    <script type="text/javascript">
+        var myModalChoosent = {
+            $modal: $('#modalChoosen'),
+            $myModalContent: $("#myModalContent"),
+            $myModalTitle: $("#myModalTitleChoosen")
+        }
+        var myModalDetail = {
+            $modal: $('#myModalDetail'),
+            $myModalContent: $("#myModalContentDetail"),
+            $myModalTitle: $("#myModalTitleDetail")
+        }
+        var myModalSalaries = {
+            $modal: $('#myModalSalaries'),
+            $myModalContent: $("#myModalContentSalaries"),
+            $myModalTitle: $("#myModalTitleSalaries")
+        }
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" },
+            'search_contains': true
+        }
+        for (var selector in config) {
+            $(selector).chosen(config);
+        }
+        $("#NgaySearch").datepicker({
+            format: 'dd/mm/yyyy',
+            changeYear: true,
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#time_OutSearch").datepicker({
+            format: 'dd/mm/yyyy',
+            changeYear: true,
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+    </script>
+    @*load from*@
+<script type="text/javascript">
+    function loadSearch() {
+            $.ajax({
+                url: '@Url.Action("_Search")',
+                timeout: 2000000,
+                data: {
+                },
+                beforeSend: function () {
+                    $(".divLoading").addClass("loading");
+                },
+                success: function (response) {
+                    $(".divLoading").removeClass("loading");
+                    $('.table-bodysearch').html(response);
+                },
+                error: function (message) {
+                    $(".divLoading").removeClass("loading");
+                }
+            });
+
+      }
+    var paramsLoadData = [
+             true,
+            '@Url.Action("_GetList")',
+            '#UsernameSearch',
+            '#ThangSearch',
+            '#jobSearch'
+    ];
+    $(document).ready(function () {
+        loadSearch()
+        loadData(...paramsLoadData);
+    });
+    function search() {
+            loadData(
+            true,
+            '@Url.Action("_GetList")',
+            '#UsernameSearch',
+            '#ThangSearch',
+            '#jobSearch');
+    }
+    function printView() {
+        var formData = {
+            username: $('#UsernameSearch').val().trim(),
+            Thangnam: $('#ThangSearch').val().trim(),
+            idJob: $('#jobSearch').val()
+        }
+        if (formData.username == "") {
+            notify('Vui lòng chọn nhân viên cần in phiếu lương')
+        }
+        else if (formData.Thangnam == "") {
+            notify('Vui lòng chọn tháng cần in lương')
+        }
+        else {
+            loadModal('In Phiếu Lương', '@Url.Action("_PrintView")', myModalPrint, formData)
+        }
+    }
+    function detail() {
+        var formData = {
+            username: $('#UsernameSearch').val().trim(),
+            ThangSearch: $('#ThangSearch').val().trim(),
+            idJob: $('#jobSearch').val()
+        }
+        if (formData.username == "" || formData.username == null) {
+            notify("Vui lòng chọn nhân viên")
+        }
+        else if (formData.ThangSearch == "" || formData.ThangSearch == null) {
+            notify("Vui lòng chọn tháng")
+        }
+        else {
+            loadModal('Chi tiết công', '@Url.Action("_Detail")', myModalDetail, formData)
+        }
+    }
+
+    function ExportCustomAllUser() {
+        var formData = {
+            Thangnam: $('#ThangSearch').val(),
+            idJob: $('#jobSearch').val()
+        }
+        if (formData.Thangnam == null || formData.Thangnam == "") {
+            notify("Vui lòng chọn tháng cần xuất báo cáo")
+        }
+        else if (formData.idJob == null || formData.idJob == "") {
+            notify("Vui lòng chọn địa điểm làm việc cần xuất báo cáo")
+        }
+        else {
+        ActionExport('@Url.Action("ExportExcelAll")', 'POST', formData, paramsLoadData)
+       }
+    }
+    function LoadModalSalaries() {
+        var formData = {
+            username: $('#UsernameSearch').val(),
+            Thangnam: $('#ThangSearch').val(),
+            idJob: $('#jobSearch').val()
+        }
+        if (formData.username == null || formData.username == '') {
+            notify("Vui lòng chọn nhân viên cần xuất bảng lương")
+        }
+        else if (formData.Thangnam == null || formData.Thangnam == "") {
+            notify("Vui lòng chọn tháng cần xuất báo cáo")
+        }
+        else if (formData.idJob == null || formData.idJob == "") {
+            notify("Vui lòng chọn địa điểm làm việc cần xuất báo cáo")
+        }
+        else {
+            loadModal('Thông tin lương', '@Url.Action("_Salaries")', myModalSalaries, formData)
+            $("#modalChoosen").modal('hide');
+        }
+    }
+
+    function LoadModalSalariesAllUser() {
+        var formData = {
+            Thangnam: $('#ThangSearch').val(),
+            idJob: $('#jobSearch').val()
+        }
+        if (formData.Thangnam == null || formData.Thangnam == "") {
+            notify("Vui lòng chọn tháng cần xuất báo cáo")
+        }
+        else if (formData.idJob == null || formData.idJob == "") {
+            notify("Vui lòng chọn địa điểm làm việc cần xuất báo cáo")
+        }
+        else {
+            loadModal('Thông tin lương', '@Url.Action("_Salaries")', myModalSalaries, formData)
+            $("#modalChoosen").modal('hide');
+        }
+    }
+    function ExportCustom() {
+        var formData = {
+            Thangnam: $('#Thangnam').val(),
+            idJob: $('#IdJob').val(),
+            LuongCoBanGoc: $('#LuongCoBanGoc').val(),
+            ThamNien: $('#ThamNien').val(),
+            xangxe: $('#xangxe').val(),
+            Com: $('#Com').val().trim(),
+            DienThoai: $('#DienThoai').val(),
+            ChuyenCan: $('#ChuyenCan').val(),
+            HieuQuaCV: $('#HieuQuaCV').val(),
+            CongTet: $('#CongTet').val(),
+            HeSoThuong: $('#HeSoThuong').val()
+        }
+        if (formData.LuongCoBanGoc == null || formData.LuongCoBanGoc == "") {
+            notify("Vui lòng nhập lương cơ bản")
+        }
+        else {
+            ActionExport('@Url.Action("ExportExcel")', 'POST', formData, paramsLoadData)
+        }
+
+       }
+</script>
+}

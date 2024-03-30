@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewBag.Title = "DANH MỤC CÔNG TY BẢO VỆ ";
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary border-no-color card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>TÌM KIẾM THEO TỪ KHÓA</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tên công ty</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off"
+                                           id="NameCompany" name="NameCompany" />
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-12">
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <button id="btnSearch" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <b>KẾT QUẢ</b>
+                                </h3>
+                            </div>
+                            <div class="card-body pad">
+                                <div class="row mb-4">
+                                    <div class="col-md-4">
+                                        <button id="btnCreate" onclick="Insert()" type="button" class="btn bg-gradient-success"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 table-body table-responsive">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div><!-- /.container-fluid -->
+            </div>
+        </div>
+</section>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+          
+            <div class="modal-header custom-modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" id="myModalTitle"></h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div id="myModalContent">
+                </div>
+
+            </div>
+            <div class="modal-footer modal-custom-footer footer d-flex ">
+                <button type="button" onclick="Insert_Action()" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+          
+            <div class="modal-header custom-modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" id="myModalUpdateTitle"></h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div id="myModalUpdateContent">
+                </div>
+
+            </div>
+            <div class="modal-footer modal-custom-footer footer d-flex ">
+                <button type="button" onclick="Edit_Action()" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Cập nhật</button>
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        var myModal = {
+             $modal : $('#myModal'),
+             $myModalContent : $("#myModalContent"),
+             $myModalTitle : $("#myModalTitle")
+        }
+        var myModalUpdate = {
+            $modal: $('#myModalUpdate'),
+            $myModalContent: $("#myModalUpdateContent"),
+            $myModalTitle: $("#myModalUpdateTitle")
+        }
+
+        var paramLoadData = [true, '@Url.Action("_GetList")','#NameCompany']
+
+        $(document).ready(function () {
+            loadData(...paramLoadData);
+            $("#myModal").on("hidden.bs.modal", function () {
+                loadData(false);
+            });
+            $("#btnSearch").click(function () {
+                loadData(...paramLoadData);
+            })
+
+        });
+                   /*Insert Job*/
+        function Insert() {
+            loadModal('THÊM', '@Url.Action("_Insert")', myModal)
+        }
+
+
+       /* Insert Action*/
+         function Insert_Action() {
+             var  formData = {
+                 Name: $('#Name').val().trim(),
+                 taxCode: $('#taxCode').val().trim(),
+                 Email: $('#Email').val().trim(),
+                 country: $('#country').val(),
+                 Location: $('#Location').val().trim(),
+                 ward: $('#ward').find(":selected").text(),
+                 city: $('#city').find(":selected").text(),
+                 district: $('#district').find(":selected").text(),
+                 street: $('#street').val().trim(),
+                 phone: $('#phone').val().trim(),
+                 status: $('#status').is(":checked")
+             };
+             console.log(formData.country)
+             console.log(formData.city)
+             if (formData.Name === "") {
+                 notify("Tên công ty không được để trống");
+             } else if (formData.taxCode === "") {
+                 notify("Vui lòng mã số thuế");
+             } else if (formData.Email === ""){
+                 notify("Email không được để trống");
+             } else if (formData.country === "") {
+                 notify("Vui lòng chọn quốc gia");
+             } else if (formData.Location === "") {
+                 notify("Vui lòng nhập vị trí công ty");
+             } else if (formData.city === "") {
+                 notify("Vui lòng chọn thành phố");
+             } else if (formData.ward === "") {
+                 notify("Vui lòng chọn quận huyện");
+             } else if (formData.district === "") {
+                 notify("Vui lòng chọn phường / xấ");
+             } else if (formData.street === "") {
+                 notify("Vui lòng nhập địa chỉ, tên đường");
+             } else if (formData.phone === "") {
+                 notify("Vui lòng nhập số điện thoại công ty");
+             } else if (!isEmail(formData.Email)) {
+                 notify("Email không đúng định dạng");
+             } else {
+                  Action('@Url.Action("_InsertFun")', 'POST', formData, paramLoadData)
+                  myModal.$modal.modal('hide')
+             }
+
+        }
+        /* Edit*/
+        function Edit(id) {
+            loadModal('CẬP NHẬT', '@Url.Action("_Edit")', myModalUpdate, id)
+        }
+        function Edit_Action() {
+            var editDepartMent = $('#editDepartMent');
+            var formData = {
+                Id: $('#Id').val(),
+                Name: editDepartMent.find('#Name').val().trim(),
+                taxCode: editDepartMent.find('#taxCode').val().trim(),
+                Email: editDepartMent.find('#Email').val().trim(),
+                country: editDepartMent.find('#country').val().trim(),
+                Location: editDepartMent.find('#Location').val().trim(),
+                ward: editDepartMent.find('#wardEdit').find(":selected").text(),
+                city: editDepartMent.find('#cityEdit').find(":selected").text(),
+                district: editDepartMent.find('#districtEdit').find(":selected").text(),
+                street: editDepartMent.find('#street').val().trim(),
+                phone: editDepartMent.find('#phone').val().trim(),
+                status: editDepartMent.find('#status').is(":checked")
+            };
+            if (formData.Name === "") {
+                notify("Tên công ty không được để trống");
+            } else if (formData.taxCode === "") {
+                notify("Vui lòng mã số thuế");
+            } else if (formData.Email === "") {
+                notify("Email không được để trống");
+            } else if (formData.country === "") {
+                notify("Vui lòng chọn thành phố");
+            } else if (formData.Location === "") {
+                notify("Vui lòng nhập vị trí công ty");
+            } else if (formData.city === "") {
+                notify("Vui lòng chọn thành phố");
+            } else if (formData.ward === "") {
+                notify("Vui lòng chọn quận huyện");
+            } else if (formData.district === "") {
+                notify("Vui lòng chọn phường / xấ");
+            } else if (formData.street === "") {
+                notify("Vui lòng nhập địa chỉ, tên đường");
+            } else if (formData.phone === "") {
+                notify("Vui lòng nhập số điện thoại công ty");
+            } else if (!isEmail(formData.Email)) {
+                notify("Email không đúng định dạng");
+            } else {
+                Action('@Url.Action("_EditFun")', 'POST', formData, paramLoadData)
+                myModalUpdate.$modal.modal('hide');
+            }
+        }
+
+
+         function Delete(id_) {
+             if (confirm('Dữ liệu sau khi xoá sẽ không thể khôi phục?')) {
+                 Action('@Url.Action("_DeleteFun")', 'POST', { Id: id_ }, paramLoadData)    
+            }
+        }
+
+
+
+
+    </script>
+}
+

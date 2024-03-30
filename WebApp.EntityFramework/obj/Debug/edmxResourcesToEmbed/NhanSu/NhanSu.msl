@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLNHANSUModelStoreContainer" CdmEntityContainer="QLNHANSUEntities">
+    <EntitySetMapping Name="DMPhuongXas">
+      <EntityTypeMapping TypeName="QLNHANSUModel.DMPhuongXa">
+        <MappingFragment StoreEntitySet="DMPhuongXa">
+          <ScalarProperty Name="MaPX" ColumnName="MaPX" />
+          <ScalarProperty Name="TenPX" ColumnName="TenPX" />
+          <ScalarProperty Name="MaQH" ColumnName="MaQH" />
+          <ScalarProperty Name="MaTT" ColumnName="MaTT" />
+          <ScalarProperty Name="hieuluc" ColumnName="hieuluc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dmQuanHuyens">
+      <EntityTypeMapping TypeName="QLNHANSUModel.dmQuanHuyen">
+        <MappingFragment StoreEntitySet="dmQuanHuyen">
+          <ScalarProperty Name="MaQH" ColumnName="MaQH" />
+          <ScalarProperty Name="TenQH" ColumnName="TenQH" />
+          <ScalarProperty Name="MaTT" ColumnName="MaTT" />
+          <ScalarProperty Name="HieuLuc" ColumnName="HieuLuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dmTinhThanhs">
+      <EntityTypeMapping TypeName="QLNHANSUModel.dmTinhThanh">
+        <MappingFragment StoreEntitySet="dmTinhThanh">
+          <ScalarProperty Name="MaTT" ColumnName="MaTT" />
+          <ScalarProperty Name="TenTT" ColumnName="TenTT" />
+          <ScalarProperty Name="HieuLuc" ColumnName="HieuLuc" />
+          <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

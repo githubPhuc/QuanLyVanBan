@@ -1,0 +1,182 @@
+﻿@{
+    var data = ViewBag.data as ToolsApp.EntityFramework.Sp_Report_Luong_Result;
+    int STT = 0;
+}
+<style>
+    td, th {
+        padding: 0;
+        margin: 0;
+        font-size:16px;
+    }
+    #TableSS {
+        border-collapse: collapse;
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    #TableSS th {
+        border: 1px solid black;
+    }
+
+    #TableSS td {
+        border: 1px solid black;
+    }
+
+    .text-l {
+        text-align: left;
+    }
+
+    .text-r {
+        text-align: right;
+    }
+
+    .text-c {
+        text-align: center;
+    }
+
+    #TableSS tr {
+        height: 0px;
+    }
+
+    .w-50 {
+        width: 50%;
+    }
+
+    .w-40 {
+        width: 40%;
+    }
+
+    .w-60 {
+        width: 60%;
+    }
+
+    .w-30 {
+        width: 30%;
+    }
+
+    .w-20 {
+        width: 20%;
+    }
+</style>
+<form id="_Print">
+    <div class="row" style=" width:100%">
+        <table class="table table-bordered" width="100%">
+            <thead>
+                <tr>
+                    <th class="w-40 text-l">Đơn vị </th>
+                    <th class="w-20 text-l"></th>
+                    <th class="w-40 text-c">Mẫu số: 02 - LĐTL</th>
+                </tr>
+                <tr>
+                    <th class="w-40 text-l">Bộ phận kế toán</th>
+                    <td class="w-20 text-l"></td>
+                    <td class="w-40 text-c">
+                        Ban hành theo Thông tư số 200/2014/TT-BTC
+                        Ngày 22/12/2014 của Bộ Tài chính
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-c" style="border: none "></th>
+                </tr>
+                <tr>
+                    <th class="text-c" id="date" colspan="3" style="border: none "><h3><b>BẢN CHẤM CÔNG THÁNG  @data.Thang</b></h3></th>
+                </tr>
+                <tr>
+                    <th class="text-c" colspan="3" style="border: none "><p><b></b></p></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <br />
+    <div class="row" style=" width:100%">
+        <table id="TableSS" class="table-bordered text-center" width="100%">
+            <thead>
+                <tr style="height:100px">
+                    <th rowspan="2" class="text-c">@data.Fullname</th>
+                    <th rowspan="2" class="text-c">@data.</th>
+                    <th colspan="2" class="text-c">Lương thời gian</th>
+                    <th colspan="2" class="text-c">Số ngày nghỉ</th>
+                    <th class="text-c">Phụ cấp</th>
+                    <th class="text-c">Phụ cấp khác</th>
+                    <th class="text-c">Tạm ứng</th>
+                    <th colspan="3" class="text-c">Các khoản khấu trừ vào lương</th>
+                    <th class="text-c">Tổng lương thực lãnh</th>
+                    <th class="text-c">Ký nhận</th>
+
+                </tr>
+                <tr style="height:100px ">
+                    <th class="text-c">Số tiếng</th>
+                    <th class="text-c">Số tiền</th>
+                    <th class="text-c">Có phép</th>
+                    <th class="text-c">Không phép</th>
+                    <th class="text-c">Phụ cấp</th>
+                    <th class="text-c">Phụ cấp khác</th>
+                    <th class="text-c">Tạm ứng</th>
+                    <th class="text-c">BHYT</th>
+                    <th class="text-c">Thuế TNCN</th>
+                    <th class="text-c">Cộng</th>
+                    <th class="text-c">Tổng lương thực lãnh</th>
+                    <th class="text-c"></th>
+                </tr>
+                <tr class="text-align:center">
+                    <td>Dương Quốc Tiễn</td>
+                    <td>2.000.000</td>
+                    <td>150</td>
+                    <td>20000</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>500000</td>
+                    <td>200000</td>
+                    <td>2500000</td>
+                    <td>400000</td>
+                    <td>600000</td>
+                    <td>1000000</td>
+                    <td>6000000</td>
+                    <td></td>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <br />
+    <br />
+    <div class="row" style=" width:100%">
+        <table class="table-bordered " width="100%">
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-c" style="border: none">Người lập biểu</th>
+                    <th colspan="2" class="text-c" style="border: none">Kế toán trưởng</th>
+                    <th colspan="2" class="text-c" style="border: none">Giám đốc</th>
+
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-c" style="border: none"><i>(Ký, họ tên)</i></th>
+                    <th colspan="2" class="text-c" style="border: none"><i>(Ký, họ tên)</i></th>
+                    <th colspan="2" class="text-c" style="border: none"><i>(Ký, họ tên)</i></th>
+
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-c" style="border: none;height:100px;"></th>
+                    <th colspan="2" class="text-c" style="border: none; height: 100px;"></th>
+                </tr>
+
+            </thead>
+        </table>
+    </div>
+</form>
+
+<script>
+    // Tạo một đối tượng Date để lấy thông tin ngày tháng năm hiện tại
+    var currentDate = new Date();
+
+    // Lấy ngày, tháng và năm từ đối tượng Date
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần cộng thêm 1
+    var year = currentDate.getFullYear();
+
+    // Tạo một chuỗi chứa thông tin ngày tháng năm
+    var dateText = day + 'tháng' + month + 'năm' + year;
+
+    // Đưa chuỗi vào thẻ div
+    document.getElementById('date').innerHTML = dateText;
+</script>

@@ -1,0 +1,73 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.AspNetUser>;
+    var db_ = new ChamCong_teamdevEntities();
+   
+}
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên tài khoản</th>
+            <th>Tên đầy đủ</th>
+            <th>Công việc chính</th>
+
+        </tr>
+    </thead>
+    <tbody>
+                  
+        @foreach (var item in data)
+        {
+
+            var detail_job = (from a in db_.Jobs
+                              join b in db_.JobDetails on a.Id equals b.idjob
+                              join c in db_.UserJobs on b.Id equals c.Id_Detail_Job
+                              where (c.Username == item.UserName && c.Status == true)
+                              select new
+                              {
+                                  c.Id,
+                                  a.NameLocation,
+                                  a.street,
+                                  a.subAdministrativeArea,
+                                  a.administrativeArea,
+                                  a.country,
+                                  b.JobDescription,
+                                  b.job_Detail_Name,
+                              }).ToList();
+            <tr>
+                <td>
+                    <a onclick="ResetJob('@item.UserName')" class="btn">
+                        <i class="fas fa-trash"></i> Thiết lập lại công việc
+                    </a>
+                </td>
+                <td>@item.UserName</td>
+                <td>@item.Fullname</td>
+                <td>
+                    @{
+
+                        if (detail_job.Count() > 0)
+                        {
+                            <ul class="list-job">
+                                @foreach (var value in detail_job)
+                                {
+                                <li style="list-style-type: none;">
+                                    <span class="displayN btn-del" onclick="deleteJob('@value.Id')">
+                                        <i class="fa-solid fa-square-xmark"></i>
+                                    </span>
+                                    <small class="badge badge-success" style="font-size:14px">
+                                        <i class="far fa-clock"></i> @value.job_Detail_Name - @value.NameLocation - @value.street -@value.administrativeArea - @value.subAdministrativeArea - @value.country
+                                    </small>
+
+                                </li>
+                                }
+                            </ul>
+                        }
+                    }
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>

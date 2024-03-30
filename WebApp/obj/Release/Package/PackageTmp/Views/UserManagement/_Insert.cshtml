@@ -1,0 +1,54 @@
+﻿@model ToolsApp.Models.UserViewModel
+
+@{
+    var allUsers = ViewBag.allUsers as List<ToolsApp.EntityFramework.AspNetUser>;
+    var pages = ViewBag.pages as List<ToolsApp.EntityFramework.Page>;
+}
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(model => model.Id)
+
+<div class="row" style="margin-bottom:5px">
+    <label class="col-md-3 col-sm-3">@Html.LabelFor(p => p.Username)</label>
+    <div class="col-md-9 col-sm-9 ten">
+        <select id="Username" name="Username" class="form-control chosen-select" style="width: 100%;">
+            @foreach (var item in allUsers)
+            {
+                <option value="@item.UserName">
+                    @item.UserName -  @item.Fullname -  @item.Email
+                </option>
+            }
+        </select>
+        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+<div class="row" style="margin-bottom:5px">
+    <label class="col-md-3 col-sm-3">Pages</label>
+    <div class="col-md-9 col-sm-9 ten">
+        <select id="Pages" name="Pages" multiple="multiple" class="form-control chosen-select" style="width: 100%;">
+            @foreach (var item in pages)
+            {
+                <option value="@item.Id">
+                    @item.Code. @item.Action/@item.Controler
+                </option>
+            }
+        </select>
+        @Html.ValidationMessageFor(model => model.Pages, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<script type="text/javascript">
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+</script>

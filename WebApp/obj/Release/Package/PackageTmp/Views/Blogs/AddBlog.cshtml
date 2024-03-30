@@ -1,0 +1,66 @@
+﻿
+
+@{
+    var username = ViewData["username"];
+    var token = ViewData["token"];
+}
+<input value="@username" style="display:none" id="username" name="username" />
+<input value="@token" style="display:none" id="token" name="token" />
+<section class="content" id="AddBlog">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Thêm tin tức</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tiêu đề tin tức</label>
+                                    <input class="form-control form-control-md" maxlength="50" placeholder="Nhập tiêu đề" type="text" autocomplete="off"
+                                           id="title" name="title" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <textarea maxlength="500" class="form-control form-control-md" id="description" name="description"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Url trang tin tức </label>
+                                    <input class="form-control form-control-md" placeholder="https://examples.com" type="text" autocomplete="off" id="url" name="url" />
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Hình ảnh hiển thị</label>
+                                    <input class="form-control" type="file" id="formFile" style="font-size:inherit;height:inherit">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pad">
+                            <div class="row">
+                                <div class="col-md-6 d-flex justify-content-start">
+                                    <button id="btnPush" onclick="saveBlog()" type="button" class="btn bg-gradient-success">&nbsp;Thêm</button>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end">
+                                    <button id="btnPreView" onclick="previewData()" type="button" class="btn bg-gradient-success">&nbsp;Xem mẫu thử</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

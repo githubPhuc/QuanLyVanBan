@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChamCong_TeamDevModelStoreContainer" CdmEntityContainer="ChamCong_teamdevEntities">
+    <EntitySetMapping Name="AspNetRoleClaims">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.AspNetRoleClaim">
+        <MappingFragment StoreEntitySet="AspNetRoleClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NormalizedName" ColumnName="NormalizedName" />
+          <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="ProviderDisplayName" ColumnName="ProviderDisplayName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="AccoutType" ColumnName="AccoutType" />
+          <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+          <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+          <ScalarProperty Name="idDepartment" ColumnName="idDepartment" />
+          <ScalarProperty Name="Time_Locked" ColumnName="Time_Locked" />
+          <ScalarProperty Name="hieuluc" ColumnName="hieuluc" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="User_Locked" ColumnName="User_Locked" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="ResetToken" ColumnName="ResetToken" />
+          <ScalarProperty Name="timeResetToken" ColumnName="timeResetToken" />
+          <ScalarProperty Name="timeWorking" ColumnName="timeWorking" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserTokens">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.AspNetUserToken">
+        <MappingFragment StoreEntitySet="AspNetUserTokens">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AttendanceFaces">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.AttendanceFace">
+        <MappingFragment StoreEntitySet="AttendanceFace">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="IdUserJob" ColumnName="IdUserJob" />
+          <ScalarProperty Name="Location_In_X" ColumnName="Location_In_X" />
+          <ScalarProperty Name="Location_In_Y" ColumnName="Location_In_Y" />
+          <ScalarProperty Name="Location_Out_X" ColumnName="Location_Out_X" />
+          <ScalarProperty Name="Location_Out_Y" ColumnName="Location_Out_Y" />
+          <ScalarProperty Name="Check_Location_In" ColumnName="Check_Location_In" />
+          <ScalarProperty Name="Check_Location_Out" ColumnName="Check_Location_Out" />
+          <ScalarProperty Name="Time_In" ColumnName="Time_In" />
+          <ScalarProperty Name="Time_Out" ColumnName="Time_Out" />
+          <ScalarProperty Name="Admin_UserName_Update" ColumnName="Admin_UserName_Update" />
+          <ScalarProperty Name="Admin_UserName_Confirm" ColumnName="Admin_UserName_Confirm" />
+          <ScalarProperty Name="Admin_Messger_Update" ColumnName="Admin_Messger_Update" />
+          <ScalarProperty Name="Admin_time_Update" ColumnName="Admin_time_Update" />
+          <ScalarProperty Name="TimeConfirm" ColumnName="TimeConfirm" />
+          <ScalarProperty Name="isConfirm" ColumnName="isConfirm" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+          <ScalarProperty Name="Datetime_" ColumnName="Datetime_" />
+          <ScalarProperty Name="sumTime" ColumnName="sumTime" />
+          <ScalarProperty Name="UserJobId" ColumnName="UserJobId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conversations">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Conversation">
+        <MappingFragment StoreEntitySet="Conversation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ConversationName" ColumnName="ConversationName" />
+          <ScalarProperty Name="timeCreate" ColumnName="timeCreate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConversationLists">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.ConversationList">
+        <MappingFragment StoreEntitySet="ConversationList">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="IdConversations" ColumnName="IdConversations" />
+          <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="DateTimeRead" ColumnName="DateTimeRead" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ConversationId" ColumnName="ConversationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="ward" ColumnName="ward" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="taxCode" ColumnName="taxCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Errols">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Errol">
+        <MappingFragment StoreEntitySet="Errol">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="UserErrol" ColumnName="UserErrol" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Helps">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Help">
+        <MappingFragment StoreEntitySet="Help">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="file" ColumnName="file" />
+          <ScalarProperty Name="Mess" ColumnName="Mess" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Job">
+        <MappingFragment StoreEntitySet="Job">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+          <ScalarProperty Name="subAdministrativeArea" ColumnName="subAdministrativeArea" />
+          <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="TimeDelete" ColumnName="TimeDelete" />
+          <ScalarProperty Name="Location_X" ColumnName="Location_X" />
+          <ScalarProperty Name="Location_Y" ColumnName="Location_Y" />
+          <ScalarProperty Name="administrativeArea" ColumnName="administrativeArea" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="TimeCreate" ColumnName="TimeCreate" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="UserDelete" ColumnName="UserDelete" />
+          <ScalarProperty Name="IdDepartment" ColumnName="IdDepartment" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobDetails">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.JobDetail">
+        <MappingFragment StoreEntitySet="JobDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="idjob" ColumnName="idjob" />
+          <ScalarProperty Name="job_Detail_Name" ColumnName="job_Detail_Name" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
+          <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+          <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="DeleteTime" ColumnName="DeleteTime" />
+          <ScalarProperty Name="IsStatus" ColumnName="IsStatus" />
+          <ScalarProperty Name="UserDelete" ColumnName="UserDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="PageId" ColumnName="PageId" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+          <ScalarProperty Name="UserFullnameCreate" ColumnName="UserFullnameCreate" />
+          <ScalarProperty Name="DatetimeCreate" ColumnName="DatetimeCreate" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="UserFullnameUpdate" ColumnName="UserFullnameUpdate" />
+          <ScalarProperty Name="DatetimeUpdate" ColumnName="DatetimeUpdate" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="UserDelete" ColumnName="UserDelete" />
+          <ScalarProperty Name="UserFullnameDelete" ColumnName="UserFullnameDelete" />
+          <ScalarProperty Name="DatetimeDelete" ColumnName="DatetimeDelete" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messengers">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Messenger">
+        <MappingFragment StoreEntitySet="Messenger">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="SentAt" ColumnName="SentAt" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="idConversation" ColumnName="idConversation" />
+          <ScalarProperty Name="ConversationId" ColumnName="ConversationId" />
+          <ScalarProperty Name="TypeMess" ColumnName="TypeMess" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notifications">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.notification">
+        <MappingFragment StoreEntitySet="notification">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pages">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Page">
+        <MappingFragment StoreEntitySet="Page">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
+          <ScalarProperty Name="Controler" ColumnName="Controler" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+          <ScalarProperty Name="UserFullnameCreate" ColumnName="UserFullnameCreate" />
+          <ScalarProperty Name="DatetimeCreate" ColumnName="DatetimeCreate" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="UserFullnameUpdate" ColumnName="UserFullnameUpdate" />
+          <ScalarProperty Name="DatetimeUpdate" ColumnName="DatetimeUpdate" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="UserDelete" ColumnName="UserDelete" />
+          <ScalarProperty Name="UserFullnameDelete" ColumnName="UserFullnameDelete" />
+          <ScalarProperty Name="DatetimeDelete" ColumnName="DatetimeDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PleaseTakeLeaves">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.PleaseTakeLeave">
+        <MappingFragment StoreEntitySet="PleaseTakeLeave">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="messger" ColumnName="messger" />
+          <ScalarProperty Name="phones" ColumnName="phones" />
+          <ScalarProperty Name="timeStart" ColumnName="timeStart" />
+          <ScalarProperty Name="timeEnd" ColumnName="timeEnd" />
+          <ScalarProperty Name="idUserJob" ColumnName="idUserJob" />
+          <ScalarProperty Name="isComfim" ColumnName="isComfim" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="UserJobId" ColumnName="UserJobId" />
+          <ScalarProperty Name="TimeConfim" ColumnName="TimeConfim" />
+          <ScalarProperty Name="UserConfim" ColumnName="UserConfim" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileUsers">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.ProfileUser">
+        <MappingFragment StoreEntitySet="ProfileUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="imageName" ColumnName="imageName" />
+          <ScalarProperty Name="birtDate" ColumnName="birtDate" />
+          <ScalarProperty Name="placeOfBirt" ColumnName="placeOfBirt" />
+          <ScalarProperty Name="placeOfOrigin" ColumnName="placeOfOrigin" />
+          <ScalarProperty Name="curResidence" ColumnName="curResidence" />
+          <ScalarProperty Name="resident" ColumnName="resident" />
+          <ScalarProperty Name="temResidence" ColumnName="temResidence" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="taxCode" ColumnName="taxCode" />
+          <ScalarProperty Name="marital" ColumnName="marital" />
+          <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+          <ScalarProperty Name="religion" ColumnName="religion" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="educationalLevel" ColumnName="educationalLevel" />
+          <ScalarProperty Name="otherNum" ColumnName="otherNum" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="zalo" ColumnName="zalo" />
+          <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+          <ScalarProperty Name="imageFrontCCCD" ColumnName="imageFrontCCCD" />
+          <ScalarProperty Name="imageBackCCCD" ColumnName="imageBackCCCD" />
+          <ScalarProperty Name="passPortNum" ColumnName="passPortNum" />
+          <ScalarProperty Name="codeBank" ColumnName="codeBank" />
+          <ScalarProperty Name="numBank" ColumnName="numBank" />
+          <ScalarProperty Name="nameAccountBank" ColumnName="nameAccountBank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Qr_Patrol">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Qr_Patrol">
+        <MappingFragment StoreEntitySet="Qr_Patrol">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Location_X" ColumnName="Location_X" />
+          <ScalarProperty Name="Location_Y" ColumnName="Location_Y" />
+          <ScalarProperty Name="id_Job" ColumnName="id_Job" />
+          <ScalarProperty Name="time_Check" ColumnName="time_Check" />
+          <ScalarProperty Name="path_Qr" ColumnName="path_Qr" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resignations">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.Resignation">
+        <MappingFragment StoreEntitySet="Resignation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="datetimeResignation" ColumnName="datetimeResignation" />
+          <ScalarProperty Name="datetimeWrite" ColumnName="datetimeWrite" />
+          <ScalarProperty Name="messenger" ColumnName="messenger" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="IsConfim" ColumnName="IsConfim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Check_Patrol">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.User_Check_Patrol">
+        <MappingFragment StoreEntitySet="User_Check_Patrol">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QrCheck" ColumnName="QrCheck" />
+          <ScalarProperty Name="id_Job" ColumnName="id_Job" />
+          <ScalarProperty Name="Username_Check" ColumnName="Username_Check" />
+          <ScalarProperty Name="Time_Check" ColumnName="Time_Check" />
+          <ScalarProperty Name="location_X_Check" ColumnName="location_X_Check" />
+          <ScalarProperty Name="location_Y_Check" ColumnName="location_Y_Check" />
+          <ScalarProperty Name="Is_Confim" ColumnName="Is_Confim" />
+          <ScalarProperty Name="isLocation" ColumnName="isLocation" />
+          <ScalarProperty Name="Mess" ColumnName="Mess" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="imageName" ColumnName="imageName" />
+          <ScalarProperty Name="TimeConfim" ColumnName="TimeConfim" />
+          <ScalarProperty Name="UserConfim" ColumnName="UserConfim" />
+          <ScalarProperty Name="Qr_PatrolId" ColumnName="Qr_PatrolId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Page">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.User_Page">
+        <MappingFragment StoreEntitySet="User_Page">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="PageId" ColumnName="PageId" />
+          <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+          <ScalarProperty Name="UserFullnameCreate" ColumnName="UserFullnameCreate" />
+          <ScalarProperty Name="DatetimeCreate" ColumnName="DatetimeCreate" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="UserFullnameUpdate" ColumnName="UserFullnameUpdate" />
+          <ScalarProperty Name="DatetimeUpdate" ColumnName="DatetimeUpdate" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="UserDelete" ColumnName="UserDelete" />
+          <ScalarProperty Name="UserFullnameDelete" ColumnName="UserFullnameDelete" />
+          <ScalarProperty Name="DatetimeDelete" ColumnName="DatetimeDelete" />
+          <ScalarProperty Name="isRoleCreate" ColumnName="isRoleCreate" />
+          <ScalarProperty Name="isRoleEdit" ColumnName="isRoleEdit" />
+          <ScalarProperty Name="isRoleExport" ColumnName="isRoleExport" />
+          <ScalarProperty Name="isRoleExportAll" ColumnName="isRoleExportAll" />
+          <ScalarProperty Name="isRoleDelete" ColumnName="isRoleDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserJobs">
+      <EntityTypeMapping TypeName="ChamCong_TeamDevModel.UserJob">
+        <MappingFragment StoreEntitySet="UserJob">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id_Detail_Job" ColumnName="Id_Detail_Job" />
+          <ScalarProperty Name="JobDetailId" ColumnName="JobDetailId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UsernameDelete" ColumnName="UsernameDelete" />
+          <ScalarProperty Name="timeCreate" ColumnName="timeCreate" />
+          <ScalarProperty Name="timeDelete" ColumnName="timeDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="ChamCong_TeamDevModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_ExportExcelTimeKeeping" FunctionName="ChamCong_TeamDevModel.Store.Sp_ExportExcelTimeKeeping">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChamCong_TeamDevModel.Sp_ExportExcelTimeKeeping_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="AccoutType" ColumnName="AccoutType" />
+          <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+          <ScalarProperty Name="job_Detail_Name" ColumnName="job_Detail_Name" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="isConfirm" ColumnName="isConfirm" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+          <ScalarProperty Name="sumTime" ColumnName="sumTime" />
+          <ScalarProperty Name="Time_In" ColumnName="Time_In" />
+          <ScalarProperty Name="Time_Out" ColumnName="Time_Out" />
+          <ScalarProperty Name="IDUserJob" ColumnName="IDUserJob" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_LoadJobFromUserName" FunctionName="ChamCong_TeamDevModel.Store.Sp_LoadJobFromUserName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChamCong_TeamDevModel.Sp_LoadJobFromUserName_Result">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobAddress" ColumnName="JobAddress" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="TimeInOut" ColumnName="TimeInOut" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_LoadTakeLeave" FunctionName="ChamCong_TeamDevModel.Store.Sp_LoadTakeLeave">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChamCong_TeamDevModel.Sp_LoadTakeLeave_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="idUserJob" ColumnName="idUserJob" />
+          <ScalarProperty Name="messger" ColumnName="messger" />
+          <ScalarProperty Name="isComfim" ColumnName="isComfim" />
+          <ScalarProperty Name="timeEnd" ColumnName="timeEnd" />
+          <ScalarProperty Name="timeStart" ColumnName="timeStart" />
+          <ScalarProperty Name="phones" ColumnName="phones" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_LoadTimeKeeping" FunctionName="ChamCong_TeamDevModel.Store.Sp_LoadTimeKeeping">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChamCong_TeamDevModel.Sp_LoadTimeKeeping_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Check_Location_In" ColumnName="Check_Location_In" />
+          <ScalarProperty Name="Time_In" ColumnName="Time_In" />
+          <ScalarProperty Name="Check_Location_Out" ColumnName="Check_Location_Out" />
+          <ScalarProperty Name="Location_In_X" ColumnName="Location_In_X" />
+          <ScalarProperty Name="Location_In_Y" ColumnName="Location_In_Y" />
+          <ScalarProperty Name="Location_Out_X" ColumnName="Location_Out_X" />
+          <ScalarProperty Name="Location_Out_Y" ColumnName="Location_Out_Y" />
+          <ScalarProperty Name="job_Detail_Name" ColumnName="job_Detail_Name" />
+          <ScalarProperty Name="Time_Out" ColumnName="Time_Out" />
+          <ScalarProperty Name="Admin_Messger_Update" ColumnName="Admin_Messger_Update" />
+          <ScalarProperty Name="Admin_UserName_Update" ColumnName="Admin_UserName_Update" />
+          <ScalarProperty Name="Admin_UserName_Confirm" ColumnName="Admin_UserName_Confirm" />
+          <ScalarProperty Name="Admin_time_Update" ColumnName="Admin_time_Update" />
+          <ScalarProperty Name="TimeConfirm" ColumnName="TimeConfirm" />
+          <ScalarProperty Name="sumTime" ColumnName="sumTime" />
+          <ScalarProperty Name="isConfirm" ColumnName="isConfirm" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_LoadUserCheckPatrol" FunctionName="ChamCong_TeamDevModel.Store.Sp_LoadUserCheckPatrol">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChamCong_TeamDevModel.Sp_LoadUserCheckPatrol_Result">
+          <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Location_X" ColumnName="Location_X" />
+          <ScalarProperty Name="Location_Y" ColumnName="Location_Y" />
+          <ScalarProperty Name="time_Check" ColumnName="time_Check" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username_Check" ColumnName="Username_Check" />
+          <ScalarProperty Name="QrCheck" ColumnName="QrCheck" />
+          <ScalarProperty Name="Time_Check" ColumnName="Time_Check" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Mess" ColumnName="Mess" />
+          <ScalarProperty Name="location_X_Check" ColumnName="location_X_Check" />
+          <ScalarProperty Name="location_Y_Check" ColumnName="location_Y_Check" />
+          <ScalarProperty Name="id_Job" ColumnName="id_Job" />
+          <ScalarProperty Name="imageName" ColumnName="imageName" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Is_Confim" ColumnName="Is_Confim" />
+          <ScalarProperty Name="isLocation" ColumnName="isLocation" />
+          <ScalarProperty Name="TimeConfim" ColumnName="TimeConfim" />
+          <ScalarProperty Name="UserConfim" ColumnName="UserConfim" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_loadUserJob" FunctionName="ChamCong_TeamDevModel.Store.Sp_loadUserJob" />
+    <FunctionImportMapping FunctionImportName="Sp_PrintTakeLeave" FunctionName="ChamCong_TeamDevModel.Store.Sp_PrintTakeLeave">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChamCong_TeamDevModel.Sp_PrintTakeLeave_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="idUserJob" ColumnName="idUserJob" />
+          <ScalarProperty Name="messger" ColumnName="messger" />
+          <ScalarProperty Name="isComfim" ColumnName="isComfim" />
+          <ScalarProperty Name="timeEnd" ColumnName="timeEnd" />
+          <ScalarProperty Name="timeStart" ColumnName="timeStart" />
+          <ScalarProperty Name="phones" ColumnName="phones" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="job_Detail_Name" ColumnName="job_Detail_Name" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_ReportTimeKeeping" FunctionName="ChamCong_TeamDevModel.Store.Sp_ReportTimeKeeping">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChamCong_TeamDevModel.Sp_ReportTimeKeeping_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+          <ScalarProperty Name="job_Detail_Name" ColumnName="job_Detail_Name" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="isConfirm" ColumnName="isConfirm" />
+          <ScalarProperty Name="isStatus" ColumnName="isStatus" />
+          <ScalarProperty Name="sumTime" ColumnName="sumTime" />
+          <ScalarProperty Name="Time_In" ColumnName="Time_In" />
+          <ScalarProperty Name="Time_Out" ColumnName="Time_Out" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

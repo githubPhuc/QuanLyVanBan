@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Thongke_slnhuomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LLTRUC">
+    <Key>
+      <PropertyRef Name="MATRUC" />
+    </Key>
+    <Property Name="MATRUC" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="MAMH" Type="varchar" MaxLength="50" />
+    <Property Name="NHOMHANG" Type="varchar" MaxLength="50" />
+    <Property Name="SOMET" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="METKH" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="METTP" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="NGAY" Type="datetime" />
+    <Property Name="MADH" Type="varchar" MaxLength="50" />
+    <Property Name="MAMAU" Type="varchar" MaxLength="500" />
+    <Property Name="MASOQT" Type="varchar" MaxLength="50" />
+    <Property Name="htat" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="DH" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="GT" Type="varchar" MaxLength="50" />
+    <Property Name="GK" Type="varchar" MaxLength="50" />
+    <Property Name="N1" Type="varchar" MaxLength="50" />
+    <Property Name="N2" Type="varchar" MaxLength="50" />
+    <Property Name="NAOH" Type="varchar" MaxLength="50" />
+    <Property Name="PH" Type="varchar" MaxLength="50" />
+    <Property Name="NGAYCN" Type="datetime" />
+    <Property Name="NGAYMODIFY" Type="datetime" />
+    <Property Name="GIAOKCS" Type="varchar" MaxLength="50" />
+    <Property Name="GHICHU" Type="nvarchar" MaxLength="150" />
+    <Property Name="GHICHU1" Type="nvarchar" MaxLength="150" />
+    <Property Name="MATBI" Type="varchar" MaxLength="50" />
+    <Property Name="MAMAUTINHHCTN" Type="varchar" MaxLength="50" />
+    <Property Name="NhOMHC" Type="varchar" MaxLength="50" />
+    <Property Name="STT" Type="int" />
+    <Property Name="GHICHUC" Type="nvarchar" MaxLength="200" />
+    <Property Name="TTTruc" Type="nvarchar" MaxLength="200" />
+    <Property Name="Hienthi" Type="bit" />
+    <Property Name="SoDesign" Type="varchar" MaxLength="50" />
+    <Property Name="UserTao" Type="varchar" MaxLength="50" />
+    <Property Name="Macongnghenhuom" Type="varchar" MaxLength="50" />
+    <Property Name="MaDVgiacong" Type="varchar" MaxLength="50" />
+    <Property Name="Mamhkinhdoanhdat" Type="varchar" MaxLength="50" />
+    <Property Name="NhomTruc" Type="varchar" MaxLength="50" />
+    <Property Name="Kyhieucapmau" Type="varchar" MaxLength="1" />
+    <Property Name="Mabonghanginbong" Type="varchar" MaxLength="3" />
+    <Property Name="NgayKHgiaoKCS" Type="datetime" />
+    <Property Name="GroupTruc" Type="varchar" MaxLength="50" />
+    <Property Name="CodemauXK" Type="varchar" MaxLength="50" />
+    <Property Name="SoLanInCongThucMau" Type="int" />
+    <Property Name="NguoiInCongThuc" Type="nvarchar" MaxLength="250" />
+    <Property Name="NgayInCuoiCung" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Thongke_slnhuom.dbo.v_MaCayMoc' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_MaCayMoc">
+    <Key>
+      <PropertyRef Name="khoactt" />
+    </Key>
+    <Property Name="matruc" Type="nvarchar" MaxLength="250" />
+    <Property Name="mahang" Type="varchar" MaxLength="100" />
+    <Property Name="Macaymoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="khoactt" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="MahangMoc" Type="varchar" MaxLength="50" />
+    <Property Name="MADH" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="Thongke_slnhuomModelStoreContainer">
+    <EntitySet Name="LLTRUC" EntityType="Self.LLTRUC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="v_MaCayMoc" EntityType="Self.v_MaCayMoc" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [v_MaCayMoc].[matruc] AS [matruc], 
+    [v_MaCayMoc].[mahang] AS [mahang], 
+    [v_MaCayMoc].[Macaymoc] AS [Macaymoc], 
+    [v_MaCayMoc].[khoactt] AS [khoactt], 
+    [v_MaCayMoc].[MahangMoc] AS [MahangMoc], 
+    [v_MaCayMoc].[MADH] AS [MADH]
+    FROM [dbo].[v_MaCayMoc] AS [v_MaCayMoc]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

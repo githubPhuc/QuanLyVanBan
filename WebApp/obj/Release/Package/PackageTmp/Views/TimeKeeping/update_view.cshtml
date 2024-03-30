@@ -1,0 +1,110 @@
+﻿@{
+    var data = ViewBag.data as ToolsApp.EntityFramework.Sp_LoadTimeKeeping_Result;
+}
+<input type="hidden" value="@data.id" id="id" name="id" />
+
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-12 col-sm-4">
+        <div class="row" style="margin-bottom:5px">
+            <label>Họ và tên:</label>
+            <input value="@data.Fullname" class="form-control" readonly type="text" id="Fullname" name="Fullname" />
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label>Thời gian check in:<i> Định dạng theo <span style="color:red">tháng / ngày / năm</span></i></label>
+            <input value="@data.Time_In.ToString("yyyy-MM-dd HH:mm")" class="form-control" type="datetime-local" id="Time_In" name="Time_In" />
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label>Thời gian check out: <i> Định dạng theo  <span style="color:red">tháng / ngày / năm</span></i></label>
+            <input value="@data.Time_Out.ToString("yyyy-MM-dd HH:mm")" class="form-control" type="datetime-local" id="Time_Out" name="Time_Out" />
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label>Vị trí check in (X)</label>
+            <input value="@data.Location_In_X" class="form-control" type="text" id="Location_In_X" name="Location_In_X" />
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label>Vị trí check in (Y)</label>
+            <input value="@data.Location_In_Y" class="form-control" type="text" id="Location_In_Y" name="Location_In_Y" />
+        </div>
+        <div class="row col-4 pl-0" style="margin-bottom:5px">
+            <label>Mức sai lệch vị trí</label>
+            <select id="Check_Location_In" name="Check_Location_In" class="form-control chosen-select select_level">
+                @{
+                    if (data.Check_Location_In != null)
+                    {
+                        <option style="@(data.Check_Location_In == 1? "background-color: #FFBBFF": data.Check_Location_In == 2? "background-color: #FF83FA": data.Check_Location_In == 3? "background-color: #FF83FA": data.Check_Location_In == 4? "background-color: #FF3E96": data.Check_Location_In == 5? "background-color: #00FF80": "background-color: blue")" value="@data.Check_Location_In">@data.Check_Location_In </option>
+                    }
+                    else
+                    {
+                        <option style="background-color: #FFBBFF" value="1">1</option>
+                        <option style="background-color: #FF83FA" value="2">2</option>
+                        <option style="background-color: #FF83FA" value="3">3</option>
+                        <option style="background-color: #FF3E96" value="4">4</option>
+                        <option style="background-color: #00FF80" value="5">5</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label>Vị trí check out (X) </label>
+            <input value="@data.Location_Out_X" class="form-control" type="text" id="Location_Out_X" name="Location_Out_X" />
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label>Vị trí check out (Y) </label>
+            <input value="@data.Location_Out_Y" class="form-control" type="text" id="Location_Out_Y" name="Location_Out_Y" />
+        </div>
+
+        <div class="row col-4 pl-0" style="margin-bottom:5px">
+            <label>Mức sai lệch vị trí</label>
+            <select id="Check_Location_Out" name="Check_Location_Out" class="form-control chosen-select select_level">
+                @{
+                    if (data.Check_Location_Out != null)
+                    {
+                        <option style="@(data.Check_Location_Out == 1? "background-color: #FFBBFF": data.Check_Location_Out == 2? "background-color: #FF83FA": data.Check_Location_Out == 3? "background-color: #FF83FA": data.Check_Location_Out == 4? "background-color: #FF3E96": data.Check_Location_Out == 5? "background-color: #00FF80": "background-color: blue")" value="@data.Check_Location_Out">@data.Check_Location_Out </option>
+
+                    }
+                    else
+                    {
+                        <option style="background-color: #FFBBFF" value="1">1</option>
+                        <option style="background-color: #FF83FA;" value="2">2</option>
+                        <option style="background-color: #FF00FF;" value="3">3</option>
+                        <option style="background-color: #FF3E96;" value="4">4</option>
+                        <option style="background-color: #00FF80;" value="5">5</option>
+                    }
+                }
+            </select>
+        </div>
+
+    </div>
+    <div class="row col-12 ml-0 pl-0" style="margin-bottom:5px">
+        <label>Lý do chỉnh sửa</label>
+        <textarea class="form-control" type="text" id="Admin_Messger_Update" name="Admin_Messger_Update">@data.Admin_Messger_Update</textarea>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script>
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" },
+            'search_contains': true
+        }
+        for (var selector in config) {
+            $(selector).chosen(config);
+        }
+    </script>
+    <script>
+        $('#Time_In').change(debounce(handleTimeChange, 1000)); 
+        $('#Time_Out').change(debounce(handleTimeChange, 1000));
+        function handleTimeChange() {
+            var timeIn = new Date($('#Time_In').val());
+            var timeOut = new Date($('#Time_Out').val());
+            if (timeIn >= timeOut) {
+                notify("Thời gian Time In phải nhỏ hơn Time Out");
+                $('#Time_Out').val($('#Time_In').val());
+            }
+         
+        }
+
+    </script>

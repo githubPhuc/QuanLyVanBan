@@ -1,0 +1,114 @@
+﻿@{
+    var data = ViewBag.data as ToolsApp.EntityFramework.Sp_PrintTakeLeave_Result;
+    int STT = 0;
+}
+<form id="_Print">
+    <div class="row" style=" width:100%">
+        <table id="TableSS" class="table-bordered " style="border:none" width="100%">
+            <thead style="border:none">
+                <tr style="border:none">
+                    <th style="text-align: center; border: none"><h3>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h3></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: center; border: none"><h4>Độc Lập - Tự Do - Hạnh Phúc</h4></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: center; border: none "><hr style="width:200px;background-color:black" /></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: center; border: none "></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: center; border: none "><h2><b>ĐƠN XIN NGHỈ PHÉP</b></h2></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <br />
+    <div class="row" style=" width:100%">
+        <table id="TableSS" class="table-bordered " style="border:none" width="100%">
+            <thead style="border:none">
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th style="text-align: left; border: none">Kính gửi :</th>
+                    <th style="text-align: left; border: none">Ban tổng giám đốc @data.Name</th>
+                    <th style="text-align: left; border: none"></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th style="text-align: left; border: none"></th>
+                    <th style="text-align: left; border: none">Phòng hành chính-nhân sự</th>
+                    <th style="text-align: left; border: none"></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th style="text-align: left; border: none">Tôi tên là :</th>
+                    <th style="text-align: left; border: none"> @data.Fullname</th>
+                    <th style="text-align: left; border: none"></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th style="text-align: left; border: none">Chức vụ :</th>
+                    <th style="text-align: left; border: none"> Nhân Viên</th>
+                    <th style="text-align: left; border: none"></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th style="text-align: left; border: none">Đang làm việc tại :</th>
+                    <th style="text-align: left; border: none"> @data.NameLocation</th>
+                    <th style="text-align: left; border: none"></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th style="text-align: left; border: none">Công việc  :</th>
+                    <th style="text-align: left; border: none"> @data.job_Detail_Name (@data.JobDescription )</th>
+                    <th style="text-align: left; border: none"></th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th style="text-align: left; border: none">Số điện thoại  :</th>
+                    <th style="text-align: left; border: none"> @data.phones</th>
+                    <th style="text-align: left; border: none"></th>
+                </tr>
+
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th colspan="3" style="text-align: left; border: none">Nay tôi trình đơn này kính xin Ban Giám Đốc chấp thuận cho tôi được nghỉ phép trong thời gian từ ngày @data.timeStart đến ngày @data.timeEnd </th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th colspan="3" style="text-align: left; border: none">Lý do xin nghỉ phép: @data.messger </th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th colspan="3" style="text-align: left; border: none">Tôi xin hứa sẽ cập nhật đầy đủ nội dung công tác trong thời gian vắng </th>
+                </tr>
+                <tr style="border:none">
+                    <th style="text-align: left; border: none;width:100px"></th>
+                    <th colspan="3" style="text-align: left; border: none">Kính mong Ban Tổng Giám Đốc xem xét và chấp thuận </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <br />
+    <br />
+    <div class="row" style=" width:100%">
+        <table id="TableSS" class="table-bordered " style="border:none" width="100%">
+            <thead style="border:none">
+                <tr style="border:none">
+                    <th colspan="2" style="text-align: center; border: none">Tp Hồ Chí Minh, Ngày:@DateTime.UtcNow.AddHours(7).ToString("dd-MM-yyyy")</th>
+                    <th colspan="2" style="text-align: center; border: none">Tp Hồ Chí Minh, Ngày:@data.DateTime.ToString("dd-MM-yyyy")</th>
+                </tr>
+                <tr style="border:none">
+                    <th colspan="2" style="text-align: center; border: none">Trưởng bộ phận ký tên</th>
+                    <th colspan="2" style="text-align: center; border: none">Người Làm đơn</th>
+                </tr>
+                <tr style="border:none">
+                    <th colspan="2" style="text-align: center; border: none;height:100px;"></th>
+                    <th colspan="2" style="text-align: center; border: none; height: 100px;"></th>
+                </tr>
+
+            </thead>
+        </table>
+    </div>
+</form>

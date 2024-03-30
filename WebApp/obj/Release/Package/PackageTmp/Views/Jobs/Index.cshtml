@@ -1,0 +1,304 @@
+﻿
+@{
+    ViewBag.Title = "DANH MỤC MỤC TIÊU - DOANH NGHIỆP";
+}
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary border-no-color card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>TÌM KIẾM THEO TỪ KHÓA</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Địa điểm làm việc</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off"
+                                           id="namLocationSearch" name="namLocationSearch" />
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-md-4 ">Chọn thành phố</label>
+                                <div class="col-md-12 col-sm-12 ten">
+                                    <select class=" form-control chosen-select" style="width: 100%" id="administrativeAreaSearch" name="administrativeAreaSearch" aria-label=".form-select-md">
+                                        <option value="">Vui lòng chọn thành phố</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-sm-12">Chọn quận huyện  </label>
+                                    <div class="col-md-12 col-sm-12 ten">
+                                        <select class="form-control chosen-select" style="width: 100%;" id="subAdministrativeAreaSearch" name="subAdministrativeAreaSearch" aria-label=".form-select-md">
+                                            <option value="">Quận / Huyện</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                           
+
+                            <div class="col-md-12">
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <button id="btnSearch" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>RESULTS</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button id="btnCreate" onclick="Insert('Insert')" type="button" class="btn bg-gradient-success"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 table-body mt-4 table-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+  
+            <div class="modal-header custom-modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" id="myModalTitle"></h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div id="myModalContent">
+                </div>
+            </div>
+            <div class="modal-footer modal-custom-footer footer d-flex ">
+                <button type="button" onclick="Insert_Action()" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+
+            <div class="modal-header custom-modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" id="myModalUpdateTitle"></h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div id="myModalUpdateContent">
+                </div>
+
+            </div>
+            <div class="modal-footer modal-custom-footer footer d-flex ">
+                <button type="button" onclick="Edit_Action()" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#administrativeAreaSearch').select2();
+            $('#subAdministrativeAreaSearch ').select2();
+        });
+        var administrativeArea = document.getElementById("administrativeAreaSearch");
+        var subAdministrativeArea = document.getElementById("subAdministrativeAreaSearch");
+        var Parameter = {
+            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+            method: "GET",
+            responseType: "application/json",
+        };
+
+        var promise = axios(Parameter);
+        promise.then(function (result) {
+            renderCity(result.data);
+        });
+
+        function renderCity(data) {
+            for (const x of data) {
+
+                var a = administrativeArea.options[administrativeArea.options.length] = new Option(x.Name, x.Name);
+            }
+            administrativeArea.onchange = function () {
+                subAdministrativeArea.length = 1;
+                if (this.value != "") {
+                    const result = data.filter(n => n.Name === this.value);
+                    for (const k of result[0].Districts) {
+                        subAdministrativeArea.options[subAdministrativeArea.options.length] = new Option(k.Name, k.Name);
+                    }
+                }
+            };
+            subAdministrativeArea.onchange = function () {
+                const dataCity = data.filter((n) => n.Name === administrativeArea.value);
+                if (this.value != "") {
+                    const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
+                  
+                }
+            };
+        }
+    </script>
+    <script type="text/javascript">
+
+        var myModal = {
+             $modal : $('#myModal'),
+             $myModalContent : $("#myModalContent"),
+             $myModalTitle : $("#myModalTitle")
+        }
+        var myModalUpdate = {
+            $modal: $('#myModalUpdate'),
+            $myModalContent: $("#myModalUpdateContent"),
+            $myModalTitle: $("#myModalUpdateTitle")
+        }
+
+        var paramsLoadData = [
+            true,
+            '@Url.Action("_GetList")',
+            '#namLocationSearch',
+            '#administrativeAreaSearch',
+            '#subAdministrativeAreaSearch'
+        ];
+
+        $(document).ready(function () {
+            loadData(...paramsLoadData);
+
+            $("#myModal").on("hidden.bs.modal", function () {
+                loadData(false);
+            });
+
+            $("#btnSearch").click(function () {
+                loadData(...paramsLoadData);
+            });
+
+        });
+
+
+        function Insert() {
+            loadModal('THÊM', '@Url.Action("_Insert_View")', myModal)
+        }
+
+        function Insert_Action() {
+             var formData = {
+                 NameLocation: $('#NameLocation').val(),
+                 subAdministrativeArea: $('#subAdministrativeArea').find(":selected").text(),
+                 Location_X: $('#Location_X').val(),
+                 Location_Y: $('#Location_Y').val(),
+                 administrativeArea: $('#administrativeArea').find(":selected").text(),
+                 country: $('#country').find(":selected").text(),
+                 status: $('#status').is(":checked"),
+                 street: $('#street').val()
+            };
+            if (formData.NameLocation === "") {
+                notify("Địa điểm làm việc không được để trống");
+            } else if (formData.Location_X === "") {
+                notify("Vui lòng nhập vị trí X");
+            } else if (formData.Location_Y === "") {
+                notify("Vui lòng nhập vị trí Y");
+            } else if (formData.subAdministrativeArea === "") {
+                notify("Vui lòng chọn quận huyện");
+            } else if (formData.administrativeArea === "") {
+                notify("Vui lòng chọn thành phố");
+            } else if (formData.country === "") {
+                notify("country không được để trống");
+            } else if (formData.street === "") {
+                notify("street không được để trống");
+            } else {
+                Action('@Url.Action("_InsertFun")', 'POST', formData, paramsLoadData)
+                myModal.$modal.modal('hide')
+            }
+
+        }
+        /* Edit*/
+        function Edit(id) {
+            loadModal('CẬP NHẬT', '@Url.Action("_Edit")', myModalUpdate,id)
+        }
+         function Edit_Action() {
+             var formData = {
+                 NameLocation: $('#NameLocationEdit').val().trim(),
+                 subAdministrativeArea: $('#subAdministrativeAreaEdit').find(":selected").text(),
+                 Location_X: $('#Location_XEdit').val().trim(),
+                 Location_Y: $('#Location_YEdit').val().trim(),
+                 administrativeArea: $('#administrativeAreaEdit').find(":selected").text(),
+                 country: $('#countryEdit').find(":selected").text(),
+                 status: $('#statusEdit').is(":checked"),
+                 street: $('#streetEdit').val().trim(),
+                 Id: $('#Id').val()
+             };
+             console.log(formData.NameLocation)
+             if (formData.NameLocation === "") {
+                 notify("Địa điểm làm việc không được để trống");
+             } else if (formData.subAdministrativeArea === "") {
+                 notify("Vui lòng chọn quận huyện");
+             } else if (formData.Location_X === "") {
+                 notify("Vui lòng nhập vị trí X");
+             } else if (formData.Location_Y === "") {
+                 notify("Vui lòng nhập vị trí Y");
+             } else if (formData.administrativeArea === "") {
+                 notify("Vui lòng chọn thành phố");
+             } else if (formData.country === "") {
+                 notify("country không được để trống");
+             } else if (formData.street === "") {
+                 notify("street không được để trống");
+             } else {
+                  Action('@Url.Action("_EditFun")', 'POST', formData, paramsLoadData)
+                  myModalUpdate.$modal.modal('hide')
+             }
+
+
+        }
+
+        //delete
+         function Delete(id_) {
+             if (confirm('Do you want to delete this item ?')) {
+                 Action('@Url.Action("_DeleteFun")', 'POST', { Id: id_ }, paramsLoadData)
+            }
+        }
+        
+    </script>
+}

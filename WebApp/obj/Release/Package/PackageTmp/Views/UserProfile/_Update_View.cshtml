@@ -1,0 +1,85 @@
+﻿
+
+@{
+    var data = ViewBag.model as ToolsApp.EntityFramework.AspNetUser;
+    var lst = ViewBag.list as List<ToolsApp.EntityFramework.Department>;
+}
+<input id="Id" name="Id" value="@data.Id" style="display:none" />
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-12 col-sm-4">
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Username</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input disabled oninput="this.value = this.value.toUpperCase().trim()" value="@data.UserName" class="form-control" type="text" id="usernameEdit" name="usernameEdit" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">fullName</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="@data.Fullname" class="form-control" type="text" id="fullNameEdit" name="fullNameEdit" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Email</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input oninput="this.value = this.value.trim()" value="@data.Email" class="form-control" type="text" id="emailEdit" name="emailEdit" />
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Phone</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input oninput="this.value = this.value().trim()" value="@data.PhoneNumber" class="form-control" type="text" id="phoneEdit" name="phoneEdit" />
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Quyền</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input id="accoutTypeEdit" class="form-control" name="accoutTypeEdit" type="text" value="@data.AccoutType" readonly />
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:20px">
+            <label class="col-md-12 col-sm-12">Công ty</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select id="idDepartmentEdit" name="idDepartmentEdit" class="form-control chosen-select" style="width: 100%;">
+                    @foreach (var item in lst)
+                    {
+                    <option value="@item.Id" @(item.Id == data.idDepartment ? "selected=\"selected\"" : "")> @item.Name</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-bottom:5px">
+
+            <div class="col-md-12 col-sm-12 ten">
+                <label for="isManagerEdit" style="color:red">Quản lý</label>
+                <input type="checkbox" class="col-md-1 form-check-input one_checkbox" @(data.IsManager ? "checked" : "") value="" id="isManagerEdit">
+            </div>
+
+        </div>
+
+
+    </div>
+    @*Ngay lam viec*@
+
+
+</div>
+<script type="text/javascript">
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "125%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+
+
+</script>

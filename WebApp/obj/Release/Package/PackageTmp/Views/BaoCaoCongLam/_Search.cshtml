@@ -1,0 +1,78 @@
+﻿
+@{
+    var DataUser = ViewBag.DataUser as List<ToolsApp.EntityFramework.AspNetUser>;
+    var Datajob = ViewBag.Datajob as List<ToolsApp.EntityFramework.Job>;
+}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Họ Và Tên</label>
+            <select id="UsernameSearch" name="UsernameSearch" class="form-control chosen-select" style="width: 100%;">
+                <option value="">-- Nhân Viên --</option>
+                @foreach (var itemUser in DataUser)
+                {
+                     <option value="@itemUser.UserName">@itemUser.UserName -- @itemUser.Fullname</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Tháng</label>
+            <input class="form-control form-control-md" type="month" autocomplete="off" id="ThangSearch" name="ThangSearch" />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Địa điểm làm việc</label>
+            <select id="jobSearch" name="jobSearch" class="form-control chosen-select" style="width: 100%;">
+                <option value="">-- Chọn địa điểm làm việc --</option>
+                @foreach (var item in Datajob)
+                {
+                    <option value="@item.Id">-- @item.NameLocation --</option>
+                }
+            </select>
+        </div>
+    </div>
+    <!-- /.col -->
+    <div class="col-md-12">
+        <!-- /.form-group -->
+        <div class="row">
+            <div class="form-group col-md-10">
+                <button id="btnSearch" onclick="search()" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+                <button id="ExportCustom" type="button" class=" btn bg-gradient-primary"><i class="fa fa-file-excel"></i> Xuất Excel</button>
+                @*<button id="ExportCustom" type="button" onclck="Salaries();" class="btn bg-gradient-primary"><i class="fa fa-file-excel"></i> Xuất Excel</button>*@
+                <button id="ShowDetail" type="button" onclick="detail()" class="btn bg-gradient-primary"><i class="fa-solid fa-bars"></i> Xem chi tiết</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.col -->
+</div>
+<script>
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#UsernameSearch").change(function () {
+            var username = $(this).val();
+            getNameLocation('@Url.Action("AutoGetNameLocation")', username, "#jobSearch")
+        })
+        $('#ExportCustom').click(function () {
+            $("#modalChoosen").modal('show');
+        });
+    })
+
+</script>

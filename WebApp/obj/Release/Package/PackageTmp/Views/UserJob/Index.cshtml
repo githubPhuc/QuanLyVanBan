@@ -1,0 +1,401 @@
+﻿
+@using ToolsApp.EntityFramework;
+@{
+    ViewBag.Title = "DANH SÁCH CÔNG VIỆC";
+    var listStaff = ViewBag.listStaff as IEnumerable<ToolsApp.EntityFramework.AspNetUser>;
+    var listJob = ViewBag.listJob as IEnumerable<ToolsApp.EntityFramework.JobDetail>;
+    var db_ = new ChamCong_teamdevEntities();
+}
+
+<input type="text" id="CountListJob" name="CountListJob" value="@listJob.Count()" style="display:none" />
+<input type="text" id="CountListStaff" name="CountListStaff" value="@listStaff.Count()" style="display:none" />
+
+<div class="row form-phancong">
+    <div class="col-md-12">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <b>Phân công công việc</b>
+                </h3>
+            </div>
+            <div class="card-body pad">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label>Chọn công việc</label>
+                            <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">
+                                <span class="dropdown-text_job"> Danh sách công việc</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu menu-drop w-97 scrollable-menu form-group custom-form-choose" role="menu" id="myDropdown_job">
+                                <li><a class="dropdown-item search" href="#"><input class="form-control" type="text" placeholder="Tìm kiếm.." onkeyup="filterFunction_job()" id="myInput_search_job"></a></li>
+                                <li><a class="dropdown-item divider stopE " href="#"><input type="checkbox" class="selectall_job" /><span class="select-text_job"> Chọn </span> tất cả công việc</a></li>
+                                <li class=""></li>
+
+                                @foreach (var item in listJob)
+                                    {
+                                        var nameLocation = db_.Jobs.FirstOrDefault(a => a.Id == item.idjob).NameLocation;
+                                          <li class="stopE job">
+                                        <a class="dropdown-item item-job"
+                                           href="#">
+                                            <input name='Id' type="checkbox" class="option item-job"
+                                                   value='@item.Id' />&nbsp; @item.job_Detail_Name - @nameLocation  
+                                            </a>
+                                        </li>
+                                    }
+                                <ul class="group-pagination stopE">
+                                    <li class="stopE"><button class="btn  btn-outline-primary" onclick="prevPage('#CountListJob','.job')">&laquo;</button></li>
+                                    <li class="stopE"><button class="btn  btn-outline-primary" onclick="nextPage('#CountListJob','.job')">&raquo;</button></li>
+                                </ul>
+
+                            </ul>
+
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-6">
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label>Tên nhân viên</label>
+                            <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">
+                                <span class="dropdown-text_staff"> Chọn nhân viên</span>
+                                <span class="caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu menu-drop mh w-97 scrollable-menu form-group custom-form-choose" role="menu" id="myDropdown_staff">
+                                <li><a class="dropdown-item search" href="#"><input class="form-control" type="text" placeholder="Tìm kiếm.." onkeyup="filterFunction_staff()" id="myInput_search_staff"></a></li>
+                                <li><a class="dropdown-item stopE divider " href="#"><input type="checkbox" class="selectall_staff" /><span class="select-text_staff"> Chọn</span> tất cả nhân viên</a></li>
+                                <li class=""></li>
+                                @foreach (var item in listStaff)
+                                {
+
+                                    <li class="staff-item stopE staff">
+                                        <a class="dropdown-item item-staff">
+                                            <input name='Username' type="checkbox" class="option item-staff" value='@item.UserName' />&nbsp; @item.UserName - @item.Fullname
+                                            </a>
+                                        </li>
+                                    }
+                                <ul class="group-pagination stopE">
+                                    <li class="stopE"><button class="btn  btn-outline-primary" onclick="prevPage('#CountListStaff', '.staff')">&laquo;</button></li>
+                                    <li class="stopE"><button class="btn  btn-outline-primary" onclick="nextPage('#CountListStaff', '.staff')">&raquo;</button></li>
+                                </ul>
+                            </ul>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-12">
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <button id="btnSave" onclick="getSelectedOptions()" type="button" class="save-btn btn bg-gradient-success"><i class="fa-regular fa-floppy-disk"></i>&nbsp; Lưu </button>
+                            &nbsp;
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>DANH SÁCH NHÂN VIÊN</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button id="btnEdit" onclick="handleEditIcon()" type="button" class="btn bg-gradient-success"><i class="fa fa-plus"></i>&nbsp;Chỉnh sửa công việc</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-body table-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div id="myModal" class="modal fade modal-wide" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header">
+                    <div class="modal-title" style="font-size: 17px;text-transform:uppercase;color:#3c8dbc"><strong id="myModalTitle"></strong></div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="myModalContent">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-right">
+                        <button type="button" id="btSave" onclick="Insert_Action()" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                    </div>
+                </div>}
+        </div>
+    </div>
+</div>
+<script>
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+</script>
+@section scripts{
+    <script type="text/javascript">
+        /*  Pagination*/
+        var currentPage = 1;
+        var itemsPerPage = 4; // Số mục hiển thị trên mỗi trang
+        showPage(1, '.job', '#CountListJob');
+        showPage(1, '.staff', '#CountListStaff');
+
+        /*    End Pagination */
+
+        //stop Event
+        $('.stopE').on('click', function (event) {
+            event.stopPropagation();
+
+        });
+        $('.job').on('click', function (event) {
+            var $job = $(this).find('.item-job')
+            if ($job.prop('checked')) {
+                $job.prop('checked', false);
+                var total = $('input[name="Id"]:checked').length;
+                $(".dropdown-text_job").html('(' + total + ') đã chọn');
+            }
+            else {
+                $job.prop('checked', true);
+                var total = $('input[name="Id"]:checked').length;
+                $(".dropdown-text_job").html('(' + total + ') đã chọn');
+
+            }
+        })
+        $('.staff').on('click', function (event) {
+            var $staff = $(this).find('.item-staff');
+            if ($staff.prop('checked')) {
+                $staff.prop('checked', false);
+                var total = $('input[name="Username"]:checked').length;
+                $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+            }
+            else {
+                $staff.prop('checked', true);
+                var total = $('input[name="Username"]:checked').length;
+                $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+            }
+        })
+    //multiple select staff
+        $('.selectall_staff').click(function () {
+            if ($(this).is(':checked')) {
+                $('.item-staff').prop('checked', true);
+                var total = $('input[name="Username"]:checked').length;
+                $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+                $(".select-text_staff").html(' Đã chọn');
+            } else {
+                $('.item-staff').prop('checked', false);
+                $(".dropdown-text_staff").html('(0)  đã chọn');
+                $(".select-text_staff").html(' Chọn');
+            }
+        });
+
+        $("input[type='checkbox'].item-staff").change(function () {
+            var a = $("input[type='checkbox'].item-staff");
+            if (a.length == a.filter(":checked").length) {
+                $('.selectall_staff').prop('checked', true);
+                $(".select-text_staff").html(' Đã');
+                console.log($('.selectall_staff').prop('checked', true))
+            }
+            else {
+                $('.selectall_staff').prop('checked', false);
+
+                $(".select-text_staff").html(' Chọn');
+
+            }
+            var total = $('input[name="Username"]:checked').length;
+            $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+        });
+        function filterFunction_staff() {
+            var div = document.getElementById("myDropdown_staff");
+            var searchJobValue = $("#myInput_search_staff").val();
+            a = div.querySelectorAll(".staff");
+            $.ajax({
+                url: '@Url.Action("FilterDataStaff")', // Địa chỉ của action
+                type: 'GET',
+                data: { searchJobValue: searchJobValue },
+                success: function (data) {
+                    console.log(data);
+
+                    for (var i = 0; i < a.length; i++) {
+                        txtValue = a[i].textContent || a[i].innerText;
+                        txtValue = removeAccents(txtValue);  // Chuyển đổi chuỗi thành không dấu
+                        filter = removeAccents(searchJobValue);  // Chuyển đổi chuỗi tìm kiếm thành không dấu
+                        if (txtValue.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+                            a[i].style.display = "";
+                        } else {
+                            a[i].style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
+        //multiple select job
+        $('.selectall_job').click(function () {
+            if ($(this).is(':checked')) {
+                $('.item-job').prop('checked', true);
+                var total = $('input[name="Id"]:checked').length;
+                $(".dropdown-text_job").html('(' + total + ') đã chọn');
+                $(".select-text_job").html(' Đã chọn');
+            } else {
+                $('.item-job').prop('checked', false);
+                $(".dropdown-text_job").html('(0)  đã chọn');
+                $(".select-text_job").html(' Chọn');
+            }
+        });
+        $("input[type='checkbox'].item-job").change(function () {
+            var a = $("input[type='checkbox'].item-job");
+            if (a.length == a.filter(":checked").length) {
+                $('.selectall_job').prop('checked', true);
+                $(".select-text_job").html(' Đã');
+                console.log($('.selectall_job').prop('checked', true))
+            }
+            else {
+                $('.selectall_job').prop('checked', false);
+                $(".select-text_job").html(' Chọn');
+
+            }
+        });
+        function filterFunction_job() {
+            var div = document.getElementById("myDropdown_job");
+            var searchJobValue = $("#myInput_search_job").val();
+            a = div.querySelectorAll(".job");
+            $.ajax({
+                url: '@Url.Action("FilterDataJob")', // Địa chỉ của action
+                type: 'GET',
+                data: { searchJobValue: searchJobValue },
+                success: function (data) {
+                    console.log(data);
+
+                    for (var i = 0; i < a.length; i++) {
+                        txtValue = a[i].textContent || a[i].innerText;
+                        txtValue = removeAccents(txtValue);  // Chuyển đổi chuỗi thành không dấu
+                        filter = removeAccents(searchJobValue);  // Chuyển đổi chuỗi tìm kiếm thành không dấu
+                        if (txtValue.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+                            a[i].style.display = "";
+                        } else {
+                            a[i].style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
+
+        //Edit function
+        //Show Delete icon
+        function handleEditIcon() {
+            var btnDel = $(".btn-del");
+            if (btnDel.length == 0) {
+                notify("Chưa có công việc nào để chỉnh sửa", "error");
+                $(".divLoading").removeClass("loading");
+            }
+            else {
+                btnDel.addClass("displayIB");
+                if (btnDel.hasClass('displayN')) {
+                    btnDel.removeClass('displayN');
+                    btnDel.addClass('displayIB');
+                }
+                else {
+                    btnDel.removeClass('displayIB');
+                    btnDel.addClass('displayN');
+                }
+            }
+        }
+
+        function getSelectedOptions() {
+            var arrJob = []
+            var arrStaff = []
+            var selectedJobs = [];
+            var selectedStaffs = [];
+            // Lặp qua danh sách các option và kiểm tra xem option nào đã được chọn
+            $('.item-job').each(function () {
+                if ($(this).prop('checked')) {
+                    arrJob.push($(this).val());
+                    selectedJobs = arrJob.filter(value => value !== '');
+                }
+            });
+            console.log(selectedJobs)
+            $('.item-staff').each(function () {
+                if ($(this).prop('checked')) {
+                    arrStaff.push($(this).val());
+                    selectedStaffs = arrStaff.filter(value => value !== '');
+                }
+            });
+            console.log(selectedStaffs)
+
+            var resultArray = [];
+            selectedStaffs.forEach(function (staff) {
+                selectedJobs.forEach(function (job) {
+                    var object = { username: staff, id_Detail_Job: job };
+                    resultArray.push(object);
+                });
+            });
+            if (resultArray.length == 0) {
+                notify("Vui lòng chọn nhân viên và công việc!", "error");
+                $(".divLoading").removeClass("loading");
+            }
+            else {
+                var jsonData = JSON.stringify(resultArray);
+                console.log(jsonData)
+                var formData = { data: jsonData }
+                Action('@Url.Action("_Insert")', 'POST', formData, paramsLoadData)
+            }
+        }
+
+        function ResetJob(Username) {
+            var formData = { Username: Username }
+            if (confirm('Bạn có chắc muốn xoá tất cả công việc của người dùng này không ?')) {
+
+                Action('@Url.Action("_ResetJob")', 'POST', formData, paramsLoadData)
+            }
+        }
+
+        var paramsLoadData = [true, '@Url.Action("_GetList")']
+            $(document).ready(function () {
+                loadData(...paramsLoadData);
+
+            $("#myModal").on("hidden.bs.modal", function () {
+                loadData(false);
+            });
+        });
+
+        function deleteJob(id) {
+            if (confirm('Bạn có chắc muốn xoá không ?')) {
+                Action('@Url.Action("_DeleteJob")', 'POST', { Id: id }, paramsLoadData)
+            }
+        }
+    </script>
+}

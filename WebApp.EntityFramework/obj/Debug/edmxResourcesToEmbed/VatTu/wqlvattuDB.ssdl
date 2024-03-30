@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="wqlvattuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DMNHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HOTEN" Type="nvarchar" MaxLength="100" />
+    <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
+    <Property Name="MADV" Type="varchar" MaxLength="50" />
+    <Property Name="EMail" Type="varchar" MaxLength="50" />
+    <Property Name="LapPhieu" Type="tinyint" />
+    <Property Name="TPB_kiemtra" Type="tinyint" />
+    <Property Name="XemXet" Type="tinyint" />
+    <Property Name="PheDuyet" Type="tinyint" />
+    <Property Name="TiepNhan" Type="tinyint" />
+    <Property Name="Passwordid" Type="varchar" MaxLength="50" />
+    <Property Name="HieuLuc" Type="tinyint" />
+    <Property Name="KIEMTRA" Type="tinyint" />
+    <Property Name="MABP" Type="varchar" MaxLength="50" />
+    <Property Name="IDMaDV" Type="varchar" MaxLength="20" />
+    <Property Name="QuanTri" Type="bit" />
+    <Property Name="CMND" Type="varchar" MaxLength="20" />
+    <Property Name="NgayCap" Type="datetime" />
+    <Property Name="NoiCap" Type="nvarchar" MaxLength="50" />
+    <Property Name="quyencpn" Type="int" />
+    <Property Name="Chuki" Type="image" />
+    <Property Name="TinhGTMay" Type="bit" />
+    <Property Name="NgayHieuLucPass" Type="datetime" />
+  </EntityType>
+  <Function Name="SP_LoadNVIDMaDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaNV" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="wqlvattuModelStoreContainer">
+    <EntitySet Name="DMNHANVIEN" EntityType="Self.DMNHANVIEN" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

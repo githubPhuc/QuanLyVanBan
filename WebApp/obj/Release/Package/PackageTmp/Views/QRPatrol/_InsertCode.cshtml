@@ -1,0 +1,138 @@
+﻿
+@{
+    var list = ViewBag.list as List<ToolsApp.EntityFramework.Job>;
+}
+<section class="content" id="insertCode">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Thông Tin QR</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Địa điểm làm việc</label>
+                                    <select id="id_Job" name="id_Job" onchange="setLocation()" class="form-control chosen-select" style="width: 100%;">
+                                        @foreach (var item in list)
+                                        {
+                                            <option value="@item.Id">@item.NameLocation</option>
+                                        }
+
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Vị trí làm việc</label>
+                                    <input class="form-control form-control-md" maxlength="50" placeholder="Vd: Tầng 1, Tầng 2,..." type="text" autocomplete="off"
+                                           id="Name" name="Name" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Mô tả QR</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off" placeholder="Tên của QR"
+                                           id="Description" name="Description" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-10">
+                                    <label>Toạ độ X</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off" placeholder="Nhập giá trị X ( giá trị bên trái )"
+                                           id="Location_X" name="Location_X"  />
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <label>Toạ độ Y</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off" placeholder="Nhập giá trị Y ( giá trị bên phải )"
+                                           id="Location_Y" name="Location_Y" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mapouter">
+                                    <div class="gmap_canvas">
+                                        <iframe src="https://maps.google.com/maps?q=V%C4%A9nh%20L%E1%BB%99c%20A%20&amp;t=&amp;z =16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" style="width:100%;height:100%" id="gmap_canvas" frameborder="0" scrolling="no"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button id="btnCreate" onclick="saveQRCode(id)" type="button" class="btn bg-gradient-success">Lưu QR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+        var config = {
+            '.chosen-select': { },
+        '.chosen-select-deselect': {allow_single_deselect: true },
+        '.chosen-select-no-single': {disable_search_threshold: 10 },
+        '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': {width: "95%" },
+        'search_contains': true
+        }
+        for (var selector in config) {
+            $(selector).chosen(config);
+        }
+</script>
+<script>
+    function setLocation() {
+        var Location_X = $("#Location_X");
+        var Location_Y = $("#Location_Y");
+        var selectedValue = $('#id_Job').val();
+        var locationX;
+        var locationY;
+         $.ajax({
+                        url: '@Url.Action("_GetLocation")',
+                        type: 'POST',
+                        data: { selectedValue: selectedValue},
+                        beforeSend: function (xhr) {
+                        },
+                        success: function (response) {
+                            Location_X.val(`${response.obj.LocationX}`)
+                            Location_Y.val(`${response.obj.LocationY}`)
+                            locationX = response.obj.LocationX;
+                            locationY = response.obj.LocationY;
+                            var newURL = "https://maps.google.com/maps?q=" + locationX + "%2C" + locationY + "&t=&z=16&ie=UTF8&iwloc=&output=embed";
+                            $("#gmap_canvas").attr("src", newURL);
+                        },
+                        error: function (response) {
+                            notify("Lỗi gửi api")
+                        }
+         })   
+    }
+    $(document).ready(function () {
+        function updateGoogleMaps() {
+            var newXValue = $("#Location_X").val();
+            var newYValue = $("#Location_Y").val();
+            var newSrc = "https://maps.google.com/maps?q=" + newXValue + "," + newYValue + "&t=&z=16&ie=UTF8&iwloc=&output=embed";
+            $("#gmap_canvas").attr("src", newSrc);
+        }
+        $("#Location_X").on("input", updateGoogleMaps);
+        $("#Location_Y").on("input", updateGoogleMaps);
+        // Gọi hàm updateGoogleMaps để cập nhật iframe khi trang được tải lần đầu.
+        updateGoogleMaps();
+    });
+</script>

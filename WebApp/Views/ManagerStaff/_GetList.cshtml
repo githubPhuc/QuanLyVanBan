@@ -1,0 +1,55 @@
+﻿
+
+@{
+    var list = ViewBag.list as List<ToolsApp.EntityFramework.User>;
+    var dataUser = ViewBag.dataUser as ToolsApp.EntityFramework.User;
+}
+
+<div>
+    <label class="mb-3">Tổng kết quả:</label> <label class="total-item"> @list.Count()</label>
+</div>
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên tài khoản</th>
+            <th>Tên nhân viên</th>
+            <th>Email</th>
+            <th>Loại tài khoản</th>
+            <th>Số điện thoại</th>
+            <th>Hồ sơ nhân viên</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in list)
+        {
+            <tr>
+                <td width="133px">
+                    <a onclick="Update('@item.Id')" class="btn">
+                        <i class="fas fa-edit"></i> Sửa
+                    </a>
+                    <a onclick="ChangePassword('@item.Id')" class="btn">
+                        <i class="fa-solid fa-key"></i> Mật khẩu
+                    </a>
+                </td>
+                <td>@item.UserName</td>
+                <td>@item.HoNV @item.TenNV </td>
+                <td>@item.Email</td>
+                <td>@(item.AccoutType == "User"? "Nhân viên" : "Admin")</td>
+                <td>@item.SoDienThoai</td>
+               
+               
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function ViewInfomation() {
+        var Id = $('#IdStaff').val();
+        var formData = {
+            Id:Id
+        }
+        Action('@Url.Action("ViewInfomation")', 'POST', formData)
+    }
+</script>

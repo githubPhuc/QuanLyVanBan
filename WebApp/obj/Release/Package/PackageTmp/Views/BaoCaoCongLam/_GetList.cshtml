@@ -1,0 +1,57 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_Report_Luong_Result>;
+    int Stt = 0;
+    var db_ = new ChamCong_teamdevEntities();
+}
+
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tháng</th>
+            <th>Địa điểm</th>
+            <th>Ca làm</th>
+            <th>Tên nhân viên</th>
+            <th>Tổng giờ thực</th>
+            <th>Tổng giờ quy đổi</th>
+            <th>Tổng giờ thiếu công</th>
+            <th>Tổng giờ dư</th>
+            <th>Số ngày làm</th>
+            <th>Tổng số lần chấm công</th>
+            <th>Tổng số ngày làm quy đổi</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in data)
+        {
+            var nameLocation = db_.Jobs.FirstOrDefault(a => a.Id == item.idJob).NameLocation;
+            <tr>
+                <td>@Stt</td>
+                <td>@item.Thang</td>
+                <td>@nameLocation</td>
+                <td><span>@ChuyenDoiGiaTri((double)item.CaLam)</span></td>
+                <td>@item.Fullname</td>
+                <td>@item.TongGioThuc</td>
+                <td>@item.TongGioQuyDoi</td>
+                <td>@item.TongGioThieuCong</td>
+                <td>@item.TongGioDu</td>
+                <td>@item.TongSoNgayLam</td>
+                <td>@item.TongSoLanChamCong</td>
+                <td>@item.TongSoNgayLamQuyDoi</td>
+            </tr>
+            Stt++;
+        }
+
+    </tbody>
+</table>
+
+@functions {
+    public string ChuyenDoiGiaTri(double giaTri)
+    {
+        int gio = (int)giaTri;
+        return $"{gio} tiếng";
+    }
+}

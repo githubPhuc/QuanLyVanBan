@@ -1,0 +1,62 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_GetNotification_Result>;
+    var db_ = new ChamCong_teamdevEntities();
+}
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>DANH SÁCH THÔNG BÁO</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="myTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Tên thông báo</th>
+                                            <th>Tên nhân viên</th>
+                                            <th>Tên tài khoản</th>
+                                            <th>Thời gian gửi</th>
+                                            <th>Nội dung thông báo </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in data)
+                                        {
+                                            var fullName = db_.AspNetUsers.FirstOrDefault(a => a.UserName == item.Username).Fullname;
+                                        <tr>
+                                            <td>
+                                                <a onclick="Delete('@item.idNotification')" class="btn">
+                                                    <i class="fas fa-trash-alt"></i>&nbsp; Xóa
+                                                </a>
+                                            </td>
+                                            <td>@item.Title</td>
+                                            <td>@fullName</td>
+                                            <td>@item.Username</td>
+                                            <td>@item.Time</td>
+                                            <td>@item.Message</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

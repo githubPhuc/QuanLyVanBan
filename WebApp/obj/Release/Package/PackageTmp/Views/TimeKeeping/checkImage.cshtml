@@ -1,0 +1,79 @@
+﻿@{
+    //var data = ViewBag.data as ToolsApp.EntityFramework.Sp_LoadTimeKeeping_Result;
+    var pathUser = ViewData["ImageUser"];
+    var name_Image_In = ViewData["name_Image_In"];
+    var name_Image_Out = ViewData["name_Image_Out"];
+    var Username = ViewData["Username"];
+    var Id = ViewData["Id"];
+}
+
+<style>
+    .avatar {
+        width: 200px;
+        height: 300px;
+    }
+
+    .avatar-col {
+        justify-content: space-around
+    }
+
+    .fadeinBtn {
+        border: none;
+        padding: 5px 16px;
+    }
+</style>
+<input value="@Id" id="Id" class="displayN" name="Id" />
+<input value="@Username" id="username" class="displayN" name="username" />
+<input value="@name_Image_In" id="nameImageIn" class="displayN" name="nameImageIn" />
+<input value="@name_Image_Out" id="nameImageOut" class="displayN" name="nameImageOut" />
+<div class="row avatar-col" style="margin-bottom:30px">
+
+    <img id="rootImage" alt="Ảnh người dùng" src=@(pathUser == null||pathUser == ""?"~/Content/images/noImage.png":pathUser) class="img-responsive img-thumbnail avatar" />
+    <img id="imageCheckIn" alt="Ảnh vào" src="" class="img-responsive img-thumbnail avatar" />
+    <img id="imageCheckOut" alt="Ảnh ra" src="" class="img-responsive img-thumbnail avatar" />
+
+
+
+</div>
+<div class="row avatar-col" style="margin-bottom:5px">
+
+    <button type="button" class="btn btn-primary fadeinBtn" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Ảnh gốc
+    </button>
+    <button type="button" class="btn btn-primary fadeinBtn" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Ảnh vào
+    </button>
+    <button type="button" class="btn btn-primary fadeinBtn" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Ảnh ra
+    </button>
+</div>
+<script>
+
+    function loadImage() {
+        var username = $("#username").val()
+        var name_Image_In = $("#nameImageIn").val()
+        var name_Image_Out = $("#nameImageOut").val()
+        var formData = {
+            username: username,
+            name_Image_In: name_Image_In,
+            name_Image_Out: name_Image_Out
+        }
+        ActionFunc('https://api.hoanglongsecurity.info/api/UserCheckTimeKeeping/GetImage?nameImage=' + name_Image_In + "&username=" + username, 'GET', formData, function (resove, reject) {
+            if (resove) {
+                $("#imageCheckIn").attr("src", resove);
+            }
+            else {
+                notify("Lỗi", reject);
+            }
+        })
+        ActionFunc('https://api.hoanglongsecurity.info/api/UserCheckTimeKeeping/GetImage?nameImage=' + name_Image_Out + "&username=" + username, 'GET', formData, function (resove, reject) {
+            if (resove) {
+                $("#imageCheckOut").attr("src", resove);
+            }
+            else {
+                notify("Lỗi", reject);
+            }
+        })
+    }
+    loadImage();
+</script>

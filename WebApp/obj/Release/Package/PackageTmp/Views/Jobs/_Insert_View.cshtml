@@ -1,0 +1,162 @@
+﻿
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-12 col-sm-4">
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Địa điểm làm việc</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="text" id="NameLocation" name="NameLocation" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Quốc Gia </label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select class="form-control chosen-select" style="width: 100%" id="country" name="country" aria-label=".form-select-md">
+                    <option value="">Việt Nam</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Chọn thành phố</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select class=" form-control chosen-select" style="width: 100%" id="administrativeArea" name="administrativeArea" aria-label=".form-select-md">
+                    <option value="" disabled>Vui lòng chọn thành phố</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Chọn quận huyện  </label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select class="form-control chosen-select" style="width: 100%;" id="subAdministrativeArea" name="subAdministrativeArea" aria-label=".form-select-md">
+                    <option value="" disabled>Quận / Huyện</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Nhập địa chỉ </label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="text" id="street" name="street" />
+            </div>
+        </div>
+        <div class="row mt-3">
+
+            <div class="col-md-6">
+                <div class="form-group col-md-10">
+                    <label>Toạ độ X</label>
+                    <input class="form-control form-control-md" type="text" autocomplete="off" placeholder="Nhập giá trị X ( giá trị bên trái )"
+                           id="Location_X" name="Location_X" />
+                </div>
+                <div class="form-group col-md-10">
+                    <label>Toạ độ Y</label>
+                    <input class="form-control form-control-md" type="text" autocomplete="off" placeholder="Nhập giá trị Y ( giá trị bên phải )"
+                           id="Location_Y" name="Location_Y" />
+                </div>
+                <div class="form-group col-md-10">
+                    <label style="font-weight:400">
+                            <span style="color:red">**</span> Hướng dẫn: Ấn vào <span style="color:dodgerblue">View larger map</span>, chọn vị trí cần lấy tọa độ. Click
+                            chuột phải sẽ xuất hiện 2 giá trị bao gồm các số "10...". Copy giá trị tọa độ "Giá trị đầu tiên là X", "Giá trị đầu thứ 2 là Y"
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mapouter">
+                    <div class="gmap_canvas">
+                        <iframe src="https://maps.google.com/maps?q=V%C4%A9nh%20L%E1%BB%99c%20A%20&amp;t=&amp;z =16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" style="height:269px" id="gmap_canvas" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<span id="getCoordinatesButton">Lấy Vĩ độ và Kinh độ</span>*@
+    </div>
+</div>
+<script type="text/javascript">
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "125%" },
+        'search_contains': true
+    }
+    //for (var selector in config) {
+    //    $(selector).chosen(config);
+    //}
+
+
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('#administrativeArea').select2();
+        $('#subAdministrativeArea ').select2();
+        $('#country ').select2();
+        $("#administrativeArea").on("change", function () {
+            var selectedValue = $(this).find("option:selected").text();
+            console.log(selectedValue)
+            var newSrc = "https://maps.google.com/maps?q=" + selectedValue + "&t=&z=16&ie=UTF8&iwloc=&output=embed";
+            $("#gmap_canvas").attr("src", newSrc);
+        })
+        $("#subAdministrativeArea").on("change", function () {
+            var SelectAdminis = $("#administrativeArea").find("option:selected").text();
+            var selectedValue = $(this).find("option:selected").text();
+            console.log(selectedValue + SelectAdminis)
+            var newSrc = "https://maps.google.com/maps?q=" + selectedValue + "+" + SelectAdminis + "&t=&z=16&ie=UTF8&iwloc=&output=embed";
+            console.log(newSrc)
+            $("#gmap_canvas").attr("src", newSrc);
+        })
+        var debounceTimer;
+        $("#street").on("input", function () {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function () {
+                var SelectAdminis = $("#administrativeArea").find("option:selected").text();
+                var SelectSubAdminis = $("#subAdministrativeArea").find("option:selected").text();
+                var selectedValue = $("#street").val();
+                var newSrc = "https://maps.google.com/maps?q=" + selectedValue + "+" + SelectSubAdminis + "+" + SelectAdminis + "&t=&z=16&ie=UTF8&iwloc=&output=embed";
+                console.log(newSrc)
+                $("#gmap_canvas").attr("src", newSrc);
+            }, 500); 
+        })
+        function updateGoogleMaps() {
+                var newXValue = $("#Location_X").val();
+                var newYValue = $("#Location_Y").val();
+                var newSrc = "https://maps.google.com/maps?q=" + newXValue + "," + newYValue + "&t=&z=16&ie=UTF8&iwloc=&output=embed";
+                $("#gmap_canvas").attr("src", newSrc);
+            }
+            $("#Location_X").on("input", updateGoogleMaps);
+            $("#Location_Y").on("input", updateGoogleMaps);
+
+            // Gọi hàm updateGoogleMaps để cập nhật iframe khi trang được tải lần đầu.
+           updateGoogleMaps();
+    });
+    var administrativeArea = document.getElementById("administrativeArea");
+    var subAdministrativeArea = document.getElementById("subAdministrativeArea");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderCity(result.data);
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+
+            var a = administrativeArea.options[administrativeArea.options.length] = new Option(x.Name, x.Id);
+        }
+        administrativeArea.onchange = function () {
+            subAdministrativeArea.length = 1;
+            if (this.value != "") {
+                const result = data.filter(n => n.Id === this.value);
+                for (const k of result[0].Districts) {
+                    subAdministrativeArea.options[subAdministrativeArea.options.length] = new Option(k.Name, k.Id);
+                }   
+            }
+        };
+    }
+</script>
+

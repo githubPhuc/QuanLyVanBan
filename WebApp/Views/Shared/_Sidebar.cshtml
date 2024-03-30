@@ -1,0 +1,127 @@
+﻿@using ToolsApp.Helper;
+@using ToolsApp.EntityFramework;
+@using ToolsApp.Authentication;
+@using ToolsApp.Utilities;
+
+@{
+    int userId = 0;
+
+    try
+    {
+        userId = (System.Web.HttpContext.Current.User as CustomPrincipal).UserId;
+    }
+    catch (Exception)
+    {
+    }
+
+    var db_ = new QuanLyVanBanEntities();
+
+    var User_Pages = new List<User_Page>();
+
+    var Menus = new List<Menu>();
+
+
+    var User_Menus_Roots = new List<Menu>();
+    //var test = new List<Menu>();
+
+    User_Pages = db_.User_Page.Where(p => p.userId == userId).ToList();
+
+    Menus = db_.Menus.Where(p => p.isDelete == null || p.isDelete == false).ToList();
+
+    User_Menus_Roots = Menus.Where(
+        p => p.ParentId == null).ToList();
+
+    var routeData = ViewContext.RouteData;
+
+    var routeAction = routeData.Values["action"].ToString();
+
+    var routeController = routeData.Values["controller"].ToString();
+}
+<style>
+    /*style mở ra một khu vực để viết mã CSS*/
+    li {
+        padding-bottom: 1px;
+    }
+    #formatBackgroud {
+        background-color: transparent;
+    }
+
+        #formatBackgroud img {
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+</style>
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+        <li>
+
+            <a href="@Url.Action("Index", "Home", new { Area = "" })" id="formatBackgroud" class="
+                    @(("Home" == routeController &&
+                    "Index" == routeAction) ? "active" : "")">
+             <img src="~/Content/images/logo-BINH PHUONG.png" style="width:100%;height:auto" />
+              
+
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="@Url.Action("Index", "Home", new { Area = "" })" class="nav-link
+               @(("Home" == routeController &&
+                    "Index" == routeAction) ? "active" : "")">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                    Home
+                </p>
+            </a>
+        </li>
+        @if (User_Menus_Roots.Count > 0)
+        {
+            var dataUserMenuRoot = User_Menus_Roots.OrderBy(p => p.OrderNo);
+            foreach (var root in dataUserMenuRoot)
+            {
+                var data_Menu = db_.Menus.Where(a => a.ParentId != null).ToList();
+                var menus_users = new List<Menu>();
+                if (data_Menu.Count() > 0)
+                {
+                    menus_users = data_Menu.Where(p => p.ParentId == root.Id && User_Pages.FirstOrDefault(q => q.PageId == p.PageId) != null)
+                               .OrderBy(p => p.OrderNo).ToList();
+                }
+                if (menus_users.Count() > 0)
+                {
+                    <li class="nav-item
+                    @(menus_users.FirstOrDefault(p => p.Page.Controler == routeController && p.Page.Action == routeAction) != null ? "menu-open" : "")">
+                        <a href="#" class="nav-link
+                        @(menus_users.FirstOrDefault(p => p.Page.Controler == routeController && p.Page.Action == routeAction) != null ? "active" : "")">
+                            @Html.Raw(root.Icon)
+                            <p>
+                                @root.MenuName
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @{
+                                foreach (var menus_user in menus_users)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@Url.Action(menus_user.Page.Action, menus_user.Page.Controler)"
+                                           class="nav-link @((menus_user.Page.Controler == routeController && menus_user.Page.Action == routeAction) ? "active" : "")">
+                                            @Html.Raw(menus_user.Icon)
+                                            <p>
+                                                @menus_user.MenuName
+                                            </p>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        }
+
+    </ul>
+
+
+
+</nav>

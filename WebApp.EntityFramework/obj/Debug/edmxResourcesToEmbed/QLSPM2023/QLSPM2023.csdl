@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSANPHAMMAY2023Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QLSANPHAMMAY2023Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="QLSPM_Menu" EntityType="QLSANPHAMMAY2023Model.QLSPM_Menu" />
+    <EntitySet Name="QLSPM_Page" EntityType="QLSANPHAMMAY2023Model.QLSPM_Page" />
+    <EntitySet Name="QLSPM_Role" EntityType="QLSANPHAMMAY2023Model.QLSPM_Role" />
+    <EntitySet Name="QLSPM_User" EntityType="QLSANPHAMMAY2023Model.QLSPM_User" />
+    <EntitySet Name="QLSPM_User_Page" EntityType="QLSANPHAMMAY2023Model.QLSPM_User_Page" />
+    <EntitySet Name="QLSPM_User_Role" EntityType="QLSANPHAMMAY2023Model.QLSPM_User_Role" />
+    <AssociationSet Name="FK_QLSPM_Menu_QLSPM_Menu" Association="QLSANPHAMMAY2023Model.FK_QLSPM_Menu_QLSPM_Menu">
+      <End Role="QLSPM_Menu" EntitySet="QLSPM_Menu" />
+      <End Role="QLSPM_Menu1" EntitySet="QLSPM_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_Menu_QLSPM_Page" Association="QLSANPHAMMAY2023Model.FK_QLSPM_Menu_QLSPM_Page">
+      <End Role="QLSPM_Page" EntitySet="QLSPM_Page" />
+      <End Role="QLSPM_Menu" EntitySet="QLSPM_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Page_QLSPM_Page" Association="QLSANPHAMMAY2023Model.FK_QLSPM_User_Page_QLSPM_Page">
+      <End Role="QLSPM_Page" EntitySet="QLSPM_Page" />
+      <End Role="QLSPM_User_Page" EntitySet="QLSPM_User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Role_QLSPM_Role" Association="QLSANPHAMMAY2023Model.FK_QLSPM_User_Role_QLSPM_Role">
+      <End Role="QLSPM_Role" EntitySet="QLSPM_Role" />
+      <End Role="QLSPM_User_Role" EntitySet="QLSPM_User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Page_QLSPM_User" Association="QLSANPHAMMAY2023Model.FK_QLSPM_User_Page_QLSPM_User">
+      <End Role="QLSPM_User" EntitySet="QLSPM_User" />
+      <End Role="QLSPM_User_Page" EntitySet="QLSPM_User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Role_QLSPM_User" Association="QLSANPHAMMAY2023Model.FK_QLSPM_User_Role_QLSPM_User">
+      <End Role="QLSPM_User" EntitySet="QLSPM_User" />
+      <End Role="QLSPM_User_Role" EntitySet="QLSPM_User_Role" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="QLSPM_Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="MenuName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="PageId" Type="Int32" />
+    <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OrderNo" Type="Int32" />
+    <Property Name="UserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="3" />
+    <Property Name="isDelete" Type="Boolean" />
+    <Property Name="UserDelete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="QLSPM_Menu1" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_Menu_QLSPM_Menu" FromRole="QLSPM_Menu" ToRole="QLSPM_Menu1" />
+    <NavigationProperty Name="QLSPM_Menu2" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_Menu_QLSPM_Menu" FromRole="QLSPM_Menu1" ToRole="QLSPM_Menu" />
+    <NavigationProperty Name="QLSPM_Page" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_Menu_QLSPM_Page" FromRole="QLSPM_Menu" ToRole="QLSPM_Page" />
+  </EntityType>
+  <EntityType Name="QLSPM_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Info" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Controler" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="3" />
+    <Property Name="isDelete" Type="Boolean" />
+    <Property Name="UserDelete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="QLSPM_Menu" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_Menu_QLSPM_Page" FromRole="QLSPM_Page" ToRole="QLSPM_Menu" />
+    <NavigationProperty Name="QLSPM_User_Page" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Page_QLSPM_Page" FromRole="QLSPM_Page" ToRole="QLSPM_User_Page" />
+  </EntityType>
+  <EntityType Name="QLSPM_Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="UserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="3" />
+    <Property Name="isDelete" Type="Boolean" />
+    <Property Name="UserDelete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="QLSPM_User_Role" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Role_QLSPM_Role" FromRole="QLSPM_Role" ToRole="QLSPM_User_Role" />
+  </EntityType>
+  <EntityType Name="QLSPM_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalesRepCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fullname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="3" />
+    <Property Name="isDelete" Type="Boolean" />
+    <Property Name="UserDelete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="QLSPM_User_Page" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Page_QLSPM_User" FromRole="QLSPM_User" ToRole="QLSPM_User_Page" />
+    <NavigationProperty Name="QLSPM_User_Role" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Role_QLSPM_User" FromRole="QLSPM_User" ToRole="QLSPM_User_Role" />
+  </EntityType>
+  <EntityType Name="QLSPM_User_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="PageId" Type="Int32" />
+    <Property Name="UserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="3" />
+    <Property Name="isDelete" Type="Boolean" />
+    <Property Name="UserDelete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="3" />
+    <Property Name="isRoleCreate" Type="Boolean" />
+    <Property Name="isRoleEdit" Type="Boolean" />
+    <Property Name="isRoleExport" Type="Boolean" />
+    <Property Name="isRoleExportAll" Type="Boolean" />
+    <Property Name="isRoleDelete" Type="Boolean" />
+    <NavigationProperty Name="QLSPM_Page" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Page_QLSPM_Page" FromRole="QLSPM_User_Page" ToRole="QLSPM_Page" />
+    <NavigationProperty Name="QLSPM_User" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Page_QLSPM_User" FromRole="QLSPM_User_Page" ToRole="QLSPM_User" />
+  </EntityType>
+  <EntityType Name="QLSPM_User_Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="UserFullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="RoleName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="UserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="QLSPM_Role" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Role_QLSPM_Role" FromRole="QLSPM_User_Role" ToRole="QLSPM_Role" />
+    <NavigationProperty Name="QLSPM_User" Relationship="QLSANPHAMMAY2023Model.FK_QLSPM_User_Role_QLSPM_User" FromRole="QLSPM_User_Role" ToRole="QLSPM_User" />
+  </EntityType>
+  <Association Name="FK_QLSPM_Menu_QLSPM_Menu">
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_Menu" Role="QLSPM_Menu" Multiplicity="0..1" />
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_Menu" Role="QLSPM_Menu1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_Menu1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_Menu_QLSPM_Page">
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_Page" Role="QLSPM_Page" Multiplicity="0..1" />
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_Menu" Role="QLSPM_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_Menu">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Page_QLSPM_Page">
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_Page" Role="QLSPM_Page" Multiplicity="0..1" />
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_User_Page" Role="QLSPM_User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Page">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Role_QLSPM_Role">
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_Role" Role="QLSPM_Role" Multiplicity="0..1" />
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_User_Role" Role="QLSPM_User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Role">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Page_QLSPM_User">
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_User" Role="QLSPM_User" Multiplicity="0..1" />
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_User_Page" Role="QLSPM_User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Page">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Role_QLSPM_User">
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_User" Role="QLSPM_User" Multiplicity="0..1" />
+    <End Type="QLSANPHAMMAY2023Model.QLSPM_User_Role" Role="QLSPM_User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Role">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

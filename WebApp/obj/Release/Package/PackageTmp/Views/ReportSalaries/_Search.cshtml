@@ -1,0 +1,55 @@
+﻿
+
+@{
+    var DataUser = ViewBag.data as List<ToolsApp.EntityFramework.AspNetUser>;
+}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Họ Và Tên</label>
+            <select id="UsernameSearch" name="UsernameSearch" class="form-control chosen-select" style="width: 100%;">
+                <option value="">-- Nhân Viên --</option>
+                @foreach (var itemUser in DataUser)
+                {
+                    <option value="@itemUser.UserName">@itemUser.UserName -- @itemUser.Fullname</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Tháng</label>
+            <input class="form-control form-control-md" type="month" autocomplete="off" id="ThangSearch" name="ThangSearch" />
+        </div>
+    </div>
+  
+    <!-- /.col -->
+    <div class="col-md-12">
+        <!-- /.form-group -->
+        <div class="row">
+            <div class="form-group">
+                <button id="btnSearch" onclick="search()" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+                <button onclick="callToModal()" class="btn bg-gradient-primary ml-2" id="btnImport">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i> Nhập bảng lương nhân viên
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.col -->
+</div>
+<script>
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+</script>

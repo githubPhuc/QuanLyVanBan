@@ -1,0 +1,280 @@
+﻿@{
+    ViewBag.Title = "TRANG CHỦ";
+    var sumUser = ViewData["data_SumUser"];
+    var sumAdmin = ViewData["data_SumAdmin"];
+    var sumManager = ViewData["data_SumManager"];
+    var sumDepartment = ViewData["data_SumDepartment"];
+    var sumDetailJob = ViewData["data_SumDetailJob"];
+    List<SelectListItem> years = ViewBag.Years;
+
+
+}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="" />
+<style>
+    .card-custom {
+        height: 200px;
+    }
+
+    .card-header {
+        box-shadow: none;
+        background: none;
+        background-color: #dc3545;
+        color:#fff
+           
+    }
+
+    #home {
+        box-sizing: border-box;
+        padding: 16px
+    }
+
+
+</style>
+
+<div id="home">
+
+
+    <div class="form-group">
+        <div class="col-sm-2">
+            <div class='input-group date'>
+                <input type='month' class="form-control" id='selectMonth' name="datepicker" placeholder="MM" />
+             
+            </div>
+        </div>
+    </div>
+    <div id="payment-info">
+
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h6 class="mb-0 p-2">Biểu đồ thống kê chi trả và lợi nhuận năm: </h6>
+
+                </div>
+                <div class="col-lg-3">
+                    @Html.DropDownList("SelectedYear", years, new { @class = "form-control", id = "selectYear" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="chart-content">
+
+    </div>
+
+</div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+@section scripts{
+    <script>
+        var paramsLoadData = [
+             true,
+            '@Url.Action("Index")'
+        ];
+        $(document).ready(function () {
+            loadChartThisMonth();
+            loadChartThisYear();
+        })
+        $('#selectMonth').change(function () {
+                var monthYear = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("showChartByMonth")',
+                    type: 'POST',
+                    data: { monthYear: monthYear },
+                    success: function (response) {
+                        $('#payment-info').html(response);
+                    },
+                    error: function (response) {
+                        notify("Không thể tải được biểu đồ");
+                    }
+                })
+        })
+        $('#selectYear').change(function () {
+            loadChartThisYear()
+         })
+        function loadChartThisMonth() {
+            var year = new Date();
+            var currentMonth = year.toISOString().slice(0, 7);
+            $("#selectMonth").val(currentMonth);
+            $.ajax({
+                url: '@Url.Action("showChartByMonth")',
+                type: 'POST',
+                data: { year: currentMonth },
+                success: function (response) {
+                    $('#payment-info').html(response);
+                },
+                error: function (response) {
+                    notify("Không thể tải được biểu đồ");
+                }
+            })
+        }
+        function loadChartThisYear() {
+            var year = $('#selectYear').val();
+            $.ajax({
+                url: '@Url.Action("showChartByYear")',
+                data: {},
+                success: function (response) {
+                    $('#chart-content').html(response);
+                    getChartThisYear(year);
+                },
+                error: function (response) {
+                    notify("Không thể tải được biểu đồ");
+                }
+            })
+        }
+        function getChartThisYear(year) {
+            var totalPaymentPreviousYear = $('#totalPaymentPreviousYear');
+            var totalPaymentThisYear = $('#totalPaymentThisYear');
+            var percentElement = $('#percent'); 
+             $.ajax({
+                url: '@Url.Action("Action_ShowChartByYear")',
+                type: 'POST',
+                data: { year: year },
+                 success: function (response) {
+                     var labels = response.Data.MonthArray;
+                     var data = response.Data.TotalPaymentArray;
+                     var dataThisYear = response.Data.TotalPaymentThisYear;
+                     var dataPreYear = response.Data.TotalPaymentPreviousYear;
+                     var rateDifferences = (dataThisYear - dataPreYear);
+                     console.log(rateDifferences)
+                     if (dataPreYear !== 0) {
+                         if (rateDifferences === 0) {
+                             percentElement.html(rateDifferences + '%');
+                         } else {
+                             var percentage = (rateDifferences / Math.abs(dataPreYear)) * 100;
+                             percentElement.html(percentage.toFixed(2) + '%');
+                         }
+                     } else {
+                        
+                         percentElement.html("Giá trị năm trước là 0, chưa xác định được tỉ trọng chênh lệch");
+                     }
+                     var formatDataThisYear = formatCurrency(dataThisYear) ;
+                     var formatDataPreYear =formatCurrency(dataPreYear);
+                     totalPaymentPreviousYear.html(formatDataPreYear)
+                     totalPaymentThisYear.html(formatDataThisYear)
+                     chart(labels, data);
+                     var listJobs = response.Data.ListJobs
+                     mapChart(listJobs)
+
+
+                },
+                error: function (response) {
+                    notify("Không thể tải được biểu đồ");
+                }
+            })
+        }
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+        }
+        function chart(labels, data) {
+            // Tạo một mảng với đủ 12 tháng
+            var allMonths = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+
+            // Tạo một đối tượng để lưu trữ dữ liệu theo tháng
+            var newData = {};
+
+            // Gán giá trị cho newData dựa trên labels và data
+            for (var i = 0; i < labels.length; i++) {
+                newData[labels[i]] = data[i];
+            }
+
+            // Điền giá trị cho các tháng còn thiếu trong labels
+            for (var i = 0; i < allMonths.length; i++) {
+                if (!(allMonths[i] in newData)) {
+                    labels.push(allMonths[i]);
+                    data.push(null); // Hoặc bạn có thể sử dụng giá trị mặc định khác nếu muốn
+                }
+            }
+
+            // Sắp xếp labels và data theo thứ tự tăng dần của tháng
+            labels.sort(function (a, b) {
+                return allMonths.indexOf(a) - allMonths.indexOf(b);
+            });
+
+            data = labels.map(function (month) {
+                return newData[month];
+            });
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                        label: 'Tổng chi trả và lợi nhuận',
+                        data: data,
+                        backgroundColor: '#17a2b8 ',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(75, 192, 192, 0.4)',
+                        hoverBorderColor: 'rgba(75, 192, 192, 1)'
+                    }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                            
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                              
+                            }
+                        }
+                        }
+                    }
+            });
+        }
+
+        function mapChart(listJobs) {
+            var map = L.map('map', {
+                center: [16.0583, 105.2772],
+                zoom: 6,
+                attributionControl: false
+            });
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/way/R49915">OpenStreetMap</a>'
+            }).addTo(map);
+            for (var i = 0; i < listJobs.length; i++) {
+                var coordinates = [listJobs[i].Location_X, listJobs[i].Location_Y]
+                var marker = L.marker(coordinates).addTo(map);
+                marker.bindPopup(listJobs[i].NameLocation);
+            }
+            map.on('zoomend', function () {
+                if (map.getZoom() < 6) {
+                    map.setZoom(6);
+                }
+            });
+            function onMapClick(e) {
+                console.log(e)
+                L.popup()
+                    .setLatLng(e.latlng)
+                    .setContent("Tọa độ: " + e.latlng )
+                    .openOn(map);
+            }
+            map.on('click', onMapClick);
+        }
+    </script>
+    <script>
+
+    </script>
+    <script src="~/Content/plugins/chart.js/Chart.js"></script>
+    <script src="~/Content/plugins/chart.js/Chart.bundle.js"></script>
+    <script src="~/Content/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/Content/plugins/chart.js/Chart.js"></script>
+}
+

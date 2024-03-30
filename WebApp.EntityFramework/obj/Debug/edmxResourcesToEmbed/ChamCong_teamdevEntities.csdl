@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChamCong_TeamDevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetRoleClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetRole" Relationship="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoleClaims" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NormalizedName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetRoleClaims" Relationship="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetRoleClaims" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderDisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccoutType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+    <Property Name="IsManager" Type="Boolean" Nullable="false" />
+    <Property Name="idDepartment" Type="Int32" Nullable="false" />
+    <Property Name="Time_Locked" Type="DateTime" Precision="7" />
+    <Property Name="hieuluc" Type="Boolean" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NormalizedUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NormalizedEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEnd" Type="DateTimeOffset" Precision="7" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="User_Locked" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="ResetToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="timeResetToken" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="timeWorking" Type="DateTime" Nullable="false" Precision="7" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_AspNetUsers_Department_DepartmentId" FromRole="AspNetUsers" ToRole="Department" />
+    <NavigationProperty Name="AspNetUserTokens" Relationship="Self.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserTokens" />
+    <NavigationProperty Name="ConversationLists" Relationship="Self.FK_ConversationList_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="ConversationList" />
+    <NavigationProperty Name="PleaseTakeLeaves" Relationship="Self.FK_PleaseTakeLeave_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="PleaseTakeLeave" />
+    <NavigationProperty Name="User_Page" Relationship="Self.FK_User_Page_AspNetUsers_userId" FromRole="AspNetUsers" ToRole="User_Page" />
+    <NavigationProperty Name="UserJobs" Relationship="Self.FK_UserJob_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="UserJob" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="AspNetUserToken">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoginProvider" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUserTokens" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AttendanceFace">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUserJob" Type="Int32" Nullable="false" />
+    <Property Name="Location_In_X" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Location_In_Y" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Location_Out_X" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Location_Out_Y" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Check_Location_In" Type="Int32" />
+    <Property Name="Check_Location_Out" Type="Int32" />
+    <Property Name="Time_In" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Time_Out" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Admin_UserName_Update" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Admin_UserName_Confirm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Admin_Messger_Update" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Admin_time_Update" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="TimeConfirm" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="isConfirm" Type="Boolean" Nullable="false" />
+    <Property Name="isStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Datetime_" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sumTime" Type="Double" />
+    <Property Name="UserJobId" Type="Int32" />
+    <NavigationProperty Name="UserJob" Relationship="Self.FK_AttendanceFace_UserJob_UserJobId" FromRole="AttendanceFace" ToRole="UserJob" />
+  </EntityType>
+  <EntityType Name="Conversation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ConversationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="timeCreate" Type="DateTime" Nullable="false" Precision="7" />
+    <NavigationProperty Name="ConversationLists" Relationship="Self.FK_ConversationList_Conversation_ConversationId" FromRole="Conversation" ToRole="ConversationList" />
+    <NavigationProperty Name="Messengers" Relationship="Self.FK_Messenger_Conversation_ConversationId" FromRole="Conversation" ToRole="Messenger" />
+  </EntityType>
+  <EntityType Name="ConversationList">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdConversations" Type="Int32" Nullable="false" />
+    <Property Name="IsConfirm" Type="Boolean" Nullable="false" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="DateTimeRead" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="ConversationId" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ConversationList_AspNetUsers_UserId" FromRole="ConversationList" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Conversation" Relationship="Self.FK_ConversationList_Conversation_ConversationId" FromRole="ConversationList" ToRole="Conversation" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ward" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="district" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="taxCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_AspNetUsers_Department_DepartmentId" FromRole="Department" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Jobs" Relationship="Self.FK_Job_Department_DepartmentId" FromRole="Department" ToRole="Job" />
+  </EntityType>
+  <EntityType Name="Errol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserErrol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Help">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="file" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="subAdministrativeArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="TimeDelete" Type="DateTime" Precision="7" />
+    <Property Name="Location_X" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Location_Y" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="administrativeArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeCreate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdDepartment" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Job_Department_DepartmentId" FromRole="Job" ToRole="Department" />
+    <NavigationProperty Name="JobDetails" Relationship="Self.FK_JobDetail_Job_JobId" FromRole="Job" ToRole="JobDetail" />
+    <NavigationProperty Name="Qr_Patrol" Relationship="Self.FK_Qr_Patrol_Job_JobId" FromRole="Job" ToRole="Qr_Patrol" />
+  </EntityType>
+  <EntityType Name="JobDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idjob" Type="Int32" Nullable="false" />
+    <Property Name="job_Detail_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JobDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TimeIn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TimeOut" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="7" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="7" />
+    <Property Name="JobId" Type="Int32" />
+    <Property Name="DeleteTime" Type="DateTime" Precision="7" />
+    <Property Name="IsStatus" Type="Boolean" Nullable="false" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Job" Relationship="Self.FK_JobDetail_Job_JobId" FromRole="JobDetail" ToRole="Job" />
+    <NavigationProperty Name="UserJobs" Relationship="Self.FK_UserJob_JobDetail_JobDetailId" FromRole="JobDetail" ToRole="UserJob" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="PageId" Type="Int32" />
+    <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderNo" Type="Int32" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="Boolean" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <Property Name="MenuId" Type="Int32" />
+    <NavigationProperty Name="Menu1" Relationship="Self.FK_Menu_Menu_MenuId" FromRole="Menu" ToRole="Menu1" />
+    <NavigationProperty Name="Menu2" Relationship="Self.FK_Menu_Menu_MenuId" FromRole="Menu1" ToRole="Menu" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_Menu_Page_PageId" FromRole="Menu" ToRole="Page" />
+  </EntityType>
+  <EntityType Name="Messenger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SentAt" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="idConversation" Type="Int32" Nullable="false" />
+    <Property Name="ConversationId" Type="Int32" />
+    <Property Name="TypeMess" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Conversation" Relationship="Self.FK_Messenger_Conversation_ConversationId" FromRole="Messenger" ToRole="Conversation" />
+  </EntityType>
+  <EntityType Name="notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Controler" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Menus" Relationship="Self.FK_Menu_Page_PageId" FromRole="Page" ToRole="Menu" />
+    <NavigationProperty Name="User_Page" Relationship="Self.FK_User_Page_Page_PageId" FromRole="Page" ToRole="User_Page" />
+  </EntityType>
+  <EntityType Name="PleaseTakeLeave">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="messger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="timeStart" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="timeEnd" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="idUserJob" Type="Int32" Nullable="false" />
+    <Property Name="isComfim" Type="Boolean" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserJobId" Type="Int32" />
+    <Property Name="TimeConfim" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserConfim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_PleaseTakeLeave_AspNetUsers_UserId" FromRole="PleaseTakeLeave" ToRole="AspNetUsers" />
+    <NavigationProperty Name="UserJob" Relationship="Self.FK_PleaseTakeLeave_UserJob_UserJobId" FromRole="PleaseTakeLeave" ToRole="UserJob" />
+  </EntityType>
+  <EntityType Name="ProfileUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="imageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="birtDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="placeOfBirt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="placeOfOrigin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="curResidence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="resident" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="temResidence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="taxCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="marital" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ethnicity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="religion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nationality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="educationalLevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="otherNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="zalo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CCCD" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="imageFrontCCCD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imageBackCCCD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="passPortNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="codeBank" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="numBank" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="nameAccountBank" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Qr_Patrol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Location_X" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Location_Y" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_Job" Type="Int32" Nullable="false" />
+    <Property Name="time_Check" Type="Int32" Nullable="false" />
+    <Property Name="path_Qr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JobId" Type="Int32" />
+    <NavigationProperty Name="Job" Relationship="Self.FK_Qr_Patrol_Job_JobId" FromRole="Qr_Patrol" ToRole="Job" />
+    <NavigationProperty Name="User_Check_Patrol" Relationship="Self.FK_User_Check_Patrol_Qr_Patrol_Qr_PatrolId" FromRole="Qr_Patrol" ToRole="User_Check_Patrol" />
+  </EntityType>
+  <EntityType Name="Resignation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="datetimeResignation" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="datetimeWrite" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="messenger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsConfim" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User_Check_Patrol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QrCheck" Type="Int32" Nullable="false" />
+    <Property Name="id_Job" Type="Int32" Nullable="false" />
+    <Property Name="Username_Check" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Time_Check" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="location_X_Check" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="location_Y_Check" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Is_Confim" Type="Boolean" Nullable="false" />
+    <Property Name="isLocation" Type="Int32" Nullable="false" />
+    <Property Name="Mess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeConfim" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserConfim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Qr_PatrolId" Type="Int32" />
+    <NavigationProperty Name="Qr_Patrol" Relationship="Self.FK_User_Check_Patrol_Qr_Patrol_Qr_PatrolId" FromRole="User_Check_Patrol" ToRole="Qr_Patrol" />
+  </EntityType>
+  <EntityType Name="User_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PageId" Type="Int32" Nullable="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <Property Name="isRoleCreate" Type="Boolean" />
+    <Property Name="isRoleEdit" Type="Boolean" />
+    <Property Name="isRoleExport" Type="Boolean" />
+    <Property Name="isRoleExportAll" Type="Boolean" />
+    <Property Name="isRoleDelete" Type="Boolean" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_User_Page_AspNetUsers_userId" FromRole="User_Page" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_User_Page_Page_PageId" FromRole="User_Page" ToRole="Page" />
+  </EntityType>
+  <EntityType Name="UserJob">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Detail_Job" Type="Int32" Nullable="false" />
+    <Property Name="JobDetailId" Type="Int32" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="UsernameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="timeCreate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="timeDelete" Type="DateTime" Nullable="false" Precision="7" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_UserJob_AspNetUsers_UserId" FromRole="UserJob" ToRole="AspNetUsers" />
+    <NavigationProperty Name="AttendanceFaces" Relationship="Self.FK_AttendanceFace_UserJob_UserJobId" FromRole="UserJob" ToRole="AttendanceFace" />
+    <NavigationProperty Name="JobDetail" Relationship="Self.FK_UserJob_JobDetail_JobDetailId" FromRole="UserJob" ToRole="JobDetail" />
+    <NavigationProperty Name="PleaseTakeLeaves" Relationship="Self.FK_PleaseTakeLeave_UserJob_UserJobId" FromRole="UserJob" ToRole="PleaseTakeLeave" />
+  </EntityType>
+  <Association Name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetRoleClaims" Type="Self.AspNetRoleClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetRoleClaims">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserClaims_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserLogins_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUsers_Department_DepartmentId">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserTokens_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserTokens" Type="Self.AspNetUserToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserTokens">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConversationList_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="ConversationList" Type="Self.ConversationList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConversationList">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PleaseTakeLeave_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="PleaseTakeLeave" Type="Self.PleaseTakeLeave" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PleaseTakeLeave">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_AspNetUsers_userId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Page" Type="Self.User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserJob_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="UserJob" Type="Self.UserJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserJob">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceFace_UserJob_UserJobId">
+    <End Role="UserJob" Type="Self.UserJob" Multiplicity="0..1" />
+    <End Role="AttendanceFace" Type="Self.AttendanceFace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserJob">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttendanceFace">
+        <PropertyRef Name="UserJobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConversationList_Conversation_ConversationId">
+    <End Role="Conversation" Type="Self.Conversation" Multiplicity="0..1" />
+    <End Role="ConversationList" Type="Self.ConversationList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conversation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConversationList">
+        <PropertyRef Name="ConversationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messenger_Conversation_ConversationId">
+    <End Role="Conversation" Type="Self.Conversation" Multiplicity="0..1" />
+    <End Role="Messenger" Type="Self.Messenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conversation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Messenger">
+        <PropertyRef Name="ConversationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Department_DepartmentId">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Job" Type="Self.Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobDetail_Job_JobId">
+    <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+    <End Role="JobDetail" Type="Self.JobDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobDetail">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qr_Patrol_Job_JobId">
+    <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+    <End Role="Qr_Patrol" Type="Self.Qr_Patrol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Qr_Patrol">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserJob_JobDetail_JobDetailId">
+    <End Role="JobDetail" Type="Self.JobDetail" Multiplicity="0..1" />
+    <End Role="UserJob" Type="Self.UserJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobDetail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserJob">
+        <PropertyRef Name="JobDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Menu_MenuId">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Page" Type="Self.User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PleaseTakeLeave_UserJob_UserJobId">
+    <End Role="UserJob" Type="Self.UserJob" Multiplicity="0..1" />
+    <End Role="PleaseTakeLeave" Type="Self.PleaseTakeLeave" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserJob">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PleaseTakeLeave">
+        <PropertyRef Name="UserJobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Check_Patrol_Qr_Patrol_Qr_PatrolId">
+    <End Role="Qr_Patrol" Type="Self.Qr_Patrol" Multiplicity="0..1" />
+    <End Role="User_Check_Patrol" Type="Self.User_Check_Patrol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Qr_Patrol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Check_Patrol">
+        <PropertyRef Name="Qr_PatrolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ChamCong_teamdevEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoleClaims" EntityType="Self.AspNetRoleClaim" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="AspNetUserTokens" EntityType="Self.AspNetUserToken" />
+    <EntitySet Name="AttendanceFaces" EntityType="Self.AttendanceFace" />
+    <EntitySet Name="Conversations" EntityType="Self.Conversation" />
+    <EntitySet Name="ConversationLists" EntityType="Self.ConversationList" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Errols" EntityType="Self.Errol" />
+    <EntitySet Name="Helps" EntityType="Self.Help" />
+    <EntitySet Name="Jobs" EntityType="Self.Job" />
+    <EntitySet Name="JobDetails" EntityType="Self.JobDetail" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Messengers" EntityType="Self.Messenger" />
+    <EntitySet Name="notifications" EntityType="Self.notification" />
+    <EntitySet Name="Pages" EntityType="Self.Page" />
+    <EntitySet Name="PleaseTakeLeaves" EntityType="Self.PleaseTakeLeave" />
+    <EntitySet Name="ProfileUsers" EntityType="Self.ProfileUser" />
+    <EntitySet Name="Qr_Patrol" EntityType="Self.Qr_Patrol" />
+    <EntitySet Name="Resignations" EntityType="Self.Resignation" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="User_Check_Patrol" EntityType="Self.User_Check_Patrol" />
+    <EntitySet Name="User_Page" EntityType="Self.User_Page" />
+    <EntitySet Name="UserJobs" EntityType="Self.UserJob" />
+    <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetRoleClaims" EntitySet="AspNetRoleClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserClaims_AspNetUsers_UserId" Association="Self.FK_AspNetUserClaims_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserLogins_AspNetUsers_UserId" Association="Self.FK_AspNetUserLogins_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_Department_DepartmentId" Association="Self.FK_AspNetUsers_Department_DepartmentId">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="Self.FK_AspNetUserTokens_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserTokens" EntitySet="AspNetUserTokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConversationList_AspNetUsers_UserId" Association="Self.FK_ConversationList_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="ConversationList" EntitySet="ConversationLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PleaseTakeLeave_AspNetUsers_UserId" Association="Self.FK_PleaseTakeLeave_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="PleaseTakeLeave" EntitySet="PleaseTakeLeaves" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_AspNetUsers_userId" Association="Self.FK_User_Page_AspNetUsers_userId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserJob_AspNetUsers_UserId" Association="Self.FK_UserJob_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="UserJob" EntitySet="UserJobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceFace_UserJob_UserJobId" Association="Self.FK_AttendanceFace_UserJob_UserJobId">
+      <End Role="UserJob" EntitySet="UserJobs" />
+      <End Role="AttendanceFace" EntitySet="AttendanceFaces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConversationList_Conversation_ConversationId" Association="Self.FK_ConversationList_Conversation_ConversationId">
+      <End Role="Conversation" EntitySet="Conversations" />
+      <End Role="ConversationList" EntitySet="ConversationLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messenger_Conversation_ConversationId" Association="Self.FK_Messenger_Conversation_ConversationId">
+      <End Role="Conversation" EntitySet="Conversations" />
+      <End Role="Messenger" EntitySet="Messengers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Department_DepartmentId" Association="Self.FK_Job_Department_DepartmentId">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobDetail_Job_JobId" Association="Self.FK_JobDetail_Job_JobId">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="JobDetail" EntitySet="JobDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qr_Patrol_Job_JobId" Association="Self.FK_Qr_Patrol_Job_JobId">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="Qr_Patrol" EntitySet="Qr_Patrol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserJob_JobDetail_JobDetailId" Association="Self.FK_UserJob_JobDetail_JobDetailId">
+      <End Role="JobDetail" EntitySet="JobDetails" />
+      <End Role="UserJob" EntitySet="UserJobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Menu_MenuId" Association="Self.FK_Menu_Menu_MenuId">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Menu1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Page_PageId" Association="Self.FK_Menu_Page_PageId">
+      <End Role="Page" EntitySet="Pages" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_Page_PageId" Association="Self.FK_User_Page_Page_PageId">
+      <End Role="Page" EntitySet="Pages" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PleaseTakeLeave_UserJob_UserJobId" Association="Self.FK_PleaseTakeLeave_UserJob_UserJobId">
+      <End Role="UserJob" EntitySet="UserJobs" />
+      <End Role="PleaseTakeLeave" EntitySet="PleaseTakeLeaves" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Check_Patrol_Qr_Patrol_Qr_PatrolId" Association="Self.FK_User_Check_Patrol_Qr_Patrol_Qr_PatrolId">
+      <End Role="Qr_Patrol" EntitySet="Qr_Patrol" />
+      <End Role="User_Check_Patrol" EntitySet="User_Check_Patrol" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="Sp_ExportExcelTimeKeeping" ReturnType="Collection(ChamCong_TeamDevModel.Sp_ExportExcelTimeKeeping_Result)">
+      <Parameter Name="idDepartment" Mode="In" Type="Int32" />
+      <Parameter Name="Month" Mode="In" Type="Int32" />
+      <Parameter Name="idJob" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_LoadJobFromUserName" ReturnType="Collection(ChamCong_TeamDevModel.Sp_LoadJobFromUserName_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_LoadTakeLeave" ReturnType="Collection(ChamCong_TeamDevModel.Sp_LoadTakeLeave_Result)">
+      <Parameter Name="idDepartment" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_LoadTimeKeeping" ReturnType="Collection(ChamCong_TeamDevModel.Sp_LoadTimeKeeping_Result)">
+      <Parameter Name="idDepartment" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_LoadUserCheckPatrol" ReturnType="Collection(ChamCong_TeamDevModel.Sp_LoadUserCheckPatrol_Result)">
+      <Parameter Name="idDepartment" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="nameLocation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_loadUserJob" />
+    <FunctionImport Name="Sp_PrintTakeLeave" ReturnType="Collection(ChamCong_TeamDevModel.Sp_PrintTakeLeave_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_ReportTimeKeeping" ReturnType="Collection(ChamCong_TeamDevModel.Sp_ReportTimeKeeping_Result)">
+      <Parameter Name="idDepartment" Mode="In" Type="Int32" />
+      <Parameter Name="Month" Mode="In" Type="Int32" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="idJob" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Sp_ExportExcelTimeKeeping_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Fullname" Nullable="false" />
+    <Property Type="String" Name="AccoutType" Nullable="false" />
+    <Property Type="String" Name="NameLocation" Nullable="false" />
+    <Property Type="String" Name="job_Detail_Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="JobDescription" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="isConfirm" Nullable="false" />
+    <Property Type="Boolean" Name="isStatus" Nullable="false" />
+    <Property Type="Double" Name="sumTime" Nullable="true" />
+    <Property Type="DateTime" Name="Time_In" Nullable="false" />
+    <Property Type="DateTime" Name="Time_Out" Nullable="false" />
+    <Property Type="Int32" Name="IDUserJob" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Sp_LoadJobFromUserName_Result">
+    <Property Type="String" Name="Username" Nullable="false" />
+    <Property Type="String" Name="NameLocation" Nullable="false" />
+    <Property Type="String" Name="JobDescription" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="JobAddress" Nullable="false" />
+    <Property Type="String" Name="Position" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TimeInOut" Nullable="false" MaxLength="43" />
+  </ComplexType>
+  <ComplexType Name="Sp_LoadTakeLeave_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Fullname" Nullable="false" />
+    <Property Type="DateTime" Name="DateTime" Nullable="false" />
+    <Property Type="Int32" Name="idUserJob" Nullable="false" />
+    <Property Type="String" Name="messger" Nullable="false" />
+    <Property Type="Boolean" Name="isComfim" Nullable="false" />
+    <Property Type="DateTime" Name="timeEnd" Nullable="false" />
+    <Property Type="DateTime" Name="timeStart" Nullable="false" />
+    <Property Type="String" Name="phones" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Sp_LoadTimeKeeping_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" />
+    <Property Type="Int32" Name="Check_Location_In" Nullable="true" />
+    <Property Type="DateTime" Name="Time_In" Nullable="false" />
+    <Property Type="Int32" Name="Check_Location_Out" Nullable="true" />
+    <Property Type="String" Name="Location_In_X" Nullable="true" />
+    <Property Type="String" Name="Location_In_Y" Nullable="true" />
+    <Property Type="String" Name="Location_Out_X" Nullable="true" />
+    <Property Type="String" Name="Location_Out_Y" Nullable="true" />
+    <Property Type="String" Name="job_Detail_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="Time_Out" Nullable="false" />
+    <Property Type="String" Name="Admin_Messger_Update" Nullable="true" />
+    <Property Type="String" Name="Admin_UserName_Update" Nullable="true" />
+    <Property Type="String" Name="Admin_UserName_Confirm" Nullable="true" />
+    <Property Type="DateTime" Name="Admin_time_Update" Nullable="false" />
+    <Property Type="DateTime" Name="TimeConfirm" Nullable="false" />
+    <Property Type="Double" Name="sumTime" Nullable="true" />
+    <Property Type="Boolean" Name="isConfirm" Nullable="false" />
+    <Property Type="Boolean" Name="isStatus" Nullable="false" />
+    <Property Type="String" Name="Fullname" Nullable="false" />
+    <Property Type="String" Name="NameLocation" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Sp_LoadUserCheckPatrol_Result">
+    <Property Type="String" Name="NameLocation" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="String" Name="Location_X" Nullable="false" />
+    <Property Type="String" Name="Location_Y" Nullable="false" />
+    <Property Type="Int32" Name="time_Check" Nullable="false" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Username_Check" Nullable="false" />
+    <Property Type="Int32" Name="QrCheck" Nullable="false" />
+    <Property Type="DateTime" Name="Time_Check" Nullable="false" />
+    <Property Type="String" Name="ImagePath" Nullable="true" />
+    <Property Type="String" Name="Mess" Nullable="true" />
+    <Property Type="String" Name="location_X_Check" Nullable="false" />
+    <Property Type="String" Name="location_Y_Check" Nullable="false" />
+    <Property Type="Int32" Name="id_Job" Nullable="false" />
+    <Property Type="String" Name="imageName" Nullable="true" />
+    <Property Type="String" Name="Fullname" Nullable="false" />
+    <Property Type="Boolean" Name="Is_Confim" Nullable="false" />
+    <Property Type="Int32" Name="isLocation" Nullable="false" />
+    <Property Type="DateTime" Name="TimeConfim" Nullable="false" />
+    <Property Type="String" Name="UserConfim" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="Sp_PrintTakeLeave_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Fullname" Nullable="false" />
+    <Property Type="DateTime" Name="DateTime" Nullable="false" />
+    <Property Type="Int32" Name="idUserJob" Nullable="false" />
+    <Property Type="String" Name="messger" Nullable="false" />
+    <Property Type="Boolean" Name="isComfim" Nullable="false" />
+    <Property Type="DateTime" Name="timeEnd" Nullable="false" />
+    <Property Type="DateTime" Name="timeStart" Nullable="false" />
+    <Property Type="String" Name="phones" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="false" />
+    <Property Type="String" Name="job_Detail_Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="JobDescription" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="NameLocation" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Sp_ReportTimeKeeping_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="NameLocation" Nullable="false" />
+    <Property Type="String" Name="job_Detail_Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="JobDescription" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="isConfirm" Nullable="false" />
+    <Property Type="Boolean" Name="isStatus" Nullable="false" />
+    <Property Type="Double" Name="sumTime" Nullable="true" />
+    <Property Type="DateTime" Name="Time_In" Nullable="false" />
+    <Property Type="DateTime" Name="Time_Out" Nullable="false" />
+    <Property Type="String" Name="Fullname" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="wqlvattuModelStoreContainer" CdmEntityContainer="wqlvattuEntities">
+    <EntitySetMapping Name="DMNHANVIENs">
+      <EntityTypeMapping TypeName="wqlvattuModel.DMNHANVIEN">
+        <MappingFragment StoreEntitySet="DMNHANVIEN">
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+          <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+          <ScalarProperty Name="MADV" ColumnName="MADV" />
+          <ScalarProperty Name="EMail" ColumnName="EMail" />
+          <ScalarProperty Name="LapPhieu" ColumnName="LapPhieu" />
+          <ScalarProperty Name="TPB_kiemtra" ColumnName="TPB_kiemtra" />
+          <ScalarProperty Name="XemXet" ColumnName="XemXet" />
+          <ScalarProperty Name="PheDuyet" ColumnName="PheDuyet" />
+          <ScalarProperty Name="TiepNhan" ColumnName="TiepNhan" />
+          <ScalarProperty Name="Passwordid" ColumnName="Passwordid" />
+          <ScalarProperty Name="HieuLuc" ColumnName="HieuLuc" />
+          <ScalarProperty Name="KIEMTRA" ColumnName="KIEMTRA" />
+          <ScalarProperty Name="MABP" ColumnName="MABP" />
+          <ScalarProperty Name="IDMaDV" ColumnName="IDMaDV" />
+          <ScalarProperty Name="QuanTri" ColumnName="QuanTri" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="NgayCap" ColumnName="NgayCap" />
+          <ScalarProperty Name="NoiCap" ColumnName="NoiCap" />
+          <ScalarProperty Name="quyencpn" ColumnName="quyencpn" />
+          <ScalarProperty Name="Chuki" ColumnName="Chuki" />
+          <ScalarProperty Name="TinhGTMay" ColumnName="TinhGTMay" />
+          <ScalarProperty Name="NgayHieuLucPass" ColumnName="NgayHieuLucPass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_LoadNVIDMaDV" FunctionName="wqlvattuModel.Store.SP_LoadNVIDMaDV">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wqlvattuModel.SP_LoadNVIDMaDV_Result">
+          <ScalarProperty Name="IDMaCS" ColumnName="IDMaCS" />
+          <ScalarProperty Name="MADV" ColumnName="MADV" />
+          <ScalarProperty Name="MABP" ColumnName="MABP" />
+          <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+          <ScalarProperty Name="HieuLuc" ColumnName="HieuLuc" />
+          <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+          <ScalarProperty Name="TenGoi" ColumnName="TenGoi" />
+          <ScalarProperty Name="HienThi" ColumnName="HienThi" />
+          <ScalarProperty Name="KiHieuDonVi" ColumnName="KiHieuDonVi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

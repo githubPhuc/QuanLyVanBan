@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QUANLYKHOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ct_phieuNhap_QLK">
+          <Key>
+            <PropertyRef Name="Machitiet_QLK" />
+          </Key>
+          <Property Name="Machitiet_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Maphieunhap_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Masanpham_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Soluong_QLK" Type="int" />
+          <Property Name="Gianhap_QLK" Type="int" />
+        </EntityType>
+        <EntityType Name="Donvinhap_QLK">
+          <Key>
+            <PropertyRef Name="MaDVN_QLK" />
+          </Key>
+          <Property Name="MaDVN_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenDVN_QLK" Type="nvarchar(max)" />
+          <Property Name="Diachi_QLK" Type="nvarchar(max)" />
+          <Property Name="Sdt_QLK" Type="varchar" MaxLength="10" />
+          <Property Name="Hieuluc_QLK" Type="bit" />
+          <Property Name="Mail_QLK" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Giamgia_QLK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tenchuongtrinh_QLK" Type="nvarchar" MaxLength="500" />
+          <Property Name="Ngaytao_QLK" Type="datetime" />
+          <Property Name="Nguoitao_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Ngayapdung_QLK" Type="datetime" />
+          <Property Name="Ngayketthuc_QLK" Type="datetime" />
+          <Property Name="Thele_QLK" Type="text" />
+          <Property Name="Noidung_QLK" Type="int" />
+          <Property Name="Hieuluc_QLK" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QUANLYKHO.dbo.Hangtang_QLK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Hangtang_QLK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Matang_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Masp_QLK" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kekho_QLK">
+          <Key>
+            <PropertyRef Name="Make_QLK" />
+          </Key>
+          <Property Name="Make_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Makho_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Hieuluc" Type="bit" />
+        </EntityType>
+        <EntityType Name="kho_QLK">
+          <Key>
+            <PropertyRef Name="Makho_QLK" />
+          </Key>
+          <Property Name="Makho_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tenkho_QLK" Type="nvarchar" MaxLength="500" />
+          <Property Name="Diachi_QLK" Type="nvarchar(max)" />
+          <Property Name="Thanhpho_QLK" Type="varchar" MaxLength="500" />
+          <Property Name="Quanhuyen_QLK" Type="varchar" MaxLength="500" />
+          <Property Name="Phuongxa_QLK" Type="varchar" MaxLength="500" />
+          <Property Name="Hieuluc_QLK" Type="bit" />
+          <Property Name="Nguoitao_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Ngaytao_QLK" Type="datetime" />
+          <Property Name="Nguoicapnhat_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Ngaycapnhat_QLK" Type="datetime" />
+        </EntityType>
+        <EntityType Name="loaisp_QLK">
+          <Key>
+            <PropertyRef Name="Maloai_QLK" />
+          </Key>
+          <Property Name="Maloai_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tenloai_QLK" Type="nvarchar(max)" />
+          <Property Name="Hieuluc_QLK" Type="bit" />
+        </EntityType>
+        <EntityType Name="phieuNhap_QLK">
+          <Key>
+            <PropertyRef Name="Maphieunhap_QLK" />
+          </Key>
+          <Property Name="Maphieunhap_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Makho_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Madonvinhap_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Tongtiennhap_QLK" Type="int" />
+          <Property Name="Nguoilapphieu_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Ngaylapphieu_QLK" Type="datetime" />
+          <Property Name="Ngaychinhsua_QLK" Type="datetime" />
+          <Property Name="Nguoichinhsua_QLK" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sanpham_QLK">
+          <Key>
+            <PropertyRef Name="Masp_QLK" />
+          </Key>
+          <Property Name="Masp_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tensp_QLK" Type="nvarchar(max)" />
+          <Property Name="Hinhanh_QLK" Type="varchar" MaxLength="500" />
+          <Property Name="Loaisp_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Giaban_QLK" Type="int" />
+          <Property Name="Hieuluc_QLK" Type="bit" />
+          <Property Name="Ngaynhap_QLK" Type="datetime" />
+          <Property Name="Nguoinhap_QLK" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sanphamgiamgia_QLK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Idgiamgia_QLK" Type="int" />
+          <Property Name="Masp_QLK" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tangkekho_QLK">
+          <Key>
+            <PropertyRef Name="Matang_QLK" />
+          </Key>
+          <Property Name="Matang_QLK" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Make_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Makho_QLK" Type="varchar" MaxLength="50" />
+          <Property Name="Hieuluc" Type="bit" />
+        </EntityType>
+        <Association Name="fk_ctpn_giamgia">
+          <End Role="Giamgia_QLK" Type="Self.Giamgia_QLK" Multiplicity="0..1" />
+          <End Role="Sanphamgiamgia_QLK" Type="Self.Sanphamgiamgia_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Giamgia_QLK">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sanphamgiamgia_QLK">
+              <PropertyRef Name="Idgiamgia_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_hanghang">
+          <End Role="sanpham_QLK" Type="Self.sanpham_QLK" Multiplicity="0..1" />
+          <End Role="Hangtang_QLK" Type="Self.Hangtang_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Principal>
+            <Dependent Role="Hangtang_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_hangtang">
+          <End Role="Tangkekho_QLK" Type="Self.Tangkekho_QLK" Multiplicity="0..1" />
+          <End Role="Hangtang_QLK" Type="Self.Hangtang_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tangkekho_QLK">
+              <PropertyRef Name="Matang_QLK" />
+            </Principal>
+            <Dependent Role="Hangtang_QLK">
+              <PropertyRef Name="Matang_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_kekho">
+          <End Role="kho_QLK" Type="Self.kho_QLK" Multiplicity="0..1" />
+          <End Role="Kekho_QLK" Type="Self.Kekho_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Principal>
+            <Dependent Role="Kekho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_kekhos">
+          <End Role="kho_QLK" Type="Self.kho_QLK" Multiplicity="0..1" />
+          <End Role="Tangkekho_QLK" Type="Self.Tangkekho_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Principal>
+            <Dependent Role="Tangkekho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_MADV">
+          <End Role="Donvinhap_QLK" Type="Self.Donvinhap_QLK" Multiplicity="0..1" />
+          <End Role="phieuNhap_QLK" Type="Self.phieuNhap_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donvinhap_QLK">
+              <PropertyRef Name="MaDVN_QLK" />
+            </Principal>
+            <Dependent Role="phieuNhap_QLK">
+              <PropertyRef Name="Madonvinhap_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_pn">
+          <End Role="phieuNhap_QLK" Type="Self.phieuNhap_QLK" Multiplicity="0..1" />
+          <End Role="ct_phieuNhap_QLK" Type="Self.ct_phieuNhap_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieuNhap_QLK">
+              <PropertyRef Name="Maphieunhap_QLK" />
+            </Principal>
+            <Dependent Role="ct_phieuNhap_QLK">
+              <PropertyRef Name="Maphieunhap_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_spGiamgia">
+          <End Role="sanpham_QLK" Type="Self.sanpham_QLK" Multiplicity="0..1" />
+          <End Role="Sanphamgiamgia_QLK" Type="Self.Sanphamgiamgia_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Principal>
+            <Dependent Role="Sanphamgiamgia_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_tangkekho">
+          <End Role="Kekho_QLK" Type="Self.Kekho_QLK" Multiplicity="0..1" />
+          <End Role="Tangkekho_QLK" Type="Self.Tangkekho_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kekho_QLK">
+              <PropertyRef Name="Make_QLK" />
+            </Principal>
+            <Dependent Role="Tangkekho_QLK">
+              <PropertyRef Name="Make_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYKHOModelStoreContainer">
+          <EntitySet Name="ct_phieuNhap_QLK" EntityType="Self.ct_phieuNhap_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donvinhap_QLK" EntityType="Self.Donvinhap_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Giamgia_QLK" EntityType="Self.Giamgia_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kekho_QLK" EntityType="Self.Kekho_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kho_QLK" EntityType="Self.kho_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loaisp_QLK" EntityType="Self.loaisp_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phieuNhap_QLK" EntityType="Self.phieuNhap_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sanpham_QLK" EntityType="Self.sanpham_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sanphamgiamgia_QLK" EntityType="Self.Sanphamgiamgia_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tangkekho_QLK" EntityType="Self.Tangkekho_QLK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hangtang_QLK" EntityType="Self.Hangtang_QLK" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Hangtang_QLK].[Id] AS [Id], 
+    [Hangtang_QLK].[Matang_QLK] AS [Matang_QLK], 
+    [Hangtang_QLK].[Masp_QLK] AS [Masp_QLK]
+    FROM [dbo].[Hangtang_QLK] AS [Hangtang_QLK]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_ctpn_giamgia" Association="Self.fk_ctpn_giamgia">
+            <End Role="Giamgia_QLK" EntitySet="Giamgia_QLK" />
+            <End Role="Sanphamgiamgia_QLK" EntitySet="Sanphamgiamgia_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_hanghang" Association="Self.fk_ctpn_hanghang">
+            <End Role="sanpham_QLK" EntitySet="sanpham_QLK" />
+            <End Role="Hangtang_QLK" EntitySet="Hangtang_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_hangtang" Association="Self.fk_ctpn_hangtang">
+            <End Role="Tangkekho_QLK" EntitySet="Tangkekho_QLK" />
+            <End Role="Hangtang_QLK" EntitySet="Hangtang_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_kekho" Association="Self.fk_ctpn_kekho">
+            <End Role="kho_QLK" EntitySet="kho_QLK" />
+            <End Role="Kekho_QLK" EntitySet="Kekho_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_kekhos" Association="Self.fk_ctpn_kekhos">
+            <End Role="kho_QLK" EntitySet="kho_QLK" />
+            <End Role="Tangkekho_QLK" EntitySet="Tangkekho_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_MADV" Association="Self.fk_ctpn_MADV">
+            <End Role="Donvinhap_QLK" EntitySet="Donvinhap_QLK" />
+            <End Role="phieuNhap_QLK" EntitySet="phieuNhap_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_pn" Association="Self.fk_ctpn_pn">
+            <End Role="phieuNhap_QLK" EntitySet="phieuNhap_QLK" />
+            <End Role="ct_phieuNhap_QLK" EntitySet="ct_phieuNhap_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_spGiamgia" Association="Self.fk_ctpn_spGiamgia">
+            <End Role="sanpham_QLK" EntitySet="sanpham_QLK" />
+            <End Role="Sanphamgiamgia_QLK" EntitySet="Sanphamgiamgia_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_tangkekho" Association="Self.fk_ctpn_tangkekho">
+            <End Role="Kekho_QLK" EntitySet="Kekho_QLK" />
+            <End Role="Tangkekho_QLK" EntitySet="Tangkekho_QLK" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLYKHOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ct_phieuNhap_QLK">
+          <Key>
+            <PropertyRef Name="Machitiet_QLK" />
+          </Key>
+          <Property Name="Machitiet_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Maphieunhap_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Masanpham_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soluong_QLK" Type="Int32" />
+          <Property Name="Gianhap_QLK" Type="Int32" />
+          <NavigationProperty Name="phieuNhap_QLK" Relationship="Self.fk_ctpn_pn" FromRole="ct_phieuNhap_QLK" ToRole="phieuNhap_QLK" />
+        </EntityType>
+        <EntityType Name="Donvinhap_QLK">
+          <Key>
+            <PropertyRef Name="MaDVN_QLK" />
+          </Key>
+          <Property Name="MaDVN_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenDVN_QLK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi_QLK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sdt_QLK" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Hieuluc_QLK" Type="Boolean" />
+          <Property Name="Mail_QLK" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="phieuNhap_QLK" Relationship="Self.fk_ctpn_MADV" FromRole="Donvinhap_QLK" ToRole="phieuNhap_QLK" />
+        </EntityType>
+        <EntityType Name="Giamgia_QLK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tenchuongtrinh_QLK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Ngaytao_QLK" Type="DateTime" Precision="3" />
+          <Property Name="Nguoitao_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ngayapdung_QLK" Type="DateTime" Precision="3" />
+          <Property Name="Ngayketthuc_QLK" Type="DateTime" Precision="3" />
+          <Property Name="Thele_QLK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Noidung_QLK" Type="Int32" />
+          <Property Name="Hieuluc_QLK" Type="Boolean" />
+          <NavigationProperty Name="Sanphamgiamgia_QLK" Relationship="Self.fk_ctpn_giamgia" FromRole="Giamgia_QLK" ToRole="Sanphamgiamgia_QLK" />
+        </EntityType>
+        <EntityType Name="Kekho_QLK">
+          <Key>
+            <PropertyRef Name="Make_QLK" />
+          </Key>
+          <Property Name="Make_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Makho_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Hieuluc" Type="Boolean" />
+          <NavigationProperty Name="kho_QLK" Relationship="Self.fk_ctpn_kekho" FromRole="Kekho_QLK" ToRole="kho_QLK" />
+          <NavigationProperty Name="Tangkekho_QLK" Relationship="Self.fk_ctpn_tangkekho" FromRole="Kekho_QLK" ToRole="Tangkekho_QLK" />
+        </EntityType>
+        <EntityType Name="kho_QLK">
+          <Key>
+            <PropertyRef Name="Makho_QLK" />
+          </Key>
+          <Property Name="Makho_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tenkho_QLK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi_QLK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Thanhpho_QLK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Quanhuyen_QLK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Phuongxa_QLK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Hieuluc_QLK" Type="Boolean" />
+          <Property Name="Nguoitao_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ngaytao_QLK" Type="DateTime" Precision="3" />
+          <Property Name="Nguoicapnhat_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ngaycapnhat_QLK" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kekho_QLK" Relationship="Self.fk_ctpn_kekho" FromRole="kho_QLK" ToRole="Kekho_QLK" />
+          <NavigationProperty Name="Tangkekho_QLK" Relationship="Self.fk_ctpn_kekhos" FromRole="kho_QLK" ToRole="Tangkekho_QLK" />
+        </EntityType>
+        <EntityType Name="loaisp_QLK">
+          <Key>
+            <PropertyRef Name="Maloai_QLK" />
+          </Key>
+          <Property Name="Maloai_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tenloai_QLK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hieuluc_QLK" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="phieuNhap_QLK">
+          <Key>
+            <PropertyRef Name="Maphieunhap_QLK" />
+          </Key>
+          <Property Name="Maphieunhap_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Makho_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Madonvinhap_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tongtiennhap_QLK" Type="Int32" />
+          <Property Name="Nguoilapphieu_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ngaylapphieu_QLK" Type="DateTime" Precision="3" />
+          <Property Name="Ngaychinhsua_QLK" Type="DateTime" Precision="3" />
+          <Property Name="Nguoichinhsua_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ct_phieuNhap_QLK" Relationship="Self.fk_ctpn_pn" FromRole="phieuNhap_QLK" ToRole="ct_phieuNhap_QLK" />
+          <NavigationProperty Name="Donvinhap_QLK" Relationship="Self.fk_ctpn_MADV" FromRole="phieuNhap_QLK" ToRole="Donvinhap_QLK" />
+        </EntityType>
+        <EntityType Name="sanpham_QLK">
+          <Key>
+            <PropertyRef Name="Masp_QLK" />
+          </Key>
+          <Property Name="Masp_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tensp_QLK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hinhanh_QLK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Loaisp_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Giaban_QLK" Type="Int32" />
+          <Property Name="Hieuluc_QLK" Type="Boolean" />
+          <Property Name="Ngaynhap_QLK" Type="DateTime" Precision="3" />
+          <Property Name="Nguoinhap_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Hangtang_QLK" Relationship="Self.fk_ctpn_hanghang" FromRole="sanpham_QLK" ToRole="Hangtang_QLK" />
+          <NavigationProperty Name="Sanphamgiamgia_QLK" Relationship="Self.fk_ctpn_spGiamgia" FromRole="sanpham_QLK" ToRole="Sanphamgiamgia_QLK" />
+        </EntityType>
+        <EntityType Name="Sanphamgiamgia_QLK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Idgiamgia_QLK" Type="Int32" />
+          <Property Name="Masp_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Giamgia_QLK" Relationship="Self.fk_ctpn_giamgia" FromRole="Sanphamgiamgia_QLK" ToRole="Giamgia_QLK" />
+          <NavigationProperty Name="sanpham_QLK" Relationship="Self.fk_ctpn_spGiamgia" FromRole="Sanphamgiamgia_QLK" ToRole="sanpham_QLK" />
+        </EntityType>
+        <EntityType Name="Tangkekho_QLK">
+          <Key>
+            <PropertyRef Name="Matang_QLK" />
+          </Key>
+          <Property Name="Matang_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Make_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Makho_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Hieuluc" Type="Boolean" />
+          <NavigationProperty Name="Kekho_QLK" Relationship="Self.fk_ctpn_tangkekho" FromRole="Tangkekho_QLK" ToRole="Kekho_QLK" />
+          <NavigationProperty Name="kho_QLK" Relationship="Self.fk_ctpn_kekhos" FromRole="Tangkekho_QLK" ToRole="kho_QLK" />
+          <NavigationProperty Name="Hangtang_QLK" Relationship="Self.fk_ctpn_hangtang" FromRole="Tangkekho_QLK" ToRole="Hangtang_QLK" />
+        </EntityType>
+        <EntityType Name="Hangtang_QLK">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Matang_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Masp_QLK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sanpham_QLK" Relationship="Self.fk_ctpn_hanghang" FromRole="Hangtang_QLK" ToRole="sanpham_QLK" />
+          <NavigationProperty Name="Tangkekho_QLK" Relationship="Self.fk_ctpn_hangtang" FromRole="Hangtang_QLK" ToRole="Tangkekho_QLK" />
+        </EntityType>
+        <Association Name="fk_ctpn_pn">
+          <End Role="phieuNhap_QLK" Type="Self.phieuNhap_QLK" Multiplicity="0..1" />
+          <End Role="ct_phieuNhap_QLK" Type="Self.ct_phieuNhap_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieuNhap_QLK">
+              <PropertyRef Name="Maphieunhap_QLK" />
+            </Principal>
+            <Dependent Role="ct_phieuNhap_QLK">
+              <PropertyRef Name="Maphieunhap_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_MADV">
+          <End Role="Donvinhap_QLK" Type="Self.Donvinhap_QLK" Multiplicity="0..1" />
+          <End Role="phieuNhap_QLK" Type="Self.phieuNhap_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donvinhap_QLK">
+              <PropertyRef Name="MaDVN_QLK" />
+            </Principal>
+            <Dependent Role="phieuNhap_QLK">
+              <PropertyRef Name="Madonvinhap_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_giamgia">
+          <End Role="Giamgia_QLK" Type="Self.Giamgia_QLK" Multiplicity="0..1" />
+          <End Role="Sanphamgiamgia_QLK" Type="Self.Sanphamgiamgia_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Giamgia_QLK">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sanphamgiamgia_QLK">
+              <PropertyRef Name="Idgiamgia_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_kekho">
+          <End Role="kho_QLK" Type="Self.kho_QLK" Multiplicity="0..1" />
+          <End Role="Kekho_QLK" Type="Self.Kekho_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Principal>
+            <Dependent Role="Kekho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_tangkekho">
+          <End Role="Kekho_QLK" Type="Self.Kekho_QLK" Multiplicity="0..1" />
+          <End Role="Tangkekho_QLK" Type="Self.Tangkekho_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kekho_QLK">
+              <PropertyRef Name="Make_QLK" />
+            </Principal>
+            <Dependent Role="Tangkekho_QLK">
+              <PropertyRef Name="Make_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_kekhos">
+          <End Role="kho_QLK" Type="Self.kho_QLK" Multiplicity="0..1" />
+          <End Role="Tangkekho_QLK" Type="Self.Tangkekho_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Principal>
+            <Dependent Role="Tangkekho_QLK">
+              <PropertyRef Name="Makho_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_hanghang">
+          <End Role="sanpham_QLK" Type="Self.sanpham_QLK" Multiplicity="0..1" />
+          <End Role="Hangtang_QLK" Type="Self.Hangtang_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Principal>
+            <Dependent Role="Hangtang_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_spGiamgia">
+          <End Role="sanpham_QLK" Type="Self.sanpham_QLK" Multiplicity="0..1" />
+          <End Role="Sanphamgiamgia_QLK" Type="Self.Sanphamgiamgia_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Principal>
+            <Dependent Role="Sanphamgiamgia_QLK">
+              <PropertyRef Name="Masp_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctpn_hangtang">
+          <End Role="Tangkekho_QLK" Type="Self.Tangkekho_QLK" Multiplicity="0..1" />
+          <End Role="Hangtang_QLK" Type="Self.Hangtang_QLK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tangkekho_QLK">
+              <PropertyRef Name="Matang_QLK" />
+            </Principal>
+            <Dependent Role="Hangtang_QLK">
+              <PropertyRef Name="Matang_QLK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYKHOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ct_phieuNhap_QLK" EntityType="Self.ct_phieuNhap_QLK" />
+          <EntitySet Name="Donvinhap_QLK" EntityType="Self.Donvinhap_QLK" />
+          <EntitySet Name="Giamgia_QLK" EntityType="Self.Giamgia_QLK" />
+          <EntitySet Name="Kekho_QLK" EntityType="Self.Kekho_QLK" />
+          <EntitySet Name="kho_QLK" EntityType="Self.kho_QLK" />
+          <EntitySet Name="loaisp_QLK" EntityType="Self.loaisp_QLK" />
+          <EntitySet Name="phieuNhap_QLK" EntityType="Self.phieuNhap_QLK" />
+          <EntitySet Name="sanpham_QLK" EntityType="Self.sanpham_QLK" />
+          <EntitySet Name="Sanphamgiamgia_QLK" EntityType="Self.Sanphamgiamgia_QLK" />
+          <EntitySet Name="Tangkekho_QLK" EntityType="Self.Tangkekho_QLK" />
+          <EntitySet Name="Hangtang_QLK" EntityType="Self.Hangtang_QLK" />
+          <AssociationSet Name="fk_ctpn_pn" Association="Self.fk_ctpn_pn">
+            <End Role="phieuNhap_QLK" EntitySet="phieuNhap_QLK" />
+            <End Role="ct_phieuNhap_QLK" EntitySet="ct_phieuNhap_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_MADV" Association="Self.fk_ctpn_MADV">
+            <End Role="Donvinhap_QLK" EntitySet="Donvinhap_QLK" />
+            <End Role="phieuNhap_QLK" EntitySet="phieuNhap_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_giamgia" Association="Self.fk_ctpn_giamgia">
+            <End Role="Giamgia_QLK" EntitySet="Giamgia_QLK" />
+            <End Role="Sanphamgiamgia_QLK" EntitySet="Sanphamgiamgia_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_kekho" Association="Self.fk_ctpn_kekho">
+            <End Role="kho_QLK" EntitySet="kho_QLK" />
+            <End Role="Kekho_QLK" EntitySet="Kekho_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_tangkekho" Association="Self.fk_ctpn_tangkekho">
+            <End Role="Kekho_QLK" EntitySet="Kekho_QLK" />
+            <End Role="Tangkekho_QLK" EntitySet="Tangkekho_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_kekhos" Association="Self.fk_ctpn_kekhos">
+            <End Role="kho_QLK" EntitySet="kho_QLK" />
+            <End Role="Tangkekho_QLK" EntitySet="Tangkekho_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_hanghang" Association="Self.fk_ctpn_hanghang">
+            <End Role="sanpham_QLK" EntitySet="sanpham_QLK" />
+            <End Role="Hangtang_QLK" EntitySet="Hangtang_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_spGiamgia" Association="Self.fk_ctpn_spGiamgia">
+            <End Role="sanpham_QLK" EntitySet="sanpham_QLK" />
+            <End Role="Sanphamgiamgia_QLK" EntitySet="Sanphamgiamgia_QLK" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctpn_hangtang" Association="Self.fk_ctpn_hangtang">
+            <End Role="Tangkekho_QLK" EntitySet="Tangkekho_QLK" />
+            <End Role="Hangtang_QLK" EntitySet="Hangtang_QLK" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUANLYKHOModelStoreContainer" CdmEntityContainer="QUANLYKHOEntities">
+          <EntitySetMapping Name="ct_phieuNhap_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.ct_phieuNhap_QLK">
+              <MappingFragment StoreEntitySet="ct_phieuNhap_QLK">
+                <ScalarProperty Name="Machitiet_QLK" ColumnName="Machitiet_QLK" />
+                <ScalarProperty Name="Maphieunhap_QLK" ColumnName="Maphieunhap_QLK" />
+                <ScalarProperty Name="Masanpham_QLK" ColumnName="Masanpham_QLK" />
+                <ScalarProperty Name="Soluong_QLK" ColumnName="Soluong_QLK" />
+                <ScalarProperty Name="Gianhap_QLK" ColumnName="Gianhap_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donvinhap_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.Donvinhap_QLK">
+              <MappingFragment StoreEntitySet="Donvinhap_QLK">
+                <ScalarProperty Name="MaDVN_QLK" ColumnName="MaDVN_QLK" />
+                <ScalarProperty Name="TenDVN_QLK" ColumnName="TenDVN_QLK" />
+                <ScalarProperty Name="Diachi_QLK" ColumnName="Diachi_QLK" />
+                <ScalarProperty Name="Sdt_QLK" ColumnName="Sdt_QLK" />
+                <ScalarProperty Name="Hieuluc_QLK" ColumnName="Hieuluc_QLK" />
+                <ScalarProperty Name="Mail_QLK" ColumnName="Mail_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Giamgia_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.Giamgia_QLK">
+              <MappingFragment StoreEntitySet="Giamgia_QLK">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tenchuongtrinh_QLK" ColumnName="Tenchuongtrinh_QLK" />
+                <ScalarProperty Name="Ngaytao_QLK" ColumnName="Ngaytao_QLK" />
+                <ScalarProperty Name="Nguoitao_QLK" ColumnName="Nguoitao_QLK" />
+                <ScalarProperty Name="Ngayapdung_QLK" ColumnName="Ngayapdung_QLK" />
+                <ScalarProperty Name="Ngayketthuc_QLK" ColumnName="Ngayketthuc_QLK" />
+                <ScalarProperty Name="Thele_QLK" ColumnName="Thele_QLK" />
+                <ScalarProperty Name="Noidung_QLK" ColumnName="Noidung_QLK" />
+                <ScalarProperty Name="Hieuluc_QLK" ColumnName="Hieuluc_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kekho_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.Kekho_QLK">
+              <MappingFragment StoreEntitySet="Kekho_QLK">
+                <ScalarProperty Name="Make_QLK" ColumnName="Make_QLK" />
+                <ScalarProperty Name="Makho_QLK" ColumnName="Makho_QLK" />
+                <ScalarProperty Name="Hieuluc" ColumnName="Hieuluc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kho_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.kho_QLK">
+              <MappingFragment StoreEntitySet="kho_QLK">
+                <ScalarProperty Name="Makho_QLK" ColumnName="Makho_QLK" />
+                <ScalarProperty Name="Tenkho_QLK" ColumnName="Tenkho_QLK" />
+                <ScalarProperty Name="Diachi_QLK" ColumnName="Diachi_QLK" />
+                <ScalarProperty Name="Thanhpho_QLK" ColumnName="Thanhpho_QLK" />
+                <ScalarProperty Name="Quanhuyen_QLK" ColumnName="Quanhuyen_QLK" />
+                <ScalarProperty Name="Phuongxa_QLK" ColumnName="Phuongxa_QLK" />
+                <ScalarProperty Name="Hieuluc_QLK" ColumnName="Hieuluc_QLK" />
+                <ScalarProperty Name="Nguoitao_QLK" ColumnName="Nguoitao_QLK" />
+                <ScalarProperty Name="Ngaytao_QLK" ColumnName="Ngaytao_QLK" />
+                <ScalarProperty Name="Nguoicapnhat_QLK" ColumnName="Nguoicapnhat_QLK" />
+                <ScalarProperty Name="Ngaycapnhat_QLK" ColumnName="Ngaycapnhat_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loaisp_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.loaisp_QLK">
+              <MappingFragment StoreEntitySet="loaisp_QLK">
+                <ScalarProperty Name="Maloai_QLK" ColumnName="Maloai_QLK" />
+                <ScalarProperty Name="Tenloai_QLK" ColumnName="Tenloai_QLK" />
+                <ScalarProperty Name="Hieuluc_QLK" ColumnName="Hieuluc_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phieuNhap_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.phieuNhap_QLK">
+              <MappingFragment StoreEntitySet="phieuNhap_QLK">
+                <ScalarProperty Name="Maphieunhap_QLK" ColumnName="Maphieunhap_QLK" />
+                <ScalarProperty Name="Makho_QLK" ColumnName="Makho_QLK" />
+                <ScalarProperty Name="Madonvinhap_QLK" ColumnName="Madonvinhap_QLK" />
+                <ScalarProperty Name="Tongtiennhap_QLK" ColumnName="Tongtiennhap_QLK" />
+                <ScalarProperty Name="Nguoilapphieu_QLK" ColumnName="Nguoilapphieu_QLK" />
+                <ScalarProperty Name="Ngaylapphieu_QLK" ColumnName="Ngaylapphieu_QLK" />
+                <ScalarProperty Name="Ngaychinhsua_QLK" ColumnName="Ngaychinhsua_QLK" />
+                <ScalarProperty Name="Nguoichinhsua_QLK" ColumnName="Nguoichinhsua_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sanpham_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.sanpham_QLK">
+              <MappingFragment StoreEntitySet="sanpham_QLK">
+                <ScalarProperty Name="Masp_QLK" ColumnName="Masp_QLK" />
+                <ScalarProperty Name="Tensp_QLK" ColumnName="Tensp_QLK" />
+                <ScalarProperty Name="Hinhanh_QLK" ColumnName="Hinhanh_QLK" />
+                <ScalarProperty Name="Loaisp_QLK" ColumnName="Loaisp_QLK" />
+                <ScalarProperty Name="Giaban_QLK" ColumnName="Giaban_QLK" />
+                <ScalarProperty Name="Hieuluc_QLK" ColumnName="Hieuluc_QLK" />
+                <ScalarProperty Name="Ngaynhap_QLK" ColumnName="Ngaynhap_QLK" />
+                <ScalarProperty Name="Nguoinhap_QLK" ColumnName="Nguoinhap_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sanphamgiamgia_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.Sanphamgiamgia_QLK">
+              <MappingFragment StoreEntitySet="Sanphamgiamgia_QLK">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Idgiamgia_QLK" ColumnName="Idgiamgia_QLK" />
+                <ScalarProperty Name="Masp_QLK" ColumnName="Masp_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tangkekho_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.Tangkekho_QLK">
+              <MappingFragment StoreEntitySet="Tangkekho_QLK">
+                <ScalarProperty Name="Matang_QLK" ColumnName="Matang_QLK" />
+                <ScalarProperty Name="Make_QLK" ColumnName="Make_QLK" />
+                <ScalarProperty Name="Makho_QLK" ColumnName="Makho_QLK" />
+                <ScalarProperty Name="Hieuluc" ColumnName="Hieuluc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hangtang_QLK">
+            <EntityTypeMapping TypeName="QUANLYKHOModel.Hangtang_QLK">
+              <MappingFragment StoreEntitySet="Hangtang_QLK">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Matang_QLK" ColumnName="Matang_QLK" />
+                <ScalarProperty Name="Masp_QLK" ColumnName="Masp_QLK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,357 @@
+﻿<style>
+    a {
+        position: relative;
+        display: inline-block;
+        transition: .3s;
+        text-decoration: none;
+    }
+
+    a::after {
+            position: absolute;
+            bottom: .3em;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: green;
+            opacity: 0;
+            transition: .3s;
+        }
+
+        a:hover::after {
+            bottom: 0;
+            opacity: 1;
+        }
+
+        a:hover {
+            color: green;
+        }
+        a::before {
+            position: absolute;
+            top: .3em;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: green;
+            opacity: 0;
+            transition: .3s;
+        }
+        a:hover::before {
+            top: 0;
+            opacity: 1;
+        }
+        .back-link {
+            color: cyan;
+            background-color: yellow;
+
+        }
+
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Thông báo</b>
+                        </h3>
+                    </div>
+
+                    <div class="card-body pad">
+                        <div class="row">
+
+                            <div class="col-md-6 table-body-AddBlog table-responsive">
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12 table-body-PreviewBlogs">
+
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12 table-body table-responsive">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@section scripts{
+    <script>
+          var paramsLoadData = [true,'@Url.Action("GetListBlog")','#search']
+        $(document).ready(function () {
+                load_AddBlog()
+                load_Preview()
+                loadData(...paramsLoadData)
+        });
+
+        function load_AddBlog() {
+            try {
+                $.ajax({
+                    url: '@Url.Action("AddBlog")',
+                    timeout: 2000000,
+                    data: {
+                    },
+                    beforeSend: function () {
+                        $(".divLoading").addClass("loading");
+                    },
+                    success: function (response) {
+                        $(".divLoading").removeClass("loading");
+
+                        $('.table-body-AddBlog').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+
+            }
+        }
+
+        function load_Search() {
+            try {
+                $.ajax({
+                    url: '@Url.Action("_Search")',
+                    timeout: 2000000,
+                    data: {
+
+                    },
+                    success: function (response) {
+                        $('.table-body-Search').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+        function load_Preview() {
+            try {
+                $.ajax({
+                    url: '@Url.Action("PreviewBlogs")',
+                    timeout: 2000000,
+                    data: {
+
+                    },
+                    success: function (response) {
+                        $('.table-body-PreviewBlogs').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+        function validateBlog(validateFile = true) {
+            var title = $('#title').val().trim();
+            var description = $('#description').val().trim();
+            var url = $('#url').val().trim();
+            var selectedFile = $('#formFile')[0].files[0];
+            var usernameCreate = $('#username').val();
+            if (title === '') {
+                notifyClose('Vui lòng nhập tiêu đề.');
+                return false;
+            }
+
+            if (description === '') {
+                notifyClose('Vui lòng nhập mô tả.');
+                return false;
+            }
+
+            if (url !== '') {
+                var urlR = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?:: (\d +))?(?: \/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+                if (url.match(urlR)) {
+                    notifyClose('Định dạng URL không hợp lệ.');
+                    return false;
+                }
+            } else {
+                notifyClose('Địa chỉ URL không được bỏ trống.');
+                return false;
+            }
+            if (validateFile) {
+                if (!selectedFile) {
+                    notifyClose('Vui lòng chọn file hình ảnh')
+                    return false;
+                }
+            }
+
+            if (usernameCreate === null || usernameCreate === undefined) {
+                notifyClose('Tên người dùng không được để trống.');
+                return false;
+            }
+            return {
+                Title: title,
+                Description: description,
+                Url: url,
+                UsernameCreate: usernameCreate,
+                Image: selectedFile
+            };
+        }
+
+        function saveBlog() {
+            var validatedData = validateBlog();
+            if (validatedData) {
+                var formData = new FormData();
+                formData.append('Title', validatedData.Title);
+                formData.append('Description', validatedData.Description);
+                formData.append('Url', validatedData.Url);
+                formData.append('UsernameCreate', validatedData.UsernameCreate);
+                formData.append('Image', validatedData.Image);
+                var token = $('#token').val();
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', `https://api.hoanglongsecurity.info/api/Blog/CreateBlogs`, true);
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                xhr.onload = function () {
+                    var res = JSON.parse(xhr.responseText)
+                    if (xhr.status === 200) {
+                        notify(res.data,"success")
+                        
+                    } else {
+                        notify(res.data)
+                    }
+                };
+                xhr.send(formData);
+            }
+
+        }
+        function previewData() {
+            var formData = validateBlog();
+            if (formData) {
+                $('#blogTitle').text(formData.Title);
+                $('#blogDescription').text(formData.Description);
+                $('#updateTime').text('Update lúc: ' + new Date().toLocaleString());
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    $('#blogImage').attr('src', event.target.result);
+                };
+                reader.readAsDataURL(formData.Image);
+            }
+        }
+        function previewDataUpdate() {
+            var formData = validateBlog(validateFile = false);
+            if (formData) {
+                $('#blogTitle').text(formData.Title);
+                $('#blogDescription').text(formData.Description);
+                $('#updateTime').text('Update lúc: ' + new Date().toLocaleString());
+                if (formData.Image) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        $('#blogImage').attr('src', event.target.result);
+                    };
+                    reader.readAsDataURL(formData.Image);
+                }
+            }
+        }
+        function Update(Id) {
+                 $.ajax({
+                    url: '@Url.Action("UpdateBlog")',
+                    timeout: 2000000,
+                    data: {Id:Id},
+                     success: function (response) {
+                         if (response) {
+                             $('.table-body-AddBlog').html(response);
+                             var objectName = $('#objectName').val()
+                             var token = $('#token').val();
+                             loadBlogImage(objectName, token)
+                             var title = $("#title")[0]; // Sử dụng [0] để lấy đối tượng DOM thay vì đối tượng jQuery
+                             if (title !== undefined && title !== null) {
+                                 title.focus();
+                                 title.setSelectionRange(title.value.length, title.value.length);
+                             } else {
+                                 console.error("Input 'title' not found or undefined.");
+                             }
+                             $("html, body").animate({ scrollTop: 0 }, 500);
+                             previewDataUpdate()
+                             title.focus()
+                             title.setSelectionRange(title.value.length, title.value.length);
+                         } else {
+                         }
+                     },
+                     error: function (xhr, status, error) {
+                         notify(response.data)
+                     }
+                });
+        }
+
+        function updateBlogAction(Id) {
+            var token = $('#token').val();
+            var validatedData = validateBlog(validateFile = false);
+            if (validatedData !== false) {
+                var formData = new FormData();
+                formData.append('Title', validatedData.Title);
+                formData.append('Description', validatedData.Description);
+                formData.append('Url', validatedData.Url);
+                formData.append('UsernameCreate', validatedData.UsernameCreate);
+                formData.append('Image', validatedData.Image)
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', `https://api.hoanglongsecurity.info/api/Blog/UploadBlog?id=${Id}`, true);
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                xhr.onload = function () {
+                    var res = JSON.parse(xhr.responseText)
+                    if (xhr.status === 200) {
+                        notify(res.data, "success");
+                    } else {
+                        notify(res.message)
+                    }
+                };
+                xhr.send(formData);
+            }
+        }
+
+        function loadBlogImage(objectName,token) {
+            var bucketName = "@( ViewBag.bucketName as string)";
+            $.ajax({
+                url: `https://api.hoanglongsecurity.info/api/Minio/ShowImage?bucketName=${bucketName}&objectName=${objectName}`,
+                type: 'GET',
+                data: {},
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                },
+                success: function (response) {
+                    if (response) {
+                        $('#blogImage').attr('src', response.data)
+                    } else {
+                        notify("Không thể lấy được dữ liệu trả về")
+                    }
+                },
+                error: function (message) {
+                    $(".divLoading").removeClass("loading");
+                }
+            });
+        }
+        function Delete(id) {
+            var paramsLoadData = [true, '@Url.Action("GetListBlog")', '#search']
+            if (confirm('Bạn có chắc muốn xóa không ?')) {
+                Action('@Url.Action("_Delete")', 'POST', { Id: id }, paramsLoadData)
+            }
+        }
+        function changeToUnActive(Id) {
+            if (confirm('Bạn có chắc muốn tắt tin tức này không?')) {
+                Action('@Url.Action("changeIshow")', "POST", { Id: Id }, paramsLoadData)
+            }
+        }
+
+        function changeToActive(Id) {
+            if (confirm('Tin tức này sẽ được bật?')) {
+                Action('@Url.Action("changeIshow")', "POST", { Id: Id }, paramsLoadData)
+            }
+        }
+
+    </script>    
+    
+}

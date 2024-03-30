@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyVanBanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DanhSachPhongban">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPhongBan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KhoiPhongBan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserCreate" Type="Int32" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="Int32" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="Int32" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="DiaDiem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TenDiaDiem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserCreate" Type="Int32" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="Int32" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="Int32" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="loaivanban">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="PageId" Type="Int32" />
+    <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderNo" Type="Int32" />
+    <Property Name="MenuId" Type="Int32" />
+    <Property Name="UserCreate" Type="Int32" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="Int32" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="Int32" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="Boolean" />
+    <NavigationProperty Name="Menu1" Relationship="Self.FK_Menu_Menu_MenuId" FromRole="Menu" ToRole="Menu1" />
+    <NavigationProperty Name="Menu2" Relationship="Self.FK_Menu_Menu_MenuId" FromRole="Menu1" ToRole="Menu" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_Menu_Page_PageId" FromRole="Menu" ToRole="Page" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Controler" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Menus" Relationship="Self.FK_Menu_Page_PageId" FromRole="Page" ToRole="Menu" />
+    <NavigationProperty Name="User_Page" Relationship="Self.FK_User_Page_Page_PageId" FromRole="Page" ToRole="User_Page" />
+  </EntityType>
+  <EntityType Name="thongtinvanban">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idLoaiVanBan" Type="Int32" />
+    <Property Name="IdVanBanDiChuyen" Type="Int32" />
+    <Property Name="IdPhongBan" Type="Int32" />
+    <Property Name="NguonVB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SoVBNoiBo" Type="Int32" />
+    <Property Name="ButPhe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TaiLieuDinhKem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayPhongBanSoanThao" Type="DateTime" Precision="3" />
+    <Property Name="UserCreate" Type="Int32" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="Int32" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="Int32" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="User_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="PageId" Type="Int32" Nullable="false" />
+    <Property Name="UserCreate" Type="Int32" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="Int32" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="Int32" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <Property Name="isRoleCreate" Type="Boolean" />
+    <Property Name="isRoleEdit" Type="Boolean" />
+    <Property Name="isRoleExport" Type="Boolean" />
+    <Property Name="isRoleExportAll" Type="Boolean" />
+    <Property Name="isRoleDelete" Type="Boolean" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_User_Page_Page_PageId" FromRole="User_Page" ToRole="Page" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Page_AspNetUsers_userId" FromRole="User_Page" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccoutType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HoNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoiSinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiThuongTru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiTamTru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DanToc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TonGiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CCCD" Type="Int32" />
+    <Property Name="NgayCap" Type="DateTime" Precision="0" />
+    <Property Name="NoiCap" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MaSoBHXH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrinhDoVanHoa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TrinhDoChuyenMon" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NganhHoc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDaoTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TrinhDoChinhTri" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NgayVaoDangDuBi" Type="DateTime" Precision="0" />
+    <Property Name="NgayVaoDangChinhThuc" Type="DateTime" Precision="0" />
+    <Property Name="PhongBan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ChucDanh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NgayVaoLam" Type="DateTime" Precision="0" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HieuLuc" Type="Boolean" />
+    <NavigationProperty Name="User_Page" Relationship="Self.FK_User_Page_AspNetUsers_userId" FromRole="Users" ToRole="User_Page" />
+  </EntityType>
+  <EntityType Name="VanBanDiChuyen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDiaDiemNhan" Type="Int32" />
+    <Property Name="IdDiaDiemGui" Type="Int32" />
+    <Property Name="NguoiKy" Type="Int32" />
+    <Property Name="NgayKy" Type="DateTime" Precision="3" />
+    <Property Name="IsTrangThaiDenDi" Type="Boolean" />
+    <Property Name="NgayXuLy" Type="DateTime" Precision="3" />
+    <Property Name="UserCreate" Type="Int32" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="Int32" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="Int32" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+  </EntityType>
+  <Association Name="FK_Menu_Menu_MenuId">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Page" Type="Self.User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_AspNetUsers_userId">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Page" Type="Self.User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyVanBanEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DanhSachPhongbans" EntityType="Self.DanhSachPhongban" />
+    <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
+    <EntitySet Name="loaivanbans" EntityType="Self.loaivanban" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Pages" EntityType="Self.Page" />
+    <EntitySet Name="thongtinvanbans" EntityType="Self.thongtinvanban" />
+    <EntitySet Name="User_Page" EntityType="Self.User_Page" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="VanBanDiChuyens" EntityType="Self.VanBanDiChuyen" />
+    <AssociationSet Name="FK_Menu_Menu_MenuId" Association="Self.FK_Menu_Menu_MenuId">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Menu1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Page_PageId" Association="Self.FK_Menu_Page_PageId">
+      <End Role="Page" EntitySet="Pages" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_Page_PageId" Association="Self.FK_User_Page_Page_PageId">
+      <End Role="Page" EntitySet="Pages" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_AspNetUsers_userId" Association="Self.FK_User_Page_AspNetUsers_userId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

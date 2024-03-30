@@ -1,0 +1,74 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var db_ = new ChamCong_teamdevEntities();
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_GetQRPatrol_Result>;
+}
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>DANH SÁCH QR</b>
+                       
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="myTable" class="table table-bordered table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Địa điểm làm việc</th>
+                                            <th>Code</th>
+                                            <th>Vị trí</th>
+                                            <th>Mô tả QR </th>
+                                            <th>Vị trí X </th>
+                                            <th>Vị trí Y </th>
+                                            <th>Mã QR </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in data)
+                                        {
+                                           
+                                                var location = db_.Jobs.Where(a => a.Id == item.id_Job).FirstOrDefault();
+                                                string namLocation = location == null ? "" : location.NameLocation;
+                                            <tr>
+                                                <td>
+                                                    <a onclick="printView('@item.Id')" class="btn">
+                                                        <i class="fas fa-print"></i> In QR
+                                                    </a>
+                                                    <a onclick="Edit('@item.Id')" class="btn">
+                                                        <i class="fas fa-edit"></i> Sửa
+                                                    </a>
+                                                    <a onclick="Delete('@item.Id')" class="btn">
+                                                        <i class="fas fa-trash"></i> Xóa QR
+                                                    </a>
+                                                </td>
+                                               <td>@namLocation</td>
+                                                <td>@item.code</td>
+                                                <td>@item.Name</td> 
+                                                <td>@item.Description</td>
+                                                <td>@item.Location_X</td>
+                                                <td>@item.Location_Y</td>
+                                                <td><img src="@item.path_Qr" width="100" height="100" /></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,139 @@
+﻿
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-12 col-sm-4">
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Tên Công Ty</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="text" id="Name" name="Name" />
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Mã Số Thuế</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" max="112" type="text" id="taxCode" name="taxCode" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Email</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="text" id="Email" name="Email" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Điện Thoại</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="text" id="phone" name="phone" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Quốc Gia </label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select class="form-control chosen-select" style="width: 100%" id="country" name="country" aria-label=".form-select-sm">
+                    <option value="VietNam">Việt Nam</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Vị Trí</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="text" id="Location" name="Location" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Chọn thành phố</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select class=" form-control chosen-select" style="width: 100%" id="city" name="city" aria-label=".form-select-md">
+                    <option value="" disabled>Vui lòng chọn thành phố</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Chọn quận huyện  </label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select class="form-control chosen-select" style="width: 100%;" id="district" name="district" aria-label=".form-select-md">
+                    <option value="" disabled>Quận / Huyện</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Phường / xã </label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select class="form-control chosen-select" style="width: 100%;" id="ward" name="ward" aria-label=".form-select-md">
+                    <option value="" disabled>Quận / Huyện</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:20px">
+            <label class="col-md-12 col-sm-12">Nhập địa chỉ </label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="text" id="street" name="street" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <div class="col-md-12 col-sm-12 ten">
+                <label for="status" style="color:red">Trạng thái</label>
+                <input type="checkbox" class="col-md-1 form-check-input one_checkbox" value="" id="status">
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+</script>
+<script>
+    $(document).ready(function () {
+        $('#country').select2();
+        $('#city').select2();
+        $('#district').select2();
+        $('#ward').select2();
+    });
+    var citis = document.getElementById("city");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderCity(result.data);
+
+
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+
+            var a = citis.options[citis.options.length] = new Option(x.Name, x.Id);
+
+        }
+        citis.onchange = function () {
+            district.length = 1;
+            ward.length = 1;
+            if (this.value != "") {
+                const result = data.filter(n => n.Id === this.value);
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Id);
+                }
+            }
+        };
+        district.onchange = function () {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Id === citis.value);
+            if (this.value != "") {
+                const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+                for (const w of dataWards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                }
+            }
+        };
+    }
+
+</script>
+

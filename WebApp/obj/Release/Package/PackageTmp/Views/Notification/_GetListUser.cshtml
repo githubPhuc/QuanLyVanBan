@@ -1,0 +1,111 @@
+﻿@{
+    var listStaff = ViewBag.listStaff as IEnumerable<ToolsApp.EntityFramework.AspNetUser>;
+   
+}
+<input id="CountListStaff" value="@listStaff.Count()" style="display:none"/>
+<div class="form-group">
+    <label><span style="color:red"> Lưu ý:</span> Chỉ gửi được thông báo cho nhân viên đã đăng nhập vào ứng dụng</label>
+    <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">
+        <span class="dropdown-text_staff"> Chọn nhân viên</span>
+        <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu menu-drop mh w-97 scrollable-menu form-group custom-form-choose" role="menu" id="myDropdown_staff">
+        <li><a class="dropdown-item search" href="#"><input class="form-control" type="text" placeholder="Tìm kiếm.." onkeyup="filterFunction_staff()" id="myInput_search_staff"></a></li>
+        <li><a class="dropdown-item stopE divider " href="#"><input type="checkbox" class="selectall_staff" /><span class="select-text_staff"> Chọn</span> tất cả nhân viên</a></li>
+        <li class=""></li>
+        @foreach (var item in listStaff)
+        {
+
+            <li class="staff-item stopE staff">
+                <a class="dropdown-item item-staff">
+                    <input name='Username' type="checkbox" class="option item-staff" value='@item.UserName' />&nbsp; @item.UserName - @item.Fullname
+                </a>
+            </li>
+        }
+        <ul class="group-pagination stopE">
+            <li class="stopE"><button class="btn  btn-outline-primary" onclick="prevPage('#CountListStaff', '.staff')">&laquo;</button></li>
+            <li class="stopE"><button class="btn  btn-outline-primary" onclick="nextPage('#CountListStaff', '.staff')">&raquo;</button></li>
+        </ul>
+    </ul>
+</div>
+<script>
+    /*  Pagination*/
+    var currentPage = 1;
+    var itemsPerPage = 5;
+    showPage(1, '.staff', '#CountListStaff');
+    /*    End Pagination */
+
+    //stop Event
+    $('.stopE').on('click', function (event) {
+        event.stopPropagation();
+
+    });
+    $('.staff').on('click', function (event) {
+        var $staff = $(this).find('.item-staff');
+        if ($staff.prop('checked')) {
+            $staff.prop('checked', false);
+            var total = $('input[name="Username"]:checked').length;
+            $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+        }
+        else {
+            $staff.prop('checked', true);
+            var total = $('input[name="Username"]:checked').length;
+            $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+        }
+    })
+    //multiple select staff
+    $('.selectall_staff').click(function () {
+        if ($(this).is(':checked')) {
+            $('.item-staff').prop('checked', true);
+            var total = $('input[name="Username"]:checked').length;
+            $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+            $(".select-text_staff").html(' Đã chọn');
+        } else {
+            $('.item-staff').prop('checked', false);
+            $(".dropdown-text_staff").html('(0)  đã chọn');
+            $(".select-text_staff").html(' Chọn');
+        }
+    });
+
+    $("input[type='checkbox'].item-staff").change(function () {
+        var a = $("input[type='checkbox'].item-staff");
+        if (a.length == a.filter(":checked").length) {
+            $('.selectall_staff').prop('checked', true);
+            $(".select-text_staff").html(' Đã');
+            console.log($('.selectall_staff').prop('checked', true))
+        }
+        else {
+            $('.selectall_staff').prop('checked', false);
+
+            $(".select-text_staff").html(' Chọn');
+
+        }
+        var total = $('input[name="Username"]:checked').length;
+        $(".dropdown-text_staff").html('(' + total + ') đã chọn');
+    });
+      function filterFunction_staff() {
+            var div = document.getElementById("myDropdown_staff");
+            var searchJobValue = $("#myInput_search_staff").val();
+            a = div.querySelectorAll(".staff");
+            $.ajax({
+                url: '@Url.Action("FilterDataStaff")', // Địa chỉ của action
+                type: 'GET',
+                data: { searchJobValue: searchJobValue },
+                success: function (data) {
+                    console.log(data);
+
+                    for (var i = 0; i < a.length; i++) {
+                        txtValue = a[i].textContent || a[i].innerText;
+                        txtValue = removeAccents(txtValue);  // Chuyển đổi chuỗi thành không dấu
+                        filter = removeAccents(searchJobValue);  // Chuyển đổi chuỗi tìm kiếm thành không dấu
+                        if (txtValue.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+                            a[i].style.display = "";
+                        } else {
+                            a[i].style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
+</script>

@@ -1,0 +1,77 @@
+﻿
+
+@{
+    var list = ViewBag.list as List<ToolsApp.EntityFramework.AspNetUser>;
+    var dataUser = ViewBag.dataUser as ToolsApp.EntityFramework.AspNetUser;
+}
+
+<div>
+    <label class="mb-3">Tổng kết quả:</label> <label class="total-item"> @list.Count()</label>
+</div>
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên tài khoản</th>
+            <th>Tên nhân viên</th>
+            <th>Email</th>
+            <th>Loại tài khoản</th>
+            <th>Số điện thoại</th>
+            <th>Khoá</th>
+            <th>Hồ sơ nhân viên</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in list)
+        {
+            <tr>
+                <td width="133px">
+                    <a onclick="Update('@item.Id')" class="btn">
+                        <i class="fas fa-edit"></i> Sửa
+                    </a>
+                    @if (dataUser.IsManager == true)
+                    {
+                        <a onclick="LockUser('@item.Id')" class="btn">
+                            <i class="fa-solid fa-lock"></i> Khoá
+                        </a>
+                    }
+                    <a onclick="ChangePassword('@item.Id')" class="btn">
+                        <i class="fa-solid fa-key"></i> Mật khẩu
+                    </a>
+                </td>
+                <td>@item.UserName</td>
+                <td>@item.Fullname</td>
+                <td>@item.Email</td>
+                <td>@(item.AccoutType == "User"? "Nhân viên" : "Admin")</td>
+                <td>@item.PhoneNumber</td>
+                <td>
+                    @{
+                        string iconClass = (item.IsLocked == true) ? "fa-lock" : "fa-unlock";
+                        string iconColor = (item.IsLocked == true) ? "red" : "blue";
+                    }
+                    <i class="fa @iconClass" style="margin-right:10px; color: @iconColor"></i>
+                    @Html.Raw((item.IsLocked == true) ? "Đã Khoá" : "Chưa Khoá")
+
+                </td>
+                <td>
+                    @using (Html.BeginForm("ViewInfomation", "ManagerStaff", FormMethod.Post))
+                    {
+                        <input id="IdStaff" style="display:none" value="@item.Id" />
+                        <a class="btn btn-primary" href="@Url.Action("UserProfile", "InfomationUser", new { Id = @item.Id })">Xem Thông Tin</a>
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function ViewInfomation() {
+        var Id = $('#IdStaff').val();
+        var formData = {
+            Id:Id
+        }
+        Action('@Url.Action("ViewInfomation")', 'POST', formData)
+    }
+</script>

@@ -1,0 +1,75 @@
+﻿
+
+@{
+    var list = ViewBag.list as List<ToolsApp.EntityFramework.Job>;
+
+}
+
+<section class="content" id="insertCode">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Thêm thông báo</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tên thông báo</label>
+                                    <input class="form-control form-control-md" maxlength="50" placeholder="Vd: Thông báo khẩn" type="text" autocomplete="off"
+                                           id="title" name="title" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Nội dung thông báo</label>
+                                    <textarea class="form-control form-control-md" id="body" name="body"></textarea>
+                                           
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Hình ảnh</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off" placeholder="Đường link hình ảnh"
+                                           id="imageURL" name="imageURL" />
+
+                                </div>
+                            </div>
+                        </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-start">
+                                <button id="btnPush" onclick="PushNotification()" type="button" class="btn bg-gradient-success">&nbsp;Gửi thông báo</button>
+                            </div>
+                            <div class="col-md-6 d-flex justify-content-end">
+                                    <button id="btnPush" onclick="PushNSaveNotification()" type="button" class="btn bg-gradient-success">&nbsp;Lưu và gửi thông báo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+        var config = {
+            '.chosen-select': { },
+        '.chosen-select-deselect': {allow_single_deselect: true },
+        '.chosen-select-no-single': {disable_search_threshold: 10 },
+        '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': {width: "95%" },
+        'search_contains': true
+        }
+        for (var selector in config) {
+            $(selector).chosen(config);
+    }
+</script>

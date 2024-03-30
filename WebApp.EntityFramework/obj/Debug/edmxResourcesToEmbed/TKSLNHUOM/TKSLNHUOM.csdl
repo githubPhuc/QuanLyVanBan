@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Thongke_slnhuomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LLTRUC">
+    <Key>
+      <PropertyRef Name="MATRUC" />
+    </Key>
+    <Property Name="MATRUC" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MAMH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NHOMHANG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOMET" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="METKH" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="METTP" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NGAY" Type="DateTime" Precision="3" />
+    <Property Name="MADH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MAMAU" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MASOQT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="htat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DH" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="GT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="N1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="N2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NAOH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NGAYCN" Type="DateTime" Precision="3" />
+    <Property Name="NGAYMODIFY" Type="DateTime" Precision="3" />
+    <Property Name="GIAOKCS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GHICHU" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="GHICHU1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MATBI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MAMAUTINHHCTN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NhOMHC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STT" Type="Int32" />
+    <Property Name="GHICHUC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TTTruc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Hienthi" Type="Boolean" />
+    <Property Name="SoDesign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserTao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Macongnghenhuom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MaDVgiacong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mamhkinhdoanhdat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NhomTruc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Kyhieucapmau" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Mabonghanginbong" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="NgayKHgiaoKCS" Type="DateTime" Precision="3" />
+    <Property Name="GroupTruc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CodemauXK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SoLanInCongThucMau" Type="Int32" />
+    <Property Name="NguoiInCongThuc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NgayInCuoiCung" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="Thongke_slnhuomEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LLTRUCs" EntityType="Self.LLTRUC" />
+    <EntitySet Name="v_MaCayMoc" EntityType="Thongke_slnhuomModel.v_MaCayMoc" />
+  </EntityContainer>
+  <EntityType Name="v_MaCayMoc">
+    <Key>
+      <PropertyRef Name="khoactt" />
+    </Key>
+    <Property Name="matruc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="mahang" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Macaymoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="khoactt" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MahangMoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MADH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

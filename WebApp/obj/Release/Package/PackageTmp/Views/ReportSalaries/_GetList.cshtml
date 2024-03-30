@@ -1,0 +1,110 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_GetListReportSalaries_Result>;
+    var db = new ChamCong_teamdevEntities();
+}
+<style>
+    .btn-payment, .btn-notPayment {
+        padding:0px
+    }
+  
+</style>
+<div>
+    <label class="mb-3">Tổng kết quả:</label> <label class="total-item"> @data.Count()</label>
+</div>
+<table id="myTable" class="table table-bordered table-striped table-Salaries">
+    <thead>
+        <tr>
+            <th>Tháng</th>
+            <th>Tên nhân viên</th>
+            <th>Số điện thoại</th>
+            <th>TNL(QĐ)</th>
+            <th>Lương cơ bản</th>
+            <th>Ca làm</th>
+            <th>Tổng giờ(TC)</th>
+            <th>Tổng giờ trễ</th>
+            <th>Trừ nghỉ (CP)</th>
+            <th>Trừ nghỉ (KP)</th>
+            <th>Phụ cấp</th>
+            <th>Tạm ứng</th>
+            <th>Tổng lương</th>
+            <th>Lương thực lãnh</th>
+            <th>Ngân hàng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in data)
+        {
+            var fullName = db.AspNetUsers.FirstOrDefault(a => a.UserName == item.Username).Fullname;
+            var phucap = item.allowance + item.allowanceOther + item.allowanceOverTimeHours;
+            <tr>
+
+                <td>
+                    @item.dateTime.ToString("MM-yyyy")
+                </td>
+                <td>
+                    @fullName
+                </td>
+                <td>
+                    @item.Username
+                </td>
+                <td class="f-w">
+                    @item.sumDayWorking.ToString("N2")
+                </td>
+                <td class="f-w c-green">
+                    @item.Salaries.ToString("#,##0.00")
+
+                </td>
+                <td class="c-blue f-w">
+                    @item.workShift
+                </td>
+                <td class="c-blue f-w">
+                    @item.sumOverTimeHours
+                </td>
+                <td class="c-blue f-w">
+                    @item.sumBeLate
+                </td>
+                <td class="f-w">
+                    <span class="c-red">@item.furlough.ToString("#,##0.00")</span>
+                </td>
+                <td class="f-w">
+                    <span class="c-red">@item.absenced.ToString("#,##0.00")</span>
+                </td>
+                <td class="c-green f-w">
+                    @phucap.ToString("#,##0.00")
+                </td>
+                <td class="c-red f-w">
+                    @item.advancePayment.ToString("#,##0.00")
+                </td>
+                <td class="c-darkblue f-w">
+                    @item.totalSalaries.ToString("#,##0.00")
+                </td>
+                <td class="c-darkblue f-w">
+                    <b>@item.actualAmountReceived.ToString("#,##0.00")</b>
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <span class="f-w">@item.nameAccountBank </span>  <br />
+                            <span class="c-red">@item.codeBank</span>  <br />
+                            <span class="c-blue f-w">@item.numBank</span>
+                        </div>
+                        <div class="col-lg-5">
+                            @if (item.isPayment == false)
+                            {
+                                <button id="btn-notPayment" onclick="ConfirmPayment(@item.Id)" class="btn btn-notPayment btn-warning mt-2">Thanh toán</button>
+                            }
+                            else
+                            {
+                                <button id="btn-payment" class="btn btn-payment btn-success">Đã thanh toán</button>
+                            }
+
+
+                        </div>
+                    </div>
+                  
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

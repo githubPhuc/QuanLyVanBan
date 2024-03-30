@@ -1,0 +1,144 @@
+﻿
+@{ 
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_LoadTimeKeeping_Result>;
+    var countIsConfirm = ViewData["isConfirm"];
+    var countIsNotConfirm = ViewData["isNotConfirm"];
+    var countIsUpdate = ViewData["isUpdate"];
+
+}
+<div class="total">
+    <div>
+        <label class="mb-3">Tổng kết quả:</label> <label class="total-item"> @data.Count()</label>
+    </div>
+    <div>
+        <label class="mb-3">Đã xác nhận:</label> <label class="total-item"> @countIsConfirm</label>
+    </div>
+    <div>
+        <label class="mb-3">Chưa xác nhận:</label> <label class="total-item"> @countIsNotConfirm</label>
+    </div>
+    <div>
+        <label class="mb-3">Đã chỉnh sửa:</label> <label class="total-item"> @countIsUpdate</label>
+    </div>
+</div>
+<table id="myTable" class="table table-bordered table-timekeeping ">
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Tên tài khoản</th>
+            <th>Địa điểm làm việc</th>
+            <th>Tên nhân viên</th>
+            <th>Vị trí check in</th>
+            <th>Thời gian check in</th>
+            <th>Vị trí check out</th>
+            <th>Thời gian checkout</th>
+            <th>Tổng giờ làm</th>
+            <th>Lý do chỉnh sửa</th>
+            <th>Người chỉnh sửa</th>
+            <th>Thời gian chỉnh sửa</th>
+            <th>Tình trạng</th>
+            <th>Thời gian xác nhận</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in data)
+        {
+
+        <tr style="@(item.isStatus == true ? "background-color:#8EE5EE" : "background-color:#F4A460")">
+            <td>
+                <a onclick="update_view('@item.id')" class="btn">
+                    <i class="fas fa-edit"></i> Sửa
+                </a>
+            </td>
+            <td>
+                @item.id
+            </td>
+            <td>
+                @item.Username
+            </td>
+            <td class="clickable">
+                @item.NameLocation -
+                <span style="color:red">@item.job_Detail_Name</span>
+                <input id="jobLocation" style="display:none" value="@item.Location_X, @item.Location_Y"/>
+                <span onclick="redirectToGoogleMapsJob(event)" class="searchJob"><i class="fa-solid fa-map-location-dot " style="color: #1b9613;"></i></span>
+            </td>
+            <td>@item.Fullname</td>
+            <td class="clickable" style=@(item.Check_Location_In == null ? "background-color:#FFFF00" : item.Check_Location_In >= 5 ? "background-color:#00FF80" : (item.Check_Location_In >= 4 && item.Check_Location_In < 5 ? "background-color:#FF3E96" : (item.Check_Location_In >= 3 && item.Check_Location_In < 4 ? "background-color:#FF00FF" : (item.Check_Location_In < 3 && item.Check_Location_In >= 2 ? "background-color:#FF83FA" : "background-color:#FFBBFF"))))>
+                @{
+                    if (!string.IsNullOrEmpty(item.Location_In_X) && !string.IsNullOrEmpty(item.Location_In_Y))
+                    {
+                        <text>@item.Location_In_X, @item.Location_In_Y</text>
+                        <span onclick="redirectToGoogleMaps(event)" class="searchmap"><i class="fa-solid fa-location-dot"></i></span>
+                    }
+                }
+            </td>
+            <td>@item.Time_In.ToString("dd-MM-yyyy HH:mm:ss")</td>
+            <td class="clickable" style=@(item.Check_Location_Out == null ? "background-color:#FFFF.00" : item.Check_Location_Out >= 5 ? "background-color:#00FF80" : (item.Check_Location_Out >= 4 && item.Check_Location_Out < 5 ? "background-color:#FF3E96" : (item.Check_Location_Out >= 3 && item.Check_Location_Out < 4 ? "background-color:#FF00FF" : (item.Check_Location_Out < 3 && item.Check_Location_Out >= 2 ? "background-color:#FF83FA" : "background-color:#FFBBFF"))))>
+                @{
+                    if (!string.IsNullOrEmpty(item.Location_Out_X) && !string.IsNullOrEmpty(item.Location_Out_Y))
+                    {
+                        <text>@item.Location_Out_X, @item.Location_Out_Y</text>
+                        <span onclick="redirectToGoogleMaps(event)" class="searchmap"><i class="fa-solid fa-location-dot"></i></span>
+                    }
+                }
+            </td>
+            <td>@(item.Time_Out == DateTime.MinValue ? "": item.Time_Out.ToString("dd-MM-yyyy HH:mm:ss"))
+            <td>@item.sumTime</td>
+            <td style="color:red"> @item.Admin_Messger_Update</td>
+            <td>@item.Admin_UserName_Update</td>
+            <td>@(item.Admin_time_Update == DateTime.MinValue? "": item.Admin_time_Update.ToString("dd-MM-yyyy HH:mm:ss"))</td>
+            <td>
+                @{
+                    if (item.isConfirm == true)
+                    {
+                        <span>Đã xác nhận &nbsp;<i class='fa-solid fa-check' style='color: #0bb116;'></i> </span>;
+                    }
+                    else
+                    {
+                        <button onclick='Confirm(@item.id)' type='button' class='btn btn-primary btn-sm'>Xác nhận</button>;
+                    }
+                }
+            </td>
+            <td>
+                @(item.TimeConfirm == DateTime.MinValue ? "":item.TimeConfirm.ToString("dd-MM-yyyy HH:mm:ss"))
+                @*@(item.TimeConfirm.Year == 2010 && item.TimeConfirm.Month == 1 && item.TimeConfirm.Day == 1 && item.TimeConfirm.Hour == 1 && item.TimeConfirm.Minute == 1 && item.TimeConfirm.Second == 1 ? "" : item.TimeConfirm.ToString("dd-MM-yyyy HH:mm:ss"))*@
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function redirectToGoogleMaps(event) {
+        var clickedTd = event.target.closest('.clickable');
+       
+        if (clickedTd) {
+            var inputValue = $(clickedTd).text().trim();
+            if (inputValue == ",") {
+                notify("Chưa có tọa độ để kiểm tra")
+            }
+            else {
+            var googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(inputValue);
+             window.open(googleMapsUrl, '_blank');
+            }
+    
+        }
+      
+    }
+    function redirectToGoogleMapsJob(event) {
+        var clickedTd = $('#jobLocation');
+
+        if (clickedTd) {
+            var inputValue = $(clickedTd).val().trim();
+            if (inputValue == ",") {
+                notify("Chưa có tọa độ để kiểm tra")
+            }
+            else {
+                var googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(inputValue);
+                window.open(googleMapsUrl, '_blank');
+            }
+
+        }
+
+    }
+
+</script>

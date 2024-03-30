@@ -1,0 +1,133 @@
+﻿
+@{
+    var data = ViewBag.data as ToolsApp.EntityFramework.ProfileUser;
+    var token = ViewData["token"];
+}
+
+    <div class="card mb-3">
+        <div class="card-body personal">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h4 class="mb-4 ">Thông tin cá nhân</h4>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" onclick="EditInfo('personal')" class="btn-shadow btn btn-info">
+                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fa-solid fa-pen" style="color: #fefbfb;"></i>
+                        </span>
+                        Cập nhật
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0"><i class="fa-regular fa-address-card" style="color: #175ed9;"></i>  &nbsp;Số CCCD/CMND </h6>
+                        </div>
+                        <div class="col-md-6 col-sm-12 edit">
+                            <input value="@data.CCCD" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" class="form-control " type="text" id="CCCD" name="CCCD">
+                        </div>
+                        <div class="col-md-2 col-sm-12 edit btn_upload">
+                            <a onclick="Upload('@data.Id')" class="btn upload">
+                                <i class="fa-solid fa-upload"></i> Cập nhật CCCD
+                            </a>
+                        </div>
+                        <div class="col-sm-6 text-secondary show">
+                            @data.CCCD
+                        </div>
+                        <div class="col-sm-2 text-secondary show">
+                            <a class="viewCCCD" onclick="ViewCCCD('@data.Id')"> Xem CCCD</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0"> <i class="fa-solid fa-passport" style="color: #0544a8;"></i>&nbsp; Số hộ chiếu </h6>
+                        </div>
+                        <div class="col-md-8 col-sm-12 edit">
+                            <input value="@data.passPortNum" class="form-control " type="text" id="passPortNum" name="passPortNum">
+                        </div>
+                        <div class="col-sm-8 text-secondary show">
+                            @data.passPortNum
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0"> <i class="fa-solid fa-building-columns" style="color: #1f60d1;"></i>&nbsp; Ngân hàng </h6>
+                        </div>
+                        <div class="col-md-8 col-sm-12 edit">
+                            <select class="form-control chosen-select" style="width: 100%" id="codeBank" name="codeBank" aria-label=".form-select-md">
+                                <option value="" disabled>Vui lòng chọn ngân hàng</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-8 text-secondary show">
+                            @data.codeBank
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">  <i class="fa-solid fa-money-bill-transfer" style="color: #e72618;"></i>&nbsp; Số tài khoản  </h6>
+                        </div>
+                        <div class="col-md-8 col-sm-12 edit">
+                            <input value=" @data.numBank" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" class="form-control " type="text" id="numBank" name="numBank">
+                        </div>
+                        <div class="col-sm-8 text-secondary show">
+                            @data.numBank
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0"><i class="fa-solid fa-user" style="color: #3ec007;"></i>&nbsp; Tên chủ thẻ </h6>
+                        </div>
+                        <div class="col-md-8 col-sm-12 edit">
+                            <input value="@data.nameAccountBank" class="form-control " type="text" id="nameAccountBank" name="nameAccountBank">
+                        </div>
+                        <div class="col-sm-8 text-secondary show">
+                            @data.nameAccountBank
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="button-group">
+                        <button type="button" onclick="SaveInfoPersonal()" class="btn-shadow btn-save btn btn-info btn-success ">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                                <i class="fa fa-save"></i>
+                            </span>
+                            Lưu
+                        </button>
+                        <button type="button" onclick="Cancel('personal')" style="margin-left:20px" class="btn-shadow btn-cancel btn btn-info btn-danger">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                                <i class="fa fa-close"></i>
+                            </span>
+                            Hủy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    $('#codeBank ').select2();
+    var codeBank = document.getElementById("codeBank");
+    var Parameter = {
+        url: "https://api.vietqr.io/v2/banks",
+        method: "GET",
+        responseType: "application/json",
+    };
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderBank(result.data.data);
+        console.log(result.data.data)
+    });
+    function renderBank(data) {
+        for (const x of data) {
+            var optionText = `${x.name} - (${x.code}) - ${x.shortName}`;
+            var optionValue = `${x.shortName} - (${x.code})`;
+            var option = new Option(optionText, optionValue);
+            codeBank.options[codeBank.options.length] = option;
+        }
+    }
+</script>

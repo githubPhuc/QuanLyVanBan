@@ -1,0 +1,63 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var List = ViewBag.List as IEnumerable<ToolsApp.EntityFramework.AspNetUser>;
+    var db_ = new ChamCong_teamdevEntities();
+    
+}
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>.No</th>
+            <th>Tên đầy đủ</th>
+            <th>Tên tài khoản</th>
+            <th>Loại tài khoản</th>
+            <th>Chức năng</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var STT = 1; }
+        @foreach (var item in List)
+        {
+            var User_Page = db_.User_Page.Where(a => a.userId == item.Id ).ToList();
+        <tr>
+            <td style="width:100px!important">
+                <a onclick="Edit('@item.Id')" class="btn">
+                    <i class="fas fa-edit"></i> Sửa
+                </a>
+                <a onclick="Delete('@item.Id')" class="btn">
+                    <i class="far fa-trash-alt"></i> Xóa
+                </a>
+            </td>
+            <td>
+                @STT
+            </td>
+            <td onclick="Edit('@item.Id')">@item.UserName</td>
+            <td onclick="Edit('@item.Id')">@item.Fullname</td>
+            <td>@item.AccoutType</td>
+
+            <td onclick="Edit('@item.Id')">
+                @{
+
+                    if (item.User_Page != null)
+                    {
+                        <ul>
+                            @foreach (var value in item.User_Page)
+                            {
+                                <li style="list-style-type: none;">
+                                    <small class="badge badge-success"><i class="far fa-clock"></i> @value.Page.Code - @value.Page.Info </small>
+                                </li>
+                            }
+                        </ul>
+                    }
+                }
+            </td>
+            <td>@item.Email</td>
+        </tr>
+
+            STT++;
+        }
+    </tbody>
+</table>

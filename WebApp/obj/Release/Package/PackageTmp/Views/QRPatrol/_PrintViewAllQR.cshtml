@@ -1,0 +1,26 @@
+﻿
+
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_GetQRPatrol_Result>;
+}
+
+<form id="_Print">
+    <div class="row" style=" width:100%">
+        <table id="TableSS" class="table-bordered " style="border:none" width="100%">
+            @foreach (var item in data)
+            {
+                <div style="display:inline-flex; flex-direction:column; align-items:center">
+                    <img src="@item.path_Qr" style="width:200px" />
+                    <span> @item.Description</span>
+                </div>
+         
+            }
+        </table>
+    </div>
+    <br />
+    <br />
+    <div class="row" style=" width:100%">
+
+    </div>
+</form>
+

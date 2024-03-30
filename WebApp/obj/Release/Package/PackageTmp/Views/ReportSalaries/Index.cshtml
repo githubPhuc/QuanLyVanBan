@@ -1,0 +1,266 @@
+﻿
+
+@{
+    ViewBag.Title = "Báo Cáo Công Làm Nhân Viên Trong Công Ty";
+    var DataUser = ViewBag.DataUser as List<ToolsApp.EntityFramework.AspNetUser>;
+
+
+}
+<style>
+    .btn-nextYear, .btn-prevYear {
+        padding: 3px 13px;
+        display:flex;
+        align-items:center;
+        border:none;
+        font-size:20px;
+        background:none;
+        color:#fff;
+    }
+
+    .btn-nextYear:hover, .btn-prevYear:hover {
+        opacity:0.5
+      }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary border-no-color card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>BỘ LỌC</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-bodysearch">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>KẾT QUẢ</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        @*<div class="row">
+                                <div class="col-md-4">
+                                    <button id="btnCreate" onclick="" type="button" class="btn bg-gradient-success"><i class="fa fa-plus"></i>&nbsp;Thêm nhân viên</button>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-body table-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div id="myModal" class="modal fade modal-wide" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" style="font-size: 17px;text-transform:uppercase;color:#3c8dbc"><strong id="myModalTitle"></strong></div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="myModalContent">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button type="button" id="btPrint" onclick="javascript:CallPrint('myModalContent');" class="btn btn-sm btn-success"><i class="fa fa-print"></i>&nbsp;In</button>
+
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalSelectMonth" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+            <div class="modal-header custom-modal-header text-center">
+                <span onclick="prevYear()" class="btn-prevYear"><i class="fa-solid fa-chevron-left"></i></span>
+                <h4 class="modal-title w-100 font-weight-bold" id="myModalTitleSelectMonth"></h4>
+                <span onclick="nextYear()" class="btn-nextYear"><i class="fa-solid fa-chevron-right"></i></span>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div id="testModal">    
+                    <div class="months d-flex flex-wrap">
+                        
+                    </div>
+                </div>
+                <div id="myModalContentSelectMonth">
+
+                </div>
+
+            </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" onclick="importData()" id="btSave" class="btn btn-sm btn-success"><i class="fa-solid fa-file-excel"></i>&nbsp;&nbsp;Xem bảng mẫu</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+                            }
+
+        </div>
+    </div>
+</div>
+<div id="myModalDemoSalaries" class="modal fade modal-wide" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title" style="font-size: 17px;text-transform:uppercase;color:#3c8dbc"><strong id="myModalTitleDemoSalaries"></strong></div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="myModalContentDemoSalaries">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button type="button" id="btPrint" onclick="ConfirmExcel()" class="btn btn-sm btn-success">Xác nhận lưu</button>
+
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+@section scripts{
+    <script language="javascript" type="text/javascript">
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+        }
+    </script>
+    <script type="text/javascript">
+        var myModalPrint = {
+            $modal : $('#myModal'),
+            $myModalContent : $("#myModalContent"),
+            $myModalTitle : $("#myModalTitle")
+        }
+        var myModalSelectMonth = {
+            $modal: $('#myModalSelectMonth'),
+            $myModalContent: $("#myModalContentSelectMonth"),
+            $myModalTitle: $("#myModalTitleSelectMonth")
+        }
+        var myModalDemoSalaries = {
+            $modal: $('#myModalDemoSalaries'),
+            $myModalContent: $("#myModalContentDemoSalaries"),
+            $myModalTitle: $("#myModalTitleDemoSalaries")
+        }
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" },
+            'search_contains': true
+        }
+        for (var selector in config) {
+            $(selector).chosen(config);
+        }
+        $("#NgaySearch").datepicker({
+            format: 'dd/mm/yyyy',
+            changeYear: true,
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+    </script>
+    @*load from*@
+<script type="text/javascript">
+    function loadSearch() {
+            $.ajax({
+                url: '@Url.Action("_Search")',
+                timeout: 2000000,
+                data: {
+                },
+                beforeSend: function () {
+                    $(".divLoading").addClass("loading");
+                },
+                success: function (response) {
+                    $(".divLoading").removeClass("loading");
+                    $('.table-bodysearch').html(response);
+                },
+                error: function (message) {
+                    $(".divLoading").removeClass("loading");
+                }
+            });
+    }
+    function callToModal() {
+        loadModal("Chọn tháng (@DateTime.Now.Year)  ", '@Url.Action("_SelectMonth")', myModalSelectMonth)
+    }
+
+    var paramsLoadData = [
+             true,
+            '@Url.Action("_GetList")',
+            '#UsernameSearch',
+            '#ThangSearch',
+    ];
+    $(document).ready(function () {
+        loadSearch()
+        loadData(...paramsLoadData);
+        });
+        function search() {
+            loadData(
+            true,
+            '@Url.Action("_GetList")',
+            '#UsernameSearch',
+            '#ThangSearch',
+    )}
+    function ConfirmExcel() {
+        var Username = $('#Username').val();
+        var token = $('#token').val();
+        $.ajax({
+            url: 'https://api.hoanglongsecurity.info/api/ReportSalaries/ConfirmReportSalaries?Username='+ Username,
+            type: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                notify('Lưu dữ liệu thành công', 'success')
+                loadData(...paramsLoadData);
+            },
+            error: function (response) {
+                response.data.forEach((user) => {
+                    notify(`user ${user.mess}`)
+                })
+            }
+        });
+    }
+  
+</script>
+}
+

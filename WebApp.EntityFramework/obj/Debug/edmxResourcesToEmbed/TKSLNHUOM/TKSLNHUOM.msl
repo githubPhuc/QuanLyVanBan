@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Thongke_slnhuomModelStoreContainer" CdmEntityContainer="Thongke_slnhuomEntities">
+    <EntitySetMapping Name="LLTRUCs">
+      <EntityTypeMapping TypeName="Thongke_slnhuomModel.LLTRUC">
+        <MappingFragment StoreEntitySet="LLTRUC">
+          <ScalarProperty Name="MATRUC" ColumnName="MATRUC" />
+          <ScalarProperty Name="MAMH" ColumnName="MAMH" />
+          <ScalarProperty Name="NHOMHANG" ColumnName="NHOMHANG" />
+          <ScalarProperty Name="SOMET" ColumnName="SOMET" />
+          <ScalarProperty Name="METKH" ColumnName="METKH" />
+          <ScalarProperty Name="METTP" ColumnName="METTP" />
+          <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+          <ScalarProperty Name="MADH" ColumnName="MADH" />
+          <ScalarProperty Name="MAMAU" ColumnName="MAMAU" />
+          <ScalarProperty Name="MASOQT" ColumnName="MASOQT" />
+          <ScalarProperty Name="htat" ColumnName="htat" />
+          <ScalarProperty Name="DH" ColumnName="DH" />
+          <ScalarProperty Name="GT" ColumnName="GT" />
+          <ScalarProperty Name="GK" ColumnName="GK" />
+          <ScalarProperty Name="N1" ColumnName="N1" />
+          <ScalarProperty Name="N2" ColumnName="N2" />
+          <ScalarProperty Name="NAOH" ColumnName="NAOH" />
+          <ScalarProperty Name="PH" ColumnName="PH" />
+          <ScalarProperty Name="NGAYCN" ColumnName="NGAYCN" />
+          <ScalarProperty Name="NGAYMODIFY" ColumnName="NGAYMODIFY" />
+          <ScalarProperty Name="GIAOKCS" ColumnName="GIAOKCS" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="GHICHU1" ColumnName="GHICHU1" />
+          <ScalarProperty Name="MATBI" ColumnName="MATBI" />
+          <ScalarProperty Name="MAMAUTINHHCTN" ColumnName="MAMAUTINHHCTN" />
+          <ScalarProperty Name="NhOMHC" ColumnName="NhOMHC" />
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="GHICHUC" ColumnName="GHICHUC" />
+          <ScalarProperty Name="TTTruc" ColumnName="TTTruc" />
+          <ScalarProperty Name="Hienthi" ColumnName="Hienthi" />
+          <ScalarProperty Name="SoDesign" ColumnName="SoDesign" />
+          <ScalarProperty Name="UserTao" ColumnName="UserTao" />
+          <ScalarProperty Name="Macongnghenhuom" ColumnName="Macongnghenhuom" />
+          <ScalarProperty Name="MaDVgiacong" ColumnName="MaDVgiacong" />
+          <ScalarProperty Name="Mamhkinhdoanhdat" ColumnName="Mamhkinhdoanhdat" />
+          <ScalarProperty Name="NhomTruc" ColumnName="NhomTruc" />
+          <ScalarProperty Name="Kyhieucapmau" ColumnName="Kyhieucapmau" />
+          <ScalarProperty Name="Mabonghanginbong" ColumnName="Mabonghanginbong" />
+          <ScalarProperty Name="NgayKHgiaoKCS" ColumnName="NgayKHgiaoKCS" />
+          <ScalarProperty Name="GroupTruc" ColumnName="GroupTruc" />
+          <ScalarProperty Name="CodemauXK" ColumnName="CodemauXK" />
+          <ScalarProperty Name="SoLanInCongThucMau" ColumnName="SoLanInCongThucMau" />
+          <ScalarProperty Name="NguoiInCongThuc" ColumnName="NguoiInCongThuc" />
+          <ScalarProperty Name="NgayInCuoiCung" ColumnName="NgayInCuoiCung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_MaCayMoc">
+      <EntityTypeMapping TypeName="Thongke_slnhuomModel.v_MaCayMoc">
+        <MappingFragment StoreEntitySet="v_MaCayMoc">
+          <ScalarProperty Name="MADH" ColumnName="MADH" />
+          <ScalarProperty Name="MahangMoc" ColumnName="MahangMoc" />
+          <ScalarProperty Name="khoactt" ColumnName="khoactt" />
+          <ScalarProperty Name="Macaymoc" ColumnName="Macaymoc" />
+          <ScalarProperty Name="mahang" ColumnName="mahang" />
+          <ScalarProperty Name="matruc" ColumnName="matruc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

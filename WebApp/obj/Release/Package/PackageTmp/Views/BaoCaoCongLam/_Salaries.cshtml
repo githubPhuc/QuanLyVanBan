@@ -1,0 +1,120 @@
+﻿@{
+    var Thangnam = ViewData["Thangnam"];
+    var IdJob = ViewData["idJob"];
+}
+<style>
+    #conglamtet {
+        display:none
+    }
+</style>
+<input id="Thangnam" value="@Thangnam" style="display:none"/>
+<input id="IdJob" value="@IdJob" style="display:none"/>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="LuongCoBanGoc">Lương cơ bản</label>
+            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" id="LuongCoBanGoc" name="LuongCoBanGoc" value="4000000">
+        </div>
+
+    </div>
+    <div class="form-group d-flex justify-content-center mt-2 mb-0">
+        <label for="">Phụ cấp</label>
+    </div>
+    <hr />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="ThamNien">Phụ cấp thâm niên</label>
+            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" id="ThamNien" name="ThamNien" value="500000">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="xangxe">Phụ cấp xăng xe</label>
+            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" id="xangxe" value="500000">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Com">Phụ cấp cơm</label>
+            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" id="Com" name="Com" value="500000">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="DienThoai">Phụ cấp điện thoại</label>
+            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" id="DienThoai" name="DienThoai" value="300000">
+        </div>
+        </div>
+        <div class="form-group d-flex justify-content-center mt-2 mb-0">
+            <label for="">Thưởng thêm</label>
+        </div>
+        <hr />
+        <div class="form-row">
+            <div class="form-group col-md-6 text-center">
+                <label for="ChuyenCan">Chuyên cần</label>
+                <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" id="ChuyenCan" name="ChuyenCan" value="200000">
+            </div>
+            <div class="form-group col-md-6 text-center">
+                <label for="HieuQuaCV">Thưởng hiệu quả công việc</label>
+                <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" id="HieuQuaCV" name="HieuQuaCV" value="500000">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Công làm lễ / Tết
+                </label>
+            </div>
+        </div>
+        <div class="row" id="conglamtet">
+        <div class="form-group d-flex justify-content-center mt-2 mb-0">
+            <label for="">Lương lễ / tết</label>
+        </div>
+        <hr />
+        <div class="form-row">
+            <div class="form-group col-md-6 text-center">
+                <label for="CongTet">Số ngày làm</label>
+                <input type="text" class="form-control" id="CongTet" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" name="CongTet" value="">
+            </div>
+
+            <div class="form-group col-md-6 text-center">
+                <label for="HeSoThuong">Hệ số thưởng</label>
+                <select id="HeSoThuong" name="HeSoThuong" class="form-control chosen-select" style="width: 100%;">
+                    <option value="1">x1 ngày công</option>
+                    <option value="1.5">x1.5 ngày công</option>
+                    <option value="2">x2 ngày công</option>
+                    <option value="2.5">x2.5 ngày công</option>
+                    <option value="3">x3 ngày công</option>
+                    <option value="3.5">x3.5 ngày công</option>
+                    <option value="4">x4 ngày công</option>
+                    <option value="4.5">x4.5 ngày công</option>
+                </select>
+            </div>
+        </div>
+        </div>
+</form>
+<script type="text/javascript">
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "125%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+
+    $(document).ready(function () {
+        $('#gridCheck').change(function () {
+            if (this.checked) {
+                $('#conglamtet').css('display', 'block');
+            } else {
+                $('#conglamtet').css('display', 'none');
+                $('#CongTet').val(0);
+            }
+        });
+    });
+
+</script>
+
+
+

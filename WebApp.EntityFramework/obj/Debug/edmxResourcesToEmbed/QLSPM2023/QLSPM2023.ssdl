@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSANPHAMMAY2023Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="QLSPM_Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="PageId" Type="int" />
+    <Property Name="Icon" Type="nvarchar" MaxLength="150" />
+    <Property Name="OrderNo" Type="int" />
+    <Property Name="UserCreate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameCreate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeCreate" Type="datetime" />
+    <Property Name="UserUpdate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameUpdate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeUpdate" Type="datetime" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameDelete" Type="varchar" MaxLength="100" />
+    <Property Name="DatetimeDelete" Type="datetime" />
+  </EntityType>
+  <EntityType Name="QLSPM_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Info" Type="nvarchar" MaxLength="250" />
+    <Property Name="Controler" Type="varchar" MaxLength="50" />
+    <Property Name="Action" Type="varchar" MaxLength="50" />
+    <Property Name="UserCreate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameCreate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeCreate" Type="datetime" />
+    <Property Name="UserUpdate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameUpdate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeUpdate" Type="datetime" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameDelete" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeDelete" Type="datetime" />
+  </EntityType>
+  <EntityType Name="QLSPM_Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="150" />
+    <Property Name="UserCreate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameCreate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeCreate" Type="datetime" />
+    <Property Name="UserUpdate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameUpdate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeUpdate" Type="datetime" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameDelete" Type="varchar" MaxLength="100" />
+    <Property Name="DatetimeDelete" Type="datetime" />
+  </EntityType>
+  <EntityType Name="QLSPM_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" />
+    <Property Name="SalesRepCode" Type="varchar" MaxLength="50" />
+    <Property Name="Fullname" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="varchar" MaxLength="150" />
+    <Property Name="UserCreate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameCreate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeCreate" Type="datetime" />
+    <Property Name="UserUpdate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameUpdate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeUpdate" Type="datetime" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameDelete" Type="varchar" MaxLength="100" />
+    <Property Name="DatetimeDelete" Type="datetime" />
+  </EntityType>
+  <EntityType Name="QLSPM_User_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="PageId" Type="int" />
+    <Property Name="UserCreate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameCreate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeCreate" Type="datetime" />
+    <Property Name="UserUpdate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameUpdate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeUpdate" Type="datetime" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameDelete" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeDelete" Type="datetime" />
+    <Property Name="isRoleCreate" Type="bit" />
+    <Property Name="isRoleEdit" Type="bit" />
+    <Property Name="isRoleExport" Type="bit" />
+    <Property Name="isRoleExportAll" Type="bit" />
+    <Property Name="isRoleDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="QLSPM_User_Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserFullname" Type="varchar" MaxLength="100" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="150" />
+    <Property Name="UserCreate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameCreate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeCreate" Type="datetime" />
+    <Property Name="UserUpdate" Type="varchar" MaxLength="50" />
+    <Property Name="UserFullnameUpdate" Type="nvarchar" MaxLength="250" />
+    <Property Name="DatetimeUpdate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_QLSPM_Menu_QLSPM_Menu">
+    <End Role="QLSPM_Menu" Type="Self.QLSPM_Menu" Multiplicity="0..1" />
+    <End Role="QLSPM_Menu1" Type="Self.QLSPM_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_Menu1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_Menu_QLSPM_Page">
+    <End Role="QLSPM_Page" Type="Self.QLSPM_Page" Multiplicity="0..1" />
+    <End Role="QLSPM_Menu" Type="Self.QLSPM_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_Menu">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Page_QLSPM_Page">
+    <End Role="QLSPM_Page" Type="Self.QLSPM_Page" Multiplicity="0..1" />
+    <End Role="QLSPM_User_Page" Type="Self.QLSPM_User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Page">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Page_QLSPM_User">
+    <End Role="QLSPM_User" Type="Self.QLSPM_User" Multiplicity="0..1" />
+    <End Role="QLSPM_User_Page" Type="Self.QLSPM_User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Page">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Role_QLSPM_Role">
+    <End Role="QLSPM_Role" Type="Self.QLSPM_Role" Multiplicity="0..1" />
+    <End Role="QLSPM_User_Role" Type="Self.QLSPM_User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Role">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLSPM_User_Role_QLSPM_User">
+    <End Role="QLSPM_User" Type="Self.QLSPM_User" Multiplicity="0..1" />
+    <End Role="QLSPM_User_Role" Type="Self.QLSPM_User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLSPM_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QLSPM_User_Role">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLSANPHAMMAY2023ModelStoreContainer">
+    <EntitySet Name="QLSPM_Menu" EntityType="Self.QLSPM_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLSPM_Page" EntityType="Self.QLSPM_Page" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLSPM_Role" EntityType="Self.QLSPM_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLSPM_User" EntityType="Self.QLSPM_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLSPM_User_Page" EntityType="Self.QLSPM_User_Page" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLSPM_User_Role" EntityType="Self.QLSPM_User_Role" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_QLSPM_Menu_QLSPM_Menu" Association="Self.FK_QLSPM_Menu_QLSPM_Menu">
+      <End Role="QLSPM_Menu" EntitySet="QLSPM_Menu" />
+      <End Role="QLSPM_Menu1" EntitySet="QLSPM_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_Menu_QLSPM_Page" Association="Self.FK_QLSPM_Menu_QLSPM_Page">
+      <End Role="QLSPM_Page" EntitySet="QLSPM_Page" />
+      <End Role="QLSPM_Menu" EntitySet="QLSPM_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Page_QLSPM_Page" Association="Self.FK_QLSPM_User_Page_QLSPM_Page">
+      <End Role="QLSPM_Page" EntitySet="QLSPM_Page" />
+      <End Role="QLSPM_User_Page" EntitySet="QLSPM_User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Page_QLSPM_User" Association="Self.FK_QLSPM_User_Page_QLSPM_User">
+      <End Role="QLSPM_User" EntitySet="QLSPM_User" />
+      <End Role="QLSPM_User_Page" EntitySet="QLSPM_User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Role_QLSPM_Role" Association="Self.FK_QLSPM_User_Role_QLSPM_Role">
+      <End Role="QLSPM_Role" EntitySet="QLSPM_Role" />
+      <End Role="QLSPM_User_Role" EntitySet="QLSPM_User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLSPM_User_Role_QLSPM_User" Association="Self.FK_QLSPM_User_Role_QLSPM_User">
+      <End Role="QLSPM_User" EntitySet="QLSPM_User" />
+      <End Role="QLSPM_User_Role" EntitySet="QLSPM_User_Role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

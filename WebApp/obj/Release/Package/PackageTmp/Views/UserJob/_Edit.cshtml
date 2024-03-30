@@ -1,0 +1,95 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.AspNetUser>;
+    var db_ = new ChamCong_teamdevEntities();
+
+}
+<style>
+    .displayN {
+        display: none;
+    }
+
+    .displayIB {
+        display: inline-block;
+    }
+
+    .btn-del {
+        font-size: 20px;
+        padding: 0 5px;
+        color: red;
+        border: none;
+        background-color: transparent;
+    }
+
+        .btn-del:hover {
+            background-color: lightgray;
+            cursor: pointer;
+        }
+</style>
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên tài khoản</th>
+            <th>Tên đầy đủ</th>
+            <th>Avatar</th>
+            <th>Công việc chính</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in data)
+        {
+            var detail_job = (from a in db_.Jobs
+                              join b in db_.JobDetails on a.Id equals b.idjob
+                              join c in db_.UserJobs on b.Id equals c.Id_Detail_Job
+                              where c.Username == item.UserName
+                              select new
+                              {
+                                  a.NameLocation,
+                                  a.street,
+                                  a.subAdministrativeArea,
+                                  a.administrativeArea,
+                                  a.country,
+                                  b.JobDescription,
+                                  b.job_Detail_Name,
+                              }).ToList();
+            //var detail_job_json = Newtonsoft.Json.JsonConvert.SerializeObject(detail_job);
+            <tr>
+                <td>
+                    <a onclick="handleEditIcon()" class="btn btn-edit">
+                        <i class=" fas fa-edit"></i> Sửa
+                    </a>
+
+                </td>
+                <td>@item.UserName</td>
+                <td>@item.Fullname</td>
+                <td onclick="">
+                    @{
+
+                        if (detail_job.Count() > 0)
+                        {
+                            <ul>
+                                @foreach (var value in detail_job)
+                                {
+                                    
+                                    <li style="list-style-type: none;">
+                                        <small class="badge badge-success" style="font-size:14px">
+                                            <i class="far fa-clock"></i> @value.job_Detail_Name - @value.NameLocation - @value.street -@value.administrativeArea - @value.subAdministrativeArea - @value.country
+                                        </small>
+                                        <span class="displayN btn-del">
+                                            <i class="fa-solid fa-square-xmark"></i>
+                                        </span>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    }
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>

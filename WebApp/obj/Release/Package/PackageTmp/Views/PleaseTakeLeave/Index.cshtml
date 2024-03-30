@@ -1,0 +1,173 @@
+﻿
+
+@{
+    ViewBag.Title = "Chương trình nhân viên xin nghỉ phép";
+    var DataUser = ViewBag.DataUser as List<ToolsApp.EntityFramework.AspNetUser>;
+
+
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary border-no-color card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>TÌM KIẾM THEO TỪ KHÓA</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Họ Và Tên</label>
+                                    <select id="name" name="name" class="form-control chosen-select" style="width: 100%;">
+                                        <option value="">-- Nhân Viên --</option>
+                                        @foreach (var itemUser in DataUser)
+                                        {
+                                            <option value="@itemUser.UserName">-- @itemUser.Fullname --</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Ngày Tạo Phiếu</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off" id="ngay" name="ngay" />
+
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-12">
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <button id="btnSearch" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>KẾT QUẢ</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-body table-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div id="myModal" class="modal fade modal-wide" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title" style="font-size: 17px;text-transform:uppercase;color:#3c8dbc"><strong id="myModalTitle"></strong></div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="myModalContent">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button type="button" id="btPrint" onclick="javascript:CallPrint('myModalContent');" class="btn btn-sm btn-success"><i class="fa fa-print"></i>&nbsp;In</button>
+
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script language="javascript" type="text/javascript">
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+        }
+
+    </script>
+    <script type="text/javascript"> 
+        var myModal = {
+             $modal : $('#myModal'),
+             $myModalContent : $("#myModalContent"),
+             $myModalTitle : $("#myModalTitle")
+        }
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" },
+            'search_contains': true
+        }
+        for (var selector in config) {
+            $(selector).chosen(config);
+        }
+        $("#ngay").datepicker({
+            format: 'dd/mm/yyyy',
+            changeYear: true,
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+
+        var paramsLoadData = [
+        true,
+        '@Url.Action("_GetList")',
+            '#name',
+            '#ngay',
+        ];
+        $(document).ready(function () {
+            loadData(...paramsLoadData);
+
+            $("#myModal").on("hidden.bs.modal", function () {
+                loadData(false);
+            });
+            $("#btnSearch").click(function () {
+                loadData(...paramsLoadData);
+            });
+        });
+
+
+        function printView(id) {
+            loadModal('Đơn Xin Nghỉ Phép', '@Url.Action("_PrintView")', myModal,id)
+        }
+
+
+        function Isconfim(id) {
+            Action('@Url.Action("IsConfim")', 'POST', {Id:id}, paramsLoadData)
+        }
+
+
+
+
+    </script>
+}

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNHANSUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DMPhuongXa">
+    <Key>
+      <PropertyRef Name="MaPX" />
+      <PropertyRef Name="MaQH" />
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaPX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenPX" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MaQH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaTT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hieuluc" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dmQuanHuyen">
+    <Key>
+      <PropertyRef Name="MaQH" />
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaQH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenQH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MaTT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HieuLuc" Type="Boolean" />
+    <NavigationProperty Name="dmTinhThanh" Relationship="Self.FK_dmQuanHuyen_dmTinhThanh" FromRole="dmQuanHuyen" ToRole="dmTinhThanh" />
+  </EntityType>
+  <EntityType Name="dmTinhThanh">
+    <Key>
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaTT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenTT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="HieuLuc" Type="Boolean" />
+    <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="dmQuanHuyens" Relationship="Self.FK_dmQuanHuyen_dmTinhThanh" FromRole="dmTinhThanh" ToRole="dmQuanHuyen" />
+  </EntityType>
+  <Association Name="FK_dmQuanHuyen_dmTinhThanh">
+    <End Role="dmTinhThanh" Type="Self.dmTinhThanh" Multiplicity="1" />
+    <End Role="dmQuanHuyen" Type="Self.dmQuanHuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dmTinhThanh">
+        <PropertyRef Name="MaTT" />
+      </Principal>
+      <Dependent Role="dmQuanHuyen">
+        <PropertyRef Name="MaTT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLNHANSUEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DMPhuongXas" EntityType="Self.DMPhuongXa" />
+    <EntitySet Name="dmQuanHuyens" EntityType="Self.dmQuanHuyen" />
+    <EntitySet Name="dmTinhThanhs" EntityType="Self.dmTinhThanh" />
+    <AssociationSet Name="FK_dmQuanHuyen_dmTinhThanh" Association="Self.FK_dmQuanHuyen_dmTinhThanh">
+      <End Role="dmTinhThanh" EntitySet="dmTinhThanhs" />
+      <End Role="dmQuanHuyen" EntitySet="dmQuanHuyens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

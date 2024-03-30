@@ -1,0 +1,34 @@
+﻿@{
+    var apiResultJson = ViewBag.ApiResultJson as string;
+
+}
+<div class="row avatar-col" style="margin-bottom:30px">
+    <div id="image">
+        <img id="imageCheckIn" alt="Ảnh checkIn" src="" class="img-responsive img-thumbnail avatar" />
+    </div>
+</div>
+<div class="row avatar-col" style="margin-bottom:5px">
+    <label style="font-size:24px" class="">
+        Ảnh 
+    </label>
+</div>
+<script>
+var apiResult = JSON.parse('@Html.Raw(apiResultJson)');
+    if (apiResult && apiResult.data) {
+        if (apiResult.data.length > 0) {
+            function displayImage() {
+                console.log(apiResult)
+                var imgElement = document.getElementById('imageCheckIn');
+                imgElement.src = '';
+                imgElement.setAttribute('src', apiResult.data);
+                fadeInImage('#image')
+            }
+
+            displayImage();
+        }
+    }
+    else {
+        notify(apiResult.text)
+    }
+
+</script>

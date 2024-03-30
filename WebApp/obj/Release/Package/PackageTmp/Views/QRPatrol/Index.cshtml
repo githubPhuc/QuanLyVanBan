@@ -1,0 +1,261 @@
+﻿<style>
+    .mapouter {
+        position: relative;
+        text-align: right;
+        height: 200px;
+        width: 350px;
+    }
+</style>
+<style>
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 200px;
+        width: 350px;
+    }
+</style>
+
+
+@{
+    ViewBag.Title = "Danh sách QR tuần tra";
+}
+<section class="content">
+    <div class="container-fluid">
+
+        @*Search/ Excel*@
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>QR Code</b>
+                        </h3>
+                    </div>
+
+                    <div class="card-body pad">
+                        <div class="row">
+
+                            <div class="col-md-6 table-body-InsertCode table-responsive">
+
+                            </div>
+                            <div class="col-md-6 table-body-viewCodeQR table-responsive">
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12 table-body table-responsive">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div id="myModal" style="width:45%; transform:translate(50%)" class="modal fade modal-wide" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title" style="font-size: 17px;text-transform:uppercase;color:#3c8dbc"><strong id="myModalTitle"></strong></div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="myModalContent">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button type="button" id="btPrint" onclick="javascript:CallPrint('myModalContent');" class="btn btn-sm btn-success"><i class="fa fa-print"></i>&nbsp;In</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModalAllPatrol" style="width:45%; transform:translate(50%)" class="modal fade modal-wide" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div class="modal-title" style="font-size: 17px;text-transform:uppercase;color:#3c8dbc"><strong id="myModalTitleAllPatrol"></strong></div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="myModalContentAllPatrol">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <button type="button" id="btPrint" onclick="javascript:CallPrint('myModalContentAllPatrol');" class="btn btn-sm btn-success"><i class="fa fa-print"></i>&nbsp;In</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Modal*@
+
+<div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalTitleEdit"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalContentEdit">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" onclick="saveEditQRCode()" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Cập nhật</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var paramsLoadData = [true,'@Url.Action("_GetList")','#id_Job']
+        $(document).ready(function () {
+            load_viewCodeQR();
+            load_InsertCode();
+            loadData(...paramsLoadData)
+            $("#myModal").on("hidden.bs.modal", function () {
+                loadData(false);
+            });
+        });
+              //Print QR
+        var myModal = {
+             $modal : $('#myModal'),
+             $myModalContent : $("#myModalContent"),
+             $myModalTitle : $("#myModalTitle")
+        }
+        var myModalAllPatrol = {
+            $modal: $('#myModalAllPatrol'),
+            $myModalContent: $("#myModalContentAllPatrol"),
+            $myModalTitle: $("#myModalTitleAllPatrol")
+        }
+        var myModalEdit = {
+            $modal: $('#myModalEdit'),
+            $myModalContent: $("#myModalContentEdit"),
+            $myModalTitle: $("#myModalContentEdit")
+        }
+
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+        }
+        function printView(id) {
+            loadModal("IN QR", '@Url.Action("_PrintView")', myModal, id)
+        }
+        function printViewAllPatrol() {
+            console.log('ham da chay')
+            var id_Job = $('#id_JobSearch').val();
+            console.log(id_Job)
+            loadModal("IN QR", '@Url.Action("_PrintViewAllQR")', myModalAllPatrol, { id_Job: id_Job})
+        }
+        //End Print QR
+        function load_viewCodeQR(Data) {
+            try {
+                $.ajax({
+                    url: '@Url.Action("_viewCodeQR")',
+                    timeout: 2000000,
+                    data: {
+                        Data: Data,
+                    },
+                    success: function (response) {
+
+                        $('.table-body-viewCodeQR').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+        function load_InsertCode() {
+            try {
+                $.ajax({
+                    url: '@Url.Action("_InsertCode")',
+                    timeout: 2000000,
+                    data: {
+                    },
+                    beforeSend: function () {
+                        $(".divLoading").addClass("loading");
+                    },
+                    success: function (response) {
+                        $(".divLoading").removeClass("loading");
+
+                        $('.table-body-InsertCode').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+
+        function Edit(Id) {
+            try {
+                loadModal('CẬP NHẬT', '@Url.Action("_Edit")', myModalEdit,Id)
+            } catch (e) {
+                console.log(e)
+           }
+        }
+
+        function saveQRCode() {
+            var formData = {
+                id_Job: $('#id_Job').val(),
+                Name: $('#Name').val().trim(),
+                Description: $('#Description').val().trim(),
+                Location_X: $('#Location_X').val().trim(),
+                Location_Y: $('#Location_Y').val().trim()
+            }
+            Action('@Url.Action("Create_QrCode")', 'POST', formData, paramsLoadData)
+        }
+        function saveEditQRCode(id) {
+            var formData = {
+                Id: $('#Id').val(),
+                id_Job: $('#id_Job_Edit').val().trim(),
+                Name: $('#Name_Edit').val().trim(),
+                Description: $('#Description_Edit').val().trim(),
+                Location_X: $('#Location_X_Edit').val().trim(),
+                Location_Y: $('#Location_Y_Edit').val().trim()
+            }
+            Action('@Url.Action("Edit_QrCode")', 'POST', formData, paramsLoadData)
+            myModal.$modal.modal('hide')
+        }
+            function Delete(id_) {
+                if (confirm('Bạn có chắc muốn xóa không ?')) {
+                    Action('@Url.Action("_Delete")', 'POST', { Id: id_ }, paramsLoadData)
+                }
+            }
+
+    </script>
+
+}

@@ -1,0 +1,58 @@
+﻿
+
+@{
+    var DataSearch = ViewBag.DataSearch as List<ToolsApp.EntityFramework.Sp_LoadTakeLeave_Result>;
+}
+
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên nhân viên</th>
+            <th>Ngày tạo</th>
+            <th>Ngày bắt đầu nghỉ</th>
+            <th>Ngày bắt đầu làm</th>
+            <th>Lý do</th>
+            <th>Số điện thoại liên hệ</th>
+            <th>Xác nhận</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in DataSearch)
+        {
+            <tr >
+                <td width="150">
+                    <a onclick="printView('@item.Id')" class="btn">
+                        <i class="fas fa-print"></i> In phiếu
+                    </a>
+                    @{
+                        if (item.isComfim == true)
+                        {
+                           
+                        }
+                        else
+                        {
+                            <a style="color:red" onclick="Isconfim('@item.Id')" class="btn">
+                                <i class="fas fa-check"></i> Xác nhận
+                            </a>
+                        }
+                    }
+
+
+                </td>
+                <td>@item.Fullname</td>
+                <td>@item.DateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@item.timeStart.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@item.timeEnd.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@item.messger</td>
+                <td>@item.phones</td>
+                <td style="@(item.isComfim == true ? "color:green":"color:#000")">
+                    @(item.isComfim == true ? "Đã xác nhận" : "Chưa xác nhận")
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

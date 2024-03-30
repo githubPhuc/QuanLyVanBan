@@ -1,0 +1,72 @@
+﻿@{ 
+   var list = ViewBag.list as List<ToolsApp.EntityFramework.Job>;
+}
+<div class="row" style="margin-bottom:5px">
+    <div class="col-md-12 col-sm-4">
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Chọn vị trí làm việc</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select id="idjob" name="idjob" class="form-control chosen-select" style="width: 100%;">
+                    @foreach (var item in list)
+                    {
+                        <option value="@item.Id"> @item.NameLocation</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Mô tả công việc</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" placeholder="Ví dụ như trực sảnh, trực nhà xe, bảo vệ..." type="text" id="job_Detail_Name" name="job_Detail_Name" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Chi tiết</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <textarea value="" class="form-control" placeholder="Các công việc sẽ làm..." type="text" id="JobDescription" name="JobDescription"></textarea>
+            </div>
+
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Thời gian vào</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="time" id="TimeIn" name="TimeIn" />
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Thời gian ra</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="" class="form-control" type="time" id="TimeOut" name="TimeOut" />
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+<script type="text/javascript">
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "125%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+
+
+
+</script>
+
+

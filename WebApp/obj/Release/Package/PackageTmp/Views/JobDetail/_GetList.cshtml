@@ -1,0 +1,60 @@
+﻿
+@using ToolsApp.EntityFramework;
+
+@{
+    var list = ViewBag.list as List<ToolsApp.EntityFramework.JobDetail>;
+    var db_ = new ChamCong_teamdevEntities();
+}
+
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Công ty</th>
+            <th>Vị trí công việc</th>
+            <th>Chi tiết</th>
+            <th>Giờ vào</th>
+            <th>Giờ ra</th>
+            <th>Người tạo</th>
+        
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in list)
+        {
+        <tr>
+            <td width="133px">
+                <a onclick="Edit('@item.Id')" class="btn">
+                    <i class="fas fa-edit"></i> Sửa
+                </a>
+                <a onclick="Delete('@item.Id')" class="btn">
+                    <i class="far fa-trash-alt"></i> Xoá
+                </a>
+                @*@if (dataUser.IsManager == true)
+            {
+                <a onclick="LockUser('@item.Id')" class="btn">
+                    <i class="fa-solid fa-lock"></i> Khoá
+                </a>
+            }*@
+    
+            </td>
+            @{ string name_Location = db_.Jobs.Where(a => a.Id == item.idjob).FirstOrDefault().NameLocation; }
+            <td>@name_Location</td>
+            <td>@item.job_Detail_Name</td>
+            <td>@item.JobDescription</td>
+            <td>@item.TimeIn</td>
+            <td>@item.TimeOut</td>
+            <td>@item.UserCreate</td>
+
+        
+        </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+
+</script>

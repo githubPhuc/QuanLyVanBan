@@ -1,0 +1,240 @@
+﻿@{
+    ViewBag.Title = "DANH SÁCH THÔNG BÁO";
+    var listStaff = ViewBag.listStaff as List<ToolsApp.EntityFramework.AspNetUser>;
+    var listNoti = ViewBag.listNoti as List<ToolsApp.EntityFramework.Sp_GetNotification_Result>;
+    var token = ViewData["token"];
+}
+
+<input id="countNoti" value="@listNoti.Count()" style="display:none" />
+<input id="token" value="@token" style="display:none" />
+<section class="content">
+    <div class="container-fluid">
+
+        @*Search/ Excel*@
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Thông báo</b>
+                        </h3>
+                    </div>
+
+                    <div class="card-body pad">
+                        <div class="row">
+
+                            <div class="col-md-6 table-body-Insert table-responsive">
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12 table-body-GetListUser">
+
+                                </div>
+                                <div class="col-md-12 table-body-Search" style="margin-top:130px">
+                                </div>
+                            </div>
+                          
+                         
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12 table-body table-responsive">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var paramsLoadData = [true,'@Url.Action("_GetList")','#search']
+            load_Insert();
+            load_Search()
+            load_ListUser()
+            loadData(...paramsLoadData)
+        });
+        function load_Insert() {
+            try {
+                $.ajax({
+                    url: '@Url.Action("_Insert")',
+                    timeout: 2000000,
+                    data: {
+                    },
+                    beforeSend: function () {
+                        $(".divLoading").addClass("loading");
+                    },
+                    success: function (response) {
+                        $(".divLoading").removeClass("loading");
+
+                        $('.table-body-Insert').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+
+            }
+        }
+          function load_ListUser() {
+            try {
+                $.ajax({
+                    url: '@Url.Action("_GetListUser")',
+                    timeout: 2000000,
+                    data: {
+
+                    },
+                    success: function (response) {
+                        $('.table-body-GetListUser').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+           function load_Search() {
+            try {
+                $.ajax({
+                    url: '@Url.Action("_Search")',
+                    timeout: 2000000,
+                    data: {
+
+                    },
+                    success: function (response) {
+                        $('.table-body-Search').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+
+
+        function PushNotification() {
+            var token = $('#token').val();
+            var title = $('#title').val().trim();
+            var body = $('#body').val().trim();
+            var imageURL = $('#imageURL').val().trim();
+              //Get list user
+            var arrStaff = []
+            var selectedStaffs = [];
+            $('.item-staff').each(function () {
+                if ($(this).prop('checked')) {
+                    arrStaff.push($(this).val());
+                    selectedStaffs = arrStaff.filter(value => value !== '');
+                }
+            });
+            if (token == "" || token == null) {
+                notify("Không lấy được token")
+            }
+            else if (title == "" || title == null) {
+                notify("Vui lòng nhập tên thông báo")
+            }
+            else if (body == "" || body == null) {
+                notify("Vui lòng nhập nội dung thông báo")
+            }
+            else if (selectedStaffs.length === 0) {
+                notify("Vui lòng chọn nhân viên cần gửi thông báo")
+            }
+            else {
+                try {
+                    selectedStaffs.forEach((staff) => {
+                        $.ajax({
+                        url: 'https://api.hoanglongsecurity.info/api/Notification/SendRealTimeNotificationAsync?username=' + staff +
+                              '&title=' + title + '&body=' + body + '&imageURL=' + imageURL,
+                        type: 'POST',
+                        data: {},
+                        processData: false,
+                        contentType: false,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Authorization", "Bearer " + token);
+                        },
+                        success: function (response) {
+                           notify("Gửi thông báo thành công", 'success')
+                        },
+                            error: function (response) {
+                                notify("Lỗi gửi api của username: " + staff)
+                        }
+                    })
+                    })
+
+                }
+                catch {
+                    notify("Lỗi call api")
+                    }
+               }
+        }
+
+        function PushNSaveNotification() {
+            var token = $('#token').val();
+            var title = $('#title').val().trim();
+            var body = $('#body').val().trim();
+            var imageURL = $('#imageURL').val().trim();
+            //Get list user
+            var arrStaff = []
+            var selectedStaffs = [];
+            $('.item-staff').each(function () {
+                if ($(this).prop('checked')) {
+                    arrStaff.push($(this).val());
+                    selectedStaffs = arrStaff.filter(value => value !== '');
+                }
+            });
+            console.log(selectedStaffs)
+            if (token == "" || token == null) {
+                notify("Không lấy được token")
+            }
+            else if (title == "" || title == null) {
+                notify("Vui lòng nhập tên thông báo")
+            }
+            else if (body == "" || body == null) {
+                notify("Vui lòng nhập nội dung thông báo")
+            }
+            else if (selectedStaffs.length === 0) {
+                notify("Vui lòng chọn nhân viên cần gửi thông báo")
+            }
+            else {
+                selectedStaffs.forEach((staff) => {
+                    $.ajax({
+                        url: 'https://api.hoanglongsecurity.info/api/Notification/SendRealTimeNotificationAsync?username=' + staff +
+                            '&title=' + title + '&body=' + body + '&imageURL=' + imageURL,
+                        type: 'POST',
+                        data: {},
+                        processData: false,
+                        contentType: false,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Authorization", "Bearer " + token);
+                        },
+                        success: function (response) {
+                            $.post('@Url.Action("_PushNSaveNotification")', { Title: title, Username: staff, Message: body, Link: imageURL }, function (data) {
+                            });
+                        },
+                        error: function (response) {
+                            notify("Lỗi gửi api của username:" + staff)
+                        }
+                    })
+                })
+                notify("Gửi thông báo thành công", "success")
+                loadData(...paramsLoadData)
+            }
+        }
+
+        function Delete(id) {
+             var paramsLoadData = [true,'@Url.Action("_GetList")','#search']
+            if (confirm('Bạn có chắc muốn xóa không ?')) {
+                Action('@Url.Action("_Delete")', 'POST', { Id: id }, paramsLoadData)
+            }
+        }
+    </script>
+}

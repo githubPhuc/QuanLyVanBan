@@ -1,0 +1,80 @@
+﻿@{
+    var blogs = ViewBag.blogs as List<ToolsApp.EntityFramework.Blog>;
+}
+<style>
+    .show-true {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 6px;
+    }
+    .show-false {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 6px;
+    }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>DANH SÁCH TIN TỨC</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="myTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Tiêu dề</th>
+                                            <th>Dòng mô tả</th>
+                                            <th>Địa chỉ URL</th>
+                                            <th>Thời gian tạo</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in blogs)
+                                        {
+                                        <tr>
+                                            <td>
+                                                <a onclick="Delete('@item.Id')" class="btn">
+                                                    <i class="fas fa-trash-alt"></i>&nbsp; Xóa
+                                                </a>
+                                                <a onclick="Update('@item.Id')" class="btn">
+                                                    <i class="fas fa-edit"></i>&nbsp; Sửa
+                                                </a>
+                                            </td>
+                                            <td>@item.Title</td>
+                                            <td>@item.Description</td>
+                                            <td>@item.Url</td>
+                                            <td>@item.dateTime</td>
+                                            <td>
+                                                <button class="@(item.IsShow ? "show-true" : "show-false")"
+                                                        onclick="@(item.IsShow ? "changeToUnActive(" + item.Id + ")" : "changeToActive(" + item.Id + ")")">
+                                                    @(item.IsShow ? "Bật" : "Tắt")
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

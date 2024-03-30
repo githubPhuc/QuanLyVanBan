@@ -1,0 +1,56 @@
+﻿@{ 
+    var data = ViewBag.listStaff as List<ToolsApp.EntityFramework.AspNetUser>;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary card-outline" style="height:240px">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <b>TÌM KIẾM THEO TÀI KHOẢN NHÂN VIÊN</b>
+                </h3>
+            </div>
+            <div class="card-body pad">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Nhập tài khoản nhân viên</label>
+                            <select id="search" name="search" class="form-control chosen-select" style="width: 100%;">
+                                <option value="">Chọn nhân viên</option>
+
+                                @foreach (var item in data)
+                                {
+                                    <option value="@item.UserName">@item.Fullname </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- /.col -->
+                    <div class="col-md-12">
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <button id="btnSearch" onclick="loadData(true,'@Url.Action("_GetList")','#search')" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i>Tìm kiếm</button>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+<script>
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "125%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+
+</script>

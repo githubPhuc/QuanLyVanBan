@@ -1,0 +1,70 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var list= ViewBag.list as List<ToolsApp.EntityFramework.AspNetUser>;
+    var dataUser = ViewBag.dataUser as ToolsApp.EntityFramework.AspNetUser;
+    var db_ = new ChamCong_teamdevEntities();
+
+}
+
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên công ty</th>
+            <th>Tên tài khoản</th>
+            <th>Tên người dùng</th>
+            <th>Email</th>
+            <th>Loại tài khoản</th>
+            <th>Số điện thoại</th>
+            <th>Khoá</th>
+            <th>Quản lý</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in list)
+        {
+        <tr>
+            <td width="133px">
+                <a onclick="Update('@item.Id')" class="btn">
+                    <i class="fas fa-edit"></i> Sửa
+                </a>
+                @if (dataUser.IsManager == true)
+                {
+                <a onclick="LockUser('@item.Id')" class="btn">
+                    <i class="fa-solid fa-lock"></i> Khoá
+                </a>
+                }
+                <a onclick="ChangePassword('@item.Id')" class="btn">
+                    <i class="fa-solid fa-key"></i> Mật khẩu
+                </a>
+            </td>
+            @{
+                var data_company = db_.Departments.Where(a => a.Id == item.idDepartment).FirstOrDefault();
+                string nameCompany = data_company==null?"": data_company.Name;
+
+            }
+
+
+            <td>@nameCompany</td>
+            <td>@item.UserName</td>
+            <td>@item.Fullname</td>
+            <td>@item.Email</td>
+            <td>@item.AccoutType</td>
+            <td>@item.PhoneNumber</td>
+            <td>
+                @{
+                    string iconClass = (item.IsLocked == true) ? "fa-lock" : "fa-unlock";
+                    string iconColor = (item.IsLocked == true) ? "red" : "blue";
+                }
+                <i class="fa @iconClass" style="margin-right:10px; color: @iconColor"></i>
+                @Html.Raw((item.IsLocked == true) ? "Đã Khoá" : "Chưa Khoá")
+
+            </td>
+            <td>@Html.Raw((item.IsManager == true) ? "<font color='red'>Quản lý</font>" : "<font color='blue'>Không phải quản lý</font>")</td>
+        </tr>
+        }
+    </tbody>
+</table>

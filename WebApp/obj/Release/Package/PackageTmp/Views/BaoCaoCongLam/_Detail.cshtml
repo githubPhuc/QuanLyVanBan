@@ -1,0 +1,128 @@
+﻿
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.Sp_Report_time_user_Result>;
+    var name = ViewData["FullName"];
+    var thang = ViewData["thangNam"];
+    int Stt = 0;
+    var ngayNghi = ViewBag.NgayNghi as List<ToolsApp.EntityFramework.PleaseTakeLeave>;
+}
+<style>
+    .w-3 {
+        max-width: 200px;
+    }
+
+    .w-2 {
+        width: 90px;
+    }
+    .text-c {
+        text-align: center;
+    }
+    .title {
+        text-transform: uppercase;
+    }
+    .table-detail {
+        width: 100%;
+        text-align: center;
+        border: 1px solid black;
+        border-collapse:collapse;
+    }
+    .table-detail th {
+            border: 1px solid black;
+            width: 90px;
+    }
+     .table-detail td {
+        border: 1px solid black;
+     }
+    .table-detail tr {
+      height:20px;
+    }
+    .countGroup th {
+        margin-left: 30px
+    }  
+    .countGroup th:first-child {
+        margin-left: 0
+    }
+    .countNgayNghi td {
+        margin-left:30px;
+        border-right:1px solid
+    }
+</style>
+<div class="row" style=" width:100%">
+    <table class="table table-bordered" width="100%">
+        <thead>
+            <tr>
+                <th class="text-c title" colspan="3" style="border: none "><h3><b>BÁO CÁO CHI TIẾT CHẤM CÔNG NHÂN VIÊN @name </b></h3></th>
+            </tr>
+            <tr>
+                <th class="text-c title" colspan="3" style="border: none "><h3><b>THÁNG @thang</b></h3></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@{ 
+    var countDiTre = 0;
+    var countNgayLamQuyDoi = 0.00m;
+    var countTongGio = 0.00m;
+    var countGioDu = 0.00m;
+}
+<table id="myTable" class="table table-bordered table-detail">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên công việc</th>
+            <th>Giờ vào</th>
+            <th>Giờ ra</th>
+            <th>Giờ chấm công</th>
+            <th>Giờ quy đổi</th>
+            <th>Ngày làm quy đổi</th>
+            <th>Giờ dư</th>
+            <th>Đi trễ</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+        @foreach (var item in data)
+        {
+            countDiTre += item.DiTre;
+            countTongGio += item.GioQuyDoi.Value;
+            countGioDu += item.GioDu.Value; 
+            if (item.NgayLamQuyDoi.HasValue)
+            {
+                countNgayLamQuyDoi += item.NgayLamQuyDoi.Value;
+            }
+        <tr>
+            <td>@Stt</td>
+            <td>@item.job_Detail_Name</td>
+            <td>@item.Time_In</td>
+            <td>@item.Time_Out</td>
+            <td>@item.sumTime</td>
+            <td>@item.GioQuyDoi</td>
+            <td>@item.NgayLamQuyDoi</td>
+            <td>@item.GioDu</td>
+            <td>@item.DiTre</td>
+        </tr>
+            Stt++;
+        }
+    </tbody>
+</table>
+<table style="width:100%; margin-top:30px">
+    <tr class="d-flex countGroup">
+        <th class="text-c title" style="border: none "><p><b>Tổng giờ làm quy đổi: @countTongGio</b></p></th>
+        <th class="text-c title" style="border: none "><p><b>Tổng ngày làm quy đổi: @countNgayLamQuyDoi</b></p></th>
+        <th class="text-c title" style="border: none "><p><b>Tổng số lần đi trễ: @countDiTre</b></p></th>
+        <th class="text-c title" style="border: none "><p><b>Tổng số giờ dư: @countGioDu</b></p></th>
+    </tr>
+</table>
+<table style="margin-top:30px">
+    <tr class="d-flex countNgayNghi">
+        <th class="text-c title" style="border: none;"><p><b>Ngày nghỉ:</b></p></th>
+        @foreach (var item in ngayNghi)
+        {
+            <td class="text-c" style="border: none ">
+                Từ ngày @item.timeStart.ToString("dd-MM-yyyy HH:mm:ss") đến ngày @item.timeEnd.ToString("dd-MM-yyyy HH:mm")
+            </td>
+        }
+
+    </tr>
+
+</table>

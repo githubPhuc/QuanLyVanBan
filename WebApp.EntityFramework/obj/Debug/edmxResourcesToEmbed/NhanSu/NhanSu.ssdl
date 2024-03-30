@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNHANSUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DMPhuongXa">
+    <Key>
+      <PropertyRef Name="MaPX" />
+      <PropertyRef Name="MaQH" />
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaPX" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenPX" Type="nvarchar" MaxLength="255" />
+    <Property Name="MaQH" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaTT" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="hieuluc" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dmQuanHuyen">
+    <Key>
+      <PropertyRef Name="MaQH" />
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaQH" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenQH" Type="nvarchar" MaxLength="200" />
+    <Property Name="MaTT" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HieuLuc" Type="bit" />
+  </EntityType>
+  <EntityType Name="dmTinhThanh">
+    <Key>
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaTT" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenTT" Type="nvarchar" MaxLength="200" />
+    <Property Name="HieuLuc" Type="bit" />
+    <Property Name="Ghichu" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_dmQuanHuyen_dmTinhThanh">
+    <End Role="dmTinhThanh" Type="Self.dmTinhThanh" Multiplicity="1" />
+    <End Role="dmQuanHuyen" Type="Self.dmQuanHuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dmTinhThanh">
+        <PropertyRef Name="MaTT" />
+      </Principal>
+      <Dependent Role="dmQuanHuyen">
+        <PropertyRef Name="MaTT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLNHANSUModelStoreContainer">
+    <EntitySet Name="DMPhuongXa" EntityType="Self.DMPhuongXa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dmQuanHuyen" EntityType="Self.dmQuanHuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dmTinhThanh" EntityType="Self.dmTinhThanh" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dmQuanHuyen_dmTinhThanh" Association="Self.FK_dmQuanHuyen_dmTinhThanh">
+      <End Role="dmTinhThanh" EntitySet="dmTinhThanh" />
+      <End Role="dmQuanHuyen" EntitySet="dmQuanHuyen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

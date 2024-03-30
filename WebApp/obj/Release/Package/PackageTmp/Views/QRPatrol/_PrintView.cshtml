@@ -1,0 +1,33 @@
+﻿
+@{
+    var data = ViewBag.data as ToolsApp.EntityFramework.Qr_Patrol;
+}
+@*<div style="display:flex">
+    @foreach (var item in data)
+    {
+        <div style="display:flex;align-items:center; flex-direction:column;">
+            <img src="@item.path_Qr" style="width:200px" />
+            <label> @item.Description</label>
+        </div>
+    }
+</div>*@
+<form id="_Print">
+    <div class="row" style=" width:100%">
+        <table id="TableSS" class="table-bordered " style="border:none" width="100%">
+            @for (int i = 0; i <= 20; i++)
+            {
+                <div style="display:inline-flex; flex-direction:column; align-items:center">
+                    <img src="@data.path_Qr" style="width:200px" />
+                    <span> @data.Description</span>
+                </div>
+
+            }
+        </table>
+    </div>
+    <br />
+    <br />
+    <div class="row" style=" width:100%">
+
+    </div>
+</form>
+

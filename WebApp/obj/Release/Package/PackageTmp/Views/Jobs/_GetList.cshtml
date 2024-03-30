@@ -1,0 +1,55 @@
+﻿    
+@using ToolsApp.EntityFramework;
+@{
+    var list = ViewBag.list as List<ToolsApp.EntityFramework.Job>;
+   
+}
+
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+
+            <th></th>
+            <th>Địa điểm làm việc</th>
+            <th>Toạ độ </th>
+            <th>Quốc gia</th>
+            <th>Quận / Huyện</th>
+            <th>Phường / Xã</th>
+            <th>Đường</th>
+            <th>Người tạo</th>
+            <th>Thời gian tạo</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in list)
+        {
+            <tr>
+                <td width="133px">
+                    <a onclick="Edit('@item.Id')" class="btn">
+                        <i class="fas fa-edit"></i> Sửa
+                    </a>
+                    <a onclick="Delete('@item.Id')" class="btn">
+                        <i class="far fa-trash-alt"></i> Xoá
+                    </a>
+             
+                </td>
+
+                <td>@item.NameLocation</td>
+                <td>@item.Location_X - @item.Location_Y</td>
+                <td>@item.country</td>
+                <td>@item.administrativeArea</td>
+                <td>@item.subAdministrativeArea</td>
+                <td>@item.street</td>
+                <td>@item.UserCreate</td>
+                <td>@item.TimeCreate</td>
+  
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+        
+</script>

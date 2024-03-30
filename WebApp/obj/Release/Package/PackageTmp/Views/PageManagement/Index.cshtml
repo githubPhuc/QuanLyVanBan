@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "QUẢN LÝ TRANG TÁC VỤ";
+}
+
+<style>
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>TÌM KIẾM THEO TỪ KHÓA</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Code</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off"
+                                           id="CodeSearch" name="CodeSearch" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Info</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off"
+                                           id="InfoSearch" name="InfoSearch" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>Action</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off"
+                                           id="ActionSearch" name="ActionSearch" />
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>Controler</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off"
+                                           id="ControlerSearch" name="ControlerSearch" />
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-12">
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <button id="btnSearch" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>KẾT QUẢ</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button id="btnCreate" type="button" class="btn bg-gradient-success"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-body table-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+  
+            <div class="modal-header custom-modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold" id="myModalTitle"></h4>
+                <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div id="myModalContent">
+                </div>
+
+            </div>
+            <div class="modal-footer modal-custom-footer footer d-flex ">
+                <button type="button" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var myModal = {
+             $modal : $('#myModal'),
+             $myModalContent : $("#myModalContent"),
+             $myModalTitle : $("#myModalTitle")
+        }
+
+        var paramsLoadData = [
+            true,
+            '@Url.Action("_GetList")',
+             '#CodeSearch',
+             '#InfoSearch',
+             '#ActionSearch',
+             '#ControlerSearch'
+        ];
+
+        function Delete(Id) {
+            if (confirm('Bạn có chắc muốn xóa không ?')) {
+                Action('@Url.Action("_DeleteFun")', 'POST', {Id:Id}, paramsLoadData)
+            }
+        }
+
+        function Edit(id_) {
+            loadModal('CẬP NHẬT', '@Url.Action("_Edit")', myModal, id_)
+        }
+
+        $(document).ready(function () {
+            loadData(...paramsLoadData);
+
+            $("#myModal").on("hidden.bs.modal", function () {
+                loadData(false);
+            });
+
+            $("#btnSearch").click(function () {
+                loadData(...paramsLoadData);
+            });
+
+            $("#btSave").click(function () {
+                form = $("#frm");
+                form.removeData('validator');
+                form.removeData('unobtrusiveValidation');
+                $.validator.unobtrusive.parse("#frm");
+                if (form.valid()) {
+                    var formdata = {
+                        Id: $("#Id").val(),
+                        Controler: $("#Controler").val().trim(),
+                        Action: $("#Action").val().trim(),
+                        Code: $("#Code").val().trim(),
+                        Info: $("#Info").val().trim()
+                    };
+                    Action(formdata.Id == "0" ? '@Url.Action("_InsertFun")' : '@Url.Action("_EditFun")', 'POST', formdata, paramsLoadData)
+                    myModal.$modal.modal('hide')
+
+                }
+            });
+
+            $("#btnCreate").click(function () {
+                loadModal('THÊM TRANG', '@Url.Action("_Insert")', myModal, { Id: 0 })
+            });
+        });
+    </script>
+}

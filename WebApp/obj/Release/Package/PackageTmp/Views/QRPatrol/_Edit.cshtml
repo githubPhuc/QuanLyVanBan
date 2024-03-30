@@ -1,0 +1,110 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var data = ViewBag.data as ToolsApp.EntityFramework.Qr_Patrol;
+    var db_  = new ChamCong_teamdevEntities();
+
+}
+<input value="@data.Id" style="display:none" id="Id" name="Id" />
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Thông Tin QR</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Địa điểm làm việc</label>
+                                    @{ string nameLocation = db_.Jobs.Where(a => a.Id == data.id_Job).FirstOrDefault().NameLocation;} 
+                                    <select id="id_Job_Edit" name="id_Job" class="form-control chosen-select" style="width: 100%;">
+                                        <option value="@data.id_Job">@nameLocation </option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Vị trí làm việc</label>
+                                    <input class="form-control form-control-md" value="@data.Name" maxlength="50" placeholder="Vd: Tầng 1, Tầng 2,..." type="text" autocomplete="off"
+                                           id="Name_Edit" name="Name" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Mô tả QR</label>
+                                    <input class="form-control form-control-md" value="@data.Description" type="text"  placeholder="Tên của QR"
+                                           id="Description_Edit" name="Description" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Toạ độ X</label>
+                                    <input class="form-control form-control-md" type="text" value="@data.Location_X"  placeholder="Nhập giá trị X ( giá trị bên trái )"
+                                           id="Location_X_Edit" name="Location_X_Edit" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Toạ độ Y</label>
+                                    <input class="form-control form-control-sm" type="text" value="@data.Location_Y"  placeholder="Nhập giá trị Y ( giá trị bên phải )"
+                                           id="Location_Y_Edit" name="Location_Y_Edit" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="mapouter">
+                                    <div class="gmap_canvas">
+                                        <iframe src="https://maps.google.com/maps?q=V%C4%A9nh%20L%E1%BB%99c%20A%20&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" id="gmap_canvas1" frameborder="0" scrolling="no" style="height:100%;margin-left:30px"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+    $(document).ready(function () {
+        function updateGoogleMaps() {
+            var newXValue = $("#Location_X_Edit").val();
+            var newYValue = $("#Location_Y_Edit").val();
+            var newSrc = "https://maps.google.com/maps?q=" + newXValue + "," + newYValue + "&t=&z=16&ie=UTF8&iwloc=&output=embed";
+            $("#gmap_canvas1").attr("src", newSrc);
+        }
+
+        $("#Location_X_Edit").on("input", updateGoogleMaps);
+        $("#Location_Y_Edit").on("input", updateGoogleMaps);
+        updateGoogleMaps();
+    });
+</script>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="wqlvattuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DMNHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HOTEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MADV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LapPhieu" Type="Byte" />
+    <Property Name="TPB_kiemtra" Type="Byte" />
+    <Property Name="XemXet" Type="Byte" />
+    <Property Name="PheDuyet" Type="Byte" />
+    <Property Name="TiepNhan" Type="Byte" />
+    <Property Name="Passwordid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HieuLuc" Type="Byte" />
+    <Property Name="KIEMTRA" Type="Byte" />
+    <Property Name="MABP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IDMaDV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="QuanTri" Type="Boolean" />
+    <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NgayCap" Type="DateTime" Precision="3" />
+    <Property Name="NoiCap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="quyencpn" Type="Int32" />
+    <Property Name="Chuki" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TinhGTMay" Type="Boolean" />
+    <Property Name="NgayHieuLucPass" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="wqlvattuEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DMNHANVIENs" EntityType="Self.DMNHANVIEN" />
+    <FunctionImport Name="SP_LoadNVIDMaDV" ReturnType="Collection(wqlvattuModel.SP_LoadNVIDMaDV_Result)">
+      <Parameter Name="MaNV" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_LoadNVIDMaDV_Result">
+    <Property Type="String" Name="IDMaCS" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MADV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MABP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="100" />
+    <Property Type="Byte" Name="HieuLuc" Nullable="true" />
+    <Property Type="String" Name="ChucVu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenGoi" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="HienThi" Nullable="true" MaxLength="521" />
+    <Property Type="String" Name="KiHieuDonVi" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

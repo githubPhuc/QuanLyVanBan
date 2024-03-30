@@ -1,0 +1,283 @@
+﻿@{
+    ViewBag.Title = "Chương Trình Quản lý Tuần tra";
+    var dataUser = ViewBag.dataUser as List<ToolsApp.EntityFramework.AspNetUser>;
+    var nameLocation = ViewBag.nameLocation as List<ToolsApp.EntityFramework.Job>;
+
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Tìm Kiếm</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Tên nhân viên</label>
+                                    <select id="name" name="name" class="form-control chosen-select" style="width: 100%;">
+                                        <option selected value="">== Chọn Nhân Viên ==</option>
+                                        @foreach (var item in dataUser)
+                                        {
+                                            <option value="@item.UserName">@item.UserName ||  @item.Fullname</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Địa điểm tuần tra</label>
+                                    <select id="nameJob" name="nameJob" class="form-control chosen-select" style="width: 100%;">
+                                        <option selected value="">== Chọn địa điểm làm việc ==</option>
+                                        @foreach (var item in nameLocation)
+                                        {
+                                            <option value="@item.NameLocation"> @item.NameLocation</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Ngày bắt đầu</label>
+                                    <input class="form-control form-control-md" type="datetime" autocomplete="off"
+                                           id="time_InSearch" name="time_InSearch" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Ngày kết thúc</label>
+                                    <input class="form-control form-control-md" type="datetime" autocomplete="off"
+                                           id="time_OutSearch" name="time_OutSearch" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class=" form-group">
+                                    <button id="btnSearch" type="button" class="btn bg-gradient-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+                                    <button id="export" onclick="ExportCustom()" type="button" class="btn bg-gradient-cyan"><i class="fa fa-file-excel"></i> Xuất Exel</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Chú thích màu</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Vị Trí</label>
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Giá trị null" style="background-color: #FFFF00" />
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Vị trí cấp 5" style="background-color: #00FF80;" />
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Vị trí cấp 4" style="background-color: #FF3E96;" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Vị Trí</label>
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Vị trí cấp 3" style="background-color: #FF00FF;" />
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Vị trí cấp 2" style="background-color: #FF83FA;" />
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Vị trí cấp 1" style="background-color: #FFBBFF;" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Chu trình chấm công</label>
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Chưa hoàn thành" style="background-color: #F4A460" />
+                                    <input class="form-control form-control-sm" type="text" autocomplete="off" readonly placeholder="Đã hoàn thành" style="background-color: #8EE5EE" />
+
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>Danh sách </b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row ">
+                            <div class="col-md-12 table-body table-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+    
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalTitle"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalContent">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" data-dismiss="modal" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-check"></i>&nbsp;Xác nhận</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalImageTitle"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalImageContent">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" data-dismiss="modal" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-check"></i>&nbsp; Xác nhận</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" },
+            'search_contains': true
+        }
+        for (var selector in config) {
+            $(selector).chosen(config);
+        }
+
+        $("#time_InSearch").datepicker({
+            format: 'dd/mm/yyyy',
+            changeYear: true,
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#time_OutSearch").datepicker({
+            format: 'dd/mm/yyyy',
+            changeYear: true,
+            changeMonth: true,
+            onClose: function (selectedDate) {
+                //$("#FromDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        var paramsLoadData = [true, '@Url.Action("_GetList")', '#name', '#nameJob', '#time_InSearch', '#time_OutSearch']
+        $(document).ready(function () {
+            loadData(...paramsLoadData)
+            $("#myModal").on("hidden.bs.modal", function () {
+                loadData(false);
+            });
+
+            $("#btnSearch").click(function () {
+                loadData(...paramsLoadData)
+            });
+
+            $("#name").change(function () {
+            var username = $(this).val();
+                getNameLocation('@Url.Action("AutoGetNameLocation")', username, "#nameJob")
+            })
+        });
+
+        var myModal = {
+            $modal: $('#myModal'),
+            $myModalContent: $("#myModalContent"),
+            $myModalTitle: $("#myModalTitle")
+          }
+        var myModalImage = {
+            $modal: $('#myModalImage'),
+            $myModalContent: $("#myModalImageContent"),
+            $myModalTitle: $("#myModalImageTitle")
+        }
+
+        function checkImage(id) {
+            loadModal("KIỂM TRA HÌNH ẢNH", '@Url.Action("checkImage")', myModalImage, id)
+         
+        }
+
+        function update_view(id) {
+            loadModal("CHỈNH SỬA", '@Url.Action("update_view")', myModal, id)
+        }
+
+
+        function ExportCustom() {
+            var formData = {
+                name: $('#name').val(),
+                nameJob: $('#nameJob').val(),
+                timeIn: $('#time_InSearch').val(),
+                timeOut: $('#time_OutSearch').val()
+            }
+            if (formData.nameJob == "" || formData.name == "") {
+                notify("Vui lòng chọn tên nhân viên và địa điểm làm việc trước!");
+            }
+            else if (formData.timeIn == "") {
+                notify("Vui lòng chọn ngày bắt đầu");
+            }
+            else {
+                ActionExport('@Url.Action("_ExportExcelAll")', 'POST', formData)
+
+            }
+        }
+        function Confirm(Id) {
+            if (confirm('Bạn có chắc chắn xác nhận ?')) {
+                Action('@Url.Action("Confirm")', 'POST', { Id: Id }, paramsLoadData)
+
+            }
+        }
+
+    </script>
+
+
+}

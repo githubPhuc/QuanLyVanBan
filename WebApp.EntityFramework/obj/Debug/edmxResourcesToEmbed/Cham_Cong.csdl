@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChamCong_teamdevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetRoleClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetRole" Relationship="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoleClaims" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NormalizedName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetRoleClaims" Relationship="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetRoleClaims" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ChamCong_teamdevModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ChamCong_teamdevModel.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderDisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="ChamCong_teamdevModel.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserToken">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoginProvider" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ChamCong_teamdevModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUserToken" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AttendanceToWork">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="day_Working" Type="DateTime" Precision="7" />
+    <Property Name="time_Input" Type="DateTime" Precision="7" />
+    <Property Name="time_OutPut" Type="DateTime" Precision="7" />
+    <Property Name="image_url_Input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image_Input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="location_Input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="location_OutPut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image_url_OutPut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image_OutPut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="NoteIsDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ChamCong_teamdevModel.FK_AttendanceToWork_AspNetUsers_UserId" FromRole="AttendanceToWork" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="codeDeparment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="PageId" Type="Int32" />
+    <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderNo" Type="Int32" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="Boolean" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <Property Name="MenuId" Type="Int32" />
+    <NavigationProperty Name="Menu1" Relationship="Self.FK_Menu_Menu_MenuId" FromRole="Menu" ToRole="Menu1" />
+    <NavigationProperty Name="Menu2" Relationship="Self.FK_Menu_Menu_MenuId" FromRole="Menu1" ToRole="Menu" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_Menu_Page_PageId" FromRole="Menu" ToRole="Page" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Controler" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Menus" Relationship="Self.FK_Menu_Page_PageId" FromRole="Page" ToRole="Menu" />
+    <NavigationProperty Name="User_Page" Relationship="Self.FK_User_Page_Page_PageId" FromRole="Page" ToRole="User_Page" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="User_Role" Relationship="Self.FK_User_Role_Role_RoleId" FromRole="Role" ToRole="User_Role" />
+  </EntityType>
+  <EntityType Name="User_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PageId" Type="Int32" Nullable="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="isDelete" Type="DateTime" Precision="7" />
+    <Property Name="UserDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeDelete" Type="DateTime" Precision="7" />
+    <Property Name="isRoleCreate" Type="Boolean" />
+    <Property Name="isRoleEdit" Type="Boolean" />
+    <Property Name="isRoleExport" Type="Boolean" />
+    <Property Name="isRoleExportAll" Type="Boolean" />
+    <Property Name="isRoleDelete" Type="Boolean" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_User_Page_Page_PageId" FromRole="User_Page" ToRole="Page" />
+    <NavigationProperty Name="AspNetUser" Relationship="ChamCong_teamdevModel.FK_User_Page_AspNetUsers_userId" FromRole="User_Page" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="UserFullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFullnameCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="DateTime" Precision="7" />
+    <Property Name="UserUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullnameUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatetimeUpdate" Type="DateTime" Precision="7" />
+    <Property Name="UserId1" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role_Role_RoleId" FromRole="User_Role" ToRole="Role" />
+    <NavigationProperty Name="AspNetUser" Relationship="ChamCong_teamdevModel.FK_User_Role_AspNetUsers_UserId1" FromRole="User_Role" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetRoleClaims" Type="Self.AspNetRoleClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetRoleClaims">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Menu_MenuId">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Page" Type="Self.User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_Role_RoleId">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User_Role" Type="Self.User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ChamCong_teamdevEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoleClaims" EntityType="Self.AspNetRoleClaim" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUserTokens" EntityType="Self.AspNetUserToken" />
+    <EntitySet Name="AttendanceToWorks" EntityType="Self.AttendanceToWork" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Pages" EntityType="Self.Page" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="User_Page" EntityType="Self.User_Page" />
+    <EntitySet Name="User_Role" EntityType="Self.User_Role" />
+    <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetRoleClaims" EntitySet="AspNetRoleClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Menu_MenuId" Association="Self.FK_Menu_Menu_MenuId">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Menu1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Page_PageId" Association="Self.FK_Menu_Page_PageId">
+      <End Role="Page" EntitySet="Pages" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_Page_PageId" Association="Self.FK_User_Page_Page_PageId">
+      <End Role="Page" EntitySet="Pages" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_Role_RoleId" Association="Self.FK_User_Role_Role_RoleId">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+    <EntitySet Name="AspNetUsers" EntityType="ChamCong_teamdevModel.AspNetUser" />
+    <AssociationSet Name="FK_AspNetUserClaims_AspNetUsers_UserId" Association="ChamCong_teamdevModel.FK_AspNetUserClaims_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserLogins_AspNetUsers_UserId" Association="ChamCong_teamdevModel.FK_AspNetUserLogins_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="ChamCong_teamdevModel.FK_AspNetUserTokens_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserToken" EntitySet="AspNetUserTokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceToWork_AspNetUsers_UserId" Association="ChamCong_teamdevModel.FK_AttendanceToWork_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AttendanceToWork" EntitySet="AttendanceToWorks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_AspNetUsers_userId" Association="ChamCong_teamdevModel.FK_User_Page_AspNetUsers_userId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_AspNetUsers_UserId1" Association="ChamCong_teamdevModel.FK_User_Role_AspNetUsers_UserId1">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="ChamCong_teamdevModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Fullname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AccoutType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+    <Property Name="IsManager" Type="Boolean" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idDepartment" Type="Int32" Nullable="false" />
+    <Property Name="TimeInWorking" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="TimeOutWorking" Type="DateTime" Precision="7" />
+    <Property Name="Time_Locked" Type="DateTime" Precision="7" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NormalizedUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NormalizedEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEnd" Type="DateTimeOffset" Precision="7" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="hieuluc" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="ChamCong_teamdevModel.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="ChamCong_teamdevModel.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetUserTokens" Relationship="ChamCong_teamdevModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserToken" />
+    <NavigationProperty Name="AttendanceToWorks" Relationship="ChamCong_teamdevModel.FK_AttendanceToWork_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AttendanceToWork" />
+    <NavigationProperty Name="User_Page" Relationship="ChamCong_teamdevModel.FK_User_Page_AspNetUsers_userId" FromRole="AspNetUser" ToRole="User_Page" />
+    <NavigationProperty Name="User_Role" Relationship="ChamCong_teamdevModel.FK_User_Role_AspNetUsers_UserId1" FromRole="AspNetUser" ToRole="User_Role" />
+    <NavigationProperty Name="AspNetRoles" Relationship="ChamCong_teamdevModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <Association Name="FK_AspNetUserClaims_AspNetUsers_UserId">
+    <End Type="ChamCong_teamdevModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ChamCong_teamdevModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserLogins_AspNetUsers_UserId">
+    <End Type="ChamCong_teamdevModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ChamCong_teamdevModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUserTokens_AspNetUsers_UserId">
+    <End Type="ChamCong_teamdevModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ChamCong_teamdevModel.AspNetUserToken" Role="AspNetUserToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserToken">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceToWork_AspNetUsers_UserId">
+    <End Type="ChamCong_teamdevModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="ChamCong_teamdevModel.AttendanceToWork" Role="AttendanceToWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttendanceToWork">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_AspNetUsers_userId">
+    <End Type="ChamCong_teamdevModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ChamCong_teamdevModel.User_Page" Role="User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_AspNetUsers_UserId1">
+    <End Type="ChamCong_teamdevModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="ChamCong_teamdevModel.User_Role" Role="User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="UserId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="ChamCong_teamdevModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="ChamCong_teamdevModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,486 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var jobs = ViewBag.Jobs as List<ToolsApp.EntityFramework.Sp_LoadJobFromUserName_Result>;
+    var data = ViewBag.data as ToolsApp.EntityFramework.ProfileUser;
+    var user = ViewBag.user as ToolsApp.EntityFramework.AspNetUser;
+    var token = ViewData["token"];
+}
+
+<input id="timeWorking" value="@user.timeWorking" style="display:none" />
+<input id="username" value="@user.UserName" style="display:none" />
+<input id="token" value="@token" style="display:none" />
+<input id="Id" value="@user.Id" style="display:none" />
+@{
+    if (data.imageName != null || data.imageName != "")
+    {
+        <input id="imageName" value="@data.imageName" style="display:none" />
+    }
+}
+
+<div class="container">
+    <div class="main-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img id="imageAvatar" src="~/Content/images/noImage.png" class="rounded-circle p-1 bg-primary" width="200" height="200" style="object-fit:cover">
+                            <div class="mt-3">
+                                <h4>@user.Fullname</h4>
+                                <p class="text-secondary mb-1"></p>
+                                <p id="timeWorkingShow" class="text-muted font-size-sm"></p>
+                                <button class="btn btn-primary" onclick="UploadAvatarModal('@data.Id')">Cập nhật Avatar</button>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-4 table-body-ThongTinCoBan table-responsive">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-4 table-body-ThongTinLienHe table-responsive">
+
+        </div>
+        <div class="col-md-6 mt-4 table-body-ThongTinCaNhan table-responsive">
+
+        </div>
+    </div>
+    @{
+        var stt = 0;
+
+    }
+    @foreach (var job in jobs)
+    {
+        var index = jobs.IndexOf(job);
+        stt++;
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-body job">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="mb-4" style="color:orangered">Công việc @stt </h4>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <h6 class="mb-0">Địa điểm làm việc</h6>
+
+                                    </div>
+                                    <div class="col-sm-10 text-secondary">
+                                        @job.NameLocation
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <h6 class="mb-0"> Địa chỉ </h6>
+                                    </div>
+                                    <div class="col-sm-10 text-secondary">
+                                        @job.JobAddress
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <h6 class="mb-0"> Chức vụ  </h6>
+                                    </div>
+                                    <div class="col-sm-10 text-secondary">
+                                        @job.Position
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <h6 class="mb-0"> Mô tả công việc  </h6>
+                                    </div>
+                                    <div class="col-sm-10 text-secondary">
+                                        @job.JobDescription
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <h6 class="mb-0"> Ca làm </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary show">
+                                        @job.TimeInOut
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="myModalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalImageTitle"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalImageContent">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" onclick="UploadImage('@data.Id')" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Cập nhật</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalAvatarTitle"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalAvatarContent">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" onclick="UploadAvatar('@data.Id')" id="btSave" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Cập nhật</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalCCCD" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalCCCDTitle"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalCCCDContent">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            $('#codeBank').select2();
+            loadImage();
+            loadThongTinCoBan()
+            loadThongTinCaNhan();
+            loadThongTinLienHe()
+            var dateString = $('#timeWorking').val();
+            var dateObj = new Date(dateString);
+            var formattedDate = dateObj.toLocaleDateString();
+            $("#timeWorkingShow").html("Ngày vào làm" + " " + formattedDate)
+        });
+        var myModalImage = {
+            $modal: $('#myModalImage'),
+            $myModalContent: $("#myModalImageContent"),
+            $myModalTitle: $("#myModalImageTitle")
+        }
+        var myModalAvatar = {
+            $modal: $('#myModalAvatar'),
+            $myModalContent: $("#myModalAvatarContent"),
+            $myModalTitle: $("#myModalAvatarTitle")
+        }
+        var myModalCCCD = {
+            $modal: $('#myModalCCCD'),
+            $myModalContent: $("#myModalCCCDContent"),
+            $myModalTitle: $("#myModalCCCDTitle")
+        }
+        function loadThongTinCoBan() {
+            var Id = $("#Id").val();
+            try {
+                $.ajax({
+                    url: '@Url.Action("ThongTinCoBan_View")',
+                    timeout: 2000000,
+                    data: {
+                        Id: Id
+                    },
+                    success: function (response) {
+                        $('.table-body-ThongTinCoBan').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+        function loadThongTinCaNhan() {
+            var Id = $("#Id").val();
+            try {
+                $.ajax({
+                    url: '@Url.Action("ThôngTinCaNhan_View")',
+                    timeout: 2000000,
+                    data: {
+                        Id: Id
+                    },
+                    success: function (response) {
+                        $('.table-body-ThongTinCaNhan').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+            }
+        }
+        function loadThongTinLienHe() {
+            var Id = $("#Id").val();
+            try {
+                $.ajax({
+                    url: '@Url.Action("ThongTinLienHe_View")',
+                    timeout: 2000000,
+                    data: {
+                        Id: Id
+                    },
+                    success: function (response) {
+                        $('.table-body-ThongTinLienHe').html(response);
+                    },
+                    error: function (message) {
+                        $(".divLoading").removeClass("loading");
+                    }
+                });
+            } catch (e) {
+
+            }
+        }
+    function UploadAvatarModal(id) {
+        loadModal('CẬP NHẬT ẢNH ĐẠI DIỆN', '@Url.Action("_Image_Avatar_View")', myModalAvatar,id)
+        }
+    function Upload(id) {
+         loadModal('CẬP NHẬT CCCD/CMND', '@Url.Action("_Image_View")', myModalImage,id)
+        }
+        function ViewCCCD(id) {
+        loadModal('CĂN CƯỚC CÔNG DÂN / CHỨNG MÌNH NHÂN DÂN', '@Url.Action("_ViewCCCD")', myModalCCCD,id)
+        }
+    function loadImage() {
+        var username = $('#username').val().trim()
+        var token = $('#token').val();
+        var nameImage = $('#imageName').val().trim();
+        if (nameImage) {
+            $.ajax({
+                url: 'https://api.hoanglongsecurity.info/api/Authenticate/GetImage?nameImage=' + nameImage + '&username=' + username,
+                type: 'GET',
+                data: {},
+                processData: false,
+                contentType: false,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                },
+                success: function (response) {
+                    $("#imageAvatar").attr("src", response.data);
+                },
+                error: function (response) {
+                    if (response.status == 'Failed') {
+                        notify(response.message, "error");
+                    }
+                }
+            })
+        }
+    }
+
+    var isChossedAvatar = false
+        var a = {}
+        $(document).ready(function () {
+            $('#myModalAvatar').on('change', '#image', function () {
+                var selectedFile = this.files[0];
+                a = selectedFile
+                if (a !== null && a !== undefined) {
+                    isChossedAvatar = true
+                }
+                else {
+                    isChossedAvatar = false;
+
+                }
+                console.log(a)
+            });
+        });
+
+    function UploadAvatar(Id) {
+            var username = $('#username').val().trim()
+            var token = $('#token').val();
+            var formData = new FormData();
+            formData.append('file', a);
+            formData.append('username', username);
+            if (isChossedAvatar == false) {
+                notify("Vui lòng chọn hình ảnh")
+            }
+            else {
+                $.ajax({
+                    url: 'https://api.hoanglongsecurity.info/api/Authenticate/UploadImage',
+                    type: 'POST',
+                    data:  formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    },
+                    success: function (response) {
+                        var image = response.data[0];
+                        $.post('@Url.Action("_SaveImageAvatar")', { image: image, Id }, function (data) {
+                            notify(data.text, "success")
+                        });
+                           $('#myModalAvatar').modal('hide');
+                    },
+                    error: function (response) {
+                        if (response.status == 'Failed') {
+                            notify(response.message, "error");
+                        }
+                    }
+                })
+            }
+
+        }
+
+    function handleShowHide(parentClass) {
+        $(`.${parentClass} .edit`).css("display", "none");
+        $(`.${parentClass} .show`).css("display", "block");
+        $(`.${parentClass} .btn-cancel`).css("display", "none");
+        $(`.${parentClass} .btn-save`).css("display", "none");
+    }
+
+    function EditInfo(parentClass) {
+        $(`.${parentClass} .edit`).css("display", "block");
+        $(`.${parentClass} .show`).css("display", "none");
+        $(`.${parentClass} .btn-cancel`).css("display", "block");
+        $(`.${parentClass} .btn-save`).css("display", "block");
+    }
+    function Cancel(parentClass) {
+        $(`.${parentClass} .edit`).css("display", "none");
+        $(`.${parentClass} .show`).css("display", "block");
+        $(`.${parentClass} .btn-cancel`).css("display", "none");
+        $(`.${parentClass} .btn-save`).css("display", "none");
+    }
+    function SaveInfo() {
+        var formData = {
+            Id: $('#Id').val(),
+            birtDate: $('#birtDate').val().trim(),
+            placeOfBirt: $('#placeOfBirt').val().trim(),
+            placeOfOrigin: $('#placeOfOrigin').val().trim(),
+            curResidence: $('#curResidence').val().trim(),
+            resident: $('#resident').val().trim(),
+            temResidence: $('#temResidence').val().trim(),
+            gender: $('#gender').val(),
+            taxCode: $('#taxCode').val().trim(),
+            marital: $('#marital').val().trim(),
+            ethnicity: $('#ethnicity').val().trim(),
+            religion: $('#religion').val().trim(),
+            nationality: $('#nationality').val().trim(),
+            educationalLevel: $('#educationalLevel').val().trim(),
+        }
+        ActionFunc('@Url.Action("_SaveInfo")', 'POST', formData, "", function (response) {
+            if (response) {
+                loadThongTinCoBan();
+            }
+            else {
+                notify("Lỗi khi gửi request")
+            }
+        })
+      
+        handleShowHide('info');
+    }
+       function SaveInfoContact() {
+            var formData = {
+                Id: $('#Id').val(),
+                otherNum: $('#otherNum').val().trim(),
+                address: $('#address').val().trim(),
+                Email: $('#Email').val().trim(),
+                zalo: $('#zalo').val().trim(),
+            }
+            if (formData.otherNum.length > 0 && formData.otherNum.length !== 10) {
+                notify('Số điện thoại chưa hợp lệ');
+            }
+            else if (!isEmail(formData.Email)) {
+                notify("Email chưa hợp lệ");
+            }
+            else if (formData.otherNum.length > 0 && formData.otherNum.length !== 10) {
+                notify('Số Zalo không hợp lệ');
+            }
+            else {
+                ActionFunc('@Url.Action("_SaveInfoContact")', 'POST', formData, "", function (response) {
+                    if (response) {
+                        loadThongTinLienHe();
+                    }
+                    else {
+                        notify("Lỗi khi gửi request")
+                    }
+                })
+                handleShowHide('contact');
+
+            }
+        }
+        function SaveInfoPersonal() {
+            var formData = {
+                Id: $('#Id').val(),
+                CCCD: $('#CCCD').val().trim(),
+                passPortNum: $('#passPortNum').val().trim(),
+                codeBank: $('#codeBank').val().trim(),
+                numBank: $('#numBank').val().trim(),
+                nameAccountBank: $('#nameAccountBank').val().trim(),
+            }
+            ActionFunc('@Url.Action("_SaveInfoPersonal")', 'POST', formData, "", function (response) {
+                if (response) {
+                    console.log(response)
+                    loadThongTinCaNhan();
+                }
+                else {
+                    notify("Lỗi khi gửi request")
+                }
+            })
+            handleShowHide('personal')
+          }
+    </script>
+}

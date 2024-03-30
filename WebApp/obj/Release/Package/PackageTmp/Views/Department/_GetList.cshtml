@@ -1,0 +1,56 @@
+﻿
+@{
+    var list = ViewBag.list as List<ToolsApp.EntityFramework.Department>;
+
+}
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên công ty</th>
+            <th>Mã Số Thuế</th>
+            <th>Vị trí</th>
+            <th>Quốc gia</th>
+            <th>Thành phố</th>
+            <th>Quận / Huyện</th>
+            <th>Phường / xã</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+            <th>Điện thoại</th>
+            <th>Trạng thái</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in list)
+        {
+        <tr>
+            <td width="133px">
+                <a onclick="Edit('@item.Id')" class="btn">
+                    <i class="fas fa-edit"></i> Sửa
+                </a>
+                <a onclick="Delete('@item.Id')" class="btn">
+                    <i class="far fa-trash-alt"></i> Xoá
+                </a>
+            </td>
+
+            <td>@item.Name</td>
+            <td>@item.taxCode</td>
+            <td>@item.Location</td>
+            <td>@item.country</td>
+            <td>@item.city</td>
+            <td>@item.district</td>
+            <td>@item.ward</td>
+            <td>@item.street</td>
+            <td>@item.Email</td>
+            <td>@item.phone</td>
+            <td>@Html.Raw((item.status == true) ? "<font color='blue'>True</font>" : "<font color='red'>False</font>")</td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>

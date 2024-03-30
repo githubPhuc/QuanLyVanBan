@@ -1,0 +1,86 @@
+﻿
+@using ToolsApp.EntityFramework;
+@{
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.ReportSalariesTmp>;
+    var db = new ChamCong_teamdevEntities();
+    var username = ViewData["username"];
+}
+<input style="display:none" id="Username" class="ml-3" value="@username" />
+<table id="myTable" class="table table-bordered table-striped table-Salaries">
+    <thead>
+        <tr>
+            <th>Tháng</th>
+            <th>Tên nhân viên</th>
+            <th>Số điện thoại</th>
+            <th>Tổng ngày làm (QĐ)</th>
+            <th>Lương cơ bản</th>
+            <th>Ca làm</th>
+            <th>Tổng giờ(TC)</th>
+            <th>Tổng giờ trễ</th>
+            <th>Trừ nghỉ (CP)</th>
+            <th>Trừ nghỉ (KP)</th>
+            <th>Phụ cấp</th>
+            <th>Tạm ứng</th>
+            <th>Tổng lương</th>
+            <th>Lương thực lãnh</th>
+            <th>Người xuất bảng lương</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in data)
+        {
+            var fullName = db.AspNetUsers.FirstOrDefault(a => a.UserName == item.Username).Fullname;
+            var phucap = item.allowance + item.allowanceOther + item.allowanceOverTimeHours;
+            <tr>
+
+                <td>
+                    @item.dateTime.ToString("MM-yyyy")
+                </td>
+                <td>
+                    @fullName
+                </td>
+                <td>
+                    @item.Username
+                </td>
+                <td class="f-w">
+                    @item.sumDayWorking.ToString("N2")
+                </td>
+                <td class="f-w c-green">
+                    @item.Salaries.ToString("#,##0.00")
+
+                </td>
+                <td class="c-blue f-w">
+                    @item.workShift
+                </td>
+                <td class="c-blue f-w">
+                    @item.sumOverTimeHours
+                </td>
+                <td class="c-blue f-w">
+                    @item.sumBeLate
+                </td>
+                <td class="f-w">
+                    <span class="c-red">@item.furlough.ToString("#,##0.00")</span>
+                </td>
+                <td class="f-w">
+
+                    <span class="c-red">@item.absenced.ToString("#,##0.00")</span>
+                </td>
+                <td class="c-green f-w">
+                    @phucap.ToString("#,##0.00")
+                </td>
+                <td class="c-red f-w">
+                    @item.advancePayment.ToString("#,##0.00")
+                </td>
+                <td class="c-darkblue f-w">
+                    @item.totalSalaries.ToString("#,##0.00")
+                </td>
+                <td class="c-darkblue f-w">
+                    <b>@item.actualAmountReceived.ToString("#,##0.00")</b>
+                </td>
+                <td>
+                    @item.UserCreate
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

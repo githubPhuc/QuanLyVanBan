@@ -1,0 +1,268 @@
+﻿
+@{
+    var data = ViewBag.data as ToolsApp.EntityFramework.ProfileUser;
+    var user = ViewBag.user as ToolsApp.EntityFramework.AspNetUser;
+    var token = ViewData["token"];
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-3">
+            <div class="card-body info">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <h4 class="mb-4 ">Thông tin cơ bản</h4>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" onclick="EditInfo('info')" class="btn-shadow btn btn-info">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                                <i class="fa-solid fa-pen" style="color: #fefbfb;"></i>
+                            </span>
+                            Cập nhật
+                        </button>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Tên đầy đủ</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@user.Fullname" class="form-control" disabled
+                                       type="text" id="Fullname" name="Fullname">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @user.Fullname
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Ngày sinh</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.birtDate" class="form-control" type="date" id="birtDate" name="birtDate">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.birtDate
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Nơi sinh</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <select class=" form-control chosen-select" style="width: 100%" id="placeOfBirt" name="placeOfBirt" aria-label=".form-select-md">
+                                    <option value="@data.placeOfBirt">@data.placeOfBirt</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.placeOfBirt
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Nguyên quán</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <select class=" form-control chosen-select" style="width: 100%" id="placeOfOrigin" name="placeOfOrigin" aria-label=".form-select-md">
+                                    <option value="@data.placeOfOrigin">@data.placeOfOrigin</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.placeOfOrigin
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Nơi ở hiện tại</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value=" @data.curResidence" class="form-control " type="text" id="curResidence" name="curResidence">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.curResidence
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Địa chỉ thường trú</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.resident" class="form-control " type="text" id="resident" name="resident">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.resident
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Địa chỉ tạm trú</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value=" @data.temResidence" class="form-control " type="text" id="temResidence" name="temResidence">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.temResidence
+
+                            </div>
+                        </div>
+                        <hr>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Giới tính</h6>
+                            </div>
+                            <div class="col-sm-9 edit">
+                                <select id="gender" name="gender">
+                                    <option value="male" @if (data.gender == "male") { <text> selected</text> }>Nam</option>
+                                    <option value="female" @if (data.gender == "female") { <text> selected</text> }>Nữ</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @(data.gender == null?"":data.gender == "male"?"Nam":data.gender == "female"? "Nữ":"")
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">MST cá nhân (Nếu có)</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.taxCode" class="form-control " type="text" id="taxCode" name="taxCode">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.taxCode
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Tình trạng hôn nhân</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.marital" class="form-control " type="text" id="marital" name="marital">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.marital
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Dân tộc</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.ethnicity" class="form-control " type="text" id="ethnicity" name="ethnicity">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.ethnicity
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Tôn giáo</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.religion" class="form-control " type="text" id="religion" name="religion">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.religion
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Quốc tịch</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.nationality" class="form-control " type="text" id="nationality" name="nationality">
+                            </div>
+
+                            <div class="col-sm-10 text-secondary show">
+                                @data.nationality
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h6 class="mb-0">Trình độ học vấn</h6>
+                            </div>
+                            <div class="col-md-10 col-sm-12 edit">
+                                <input value="@data.educationalLevel" class="form-control " type="text" id="educationalLevel" name="educationalLevel">
+                            </div>
+                            <div class="col-sm-10 text-secondary show">
+                                @data.educationalLevel
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="button-group">
+                            <button type="button" onclick="SaveInfo()" class="btn-shadow btn-save btn btn-info btn-success ">
+                                <span class="btn-icon-wrapper pr-2 opacity-7">
+                                    <i class="fa fa-save"></i>
+                                </span>
+                                Lưu
+                            </button>
+                            <button type="button" onclick="Cancel('info')" style="margin-left:20px" class="btn-shadow btn-cancel btn btn-info btn-danger">
+                                <span class="btn-icon-wrapper pr-2 opacity-7">
+
+                                    <i class="fa fa-close"></i>
+                                </span>
+                                Hủy
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#placeOfOrigin').select2();
+        $('#placeOfBirt ').select2();
+        $('#country ').select2();
+    });
+    var placeOfOrigin = document.getElementById("placeOfOrigin");
+    var placeOfBirt = document.getElementById("placeOfBirt");
+    var subAdministrativeArea = document.getElementById("subAdministrativeArea");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderCity(result.data);
+
+
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+
+            var a = placeOfOrigin.options[placeOfOrigin.options.length] = new Option(x.Name, x.Name);
+            var b = placeOfBirt.options[placeOfBirt.options.length] = new Option(x.Name, x.Name);
+        }
+        //administrativeArea.onchange = function () {
+        //    subAdministrativeArea.length = 1;
+        //    if (this.value != "") {
+        //        const result = data.filter(n => n.Name === this.value);
+
+        //    }
+        //};
+    }
+</script>
