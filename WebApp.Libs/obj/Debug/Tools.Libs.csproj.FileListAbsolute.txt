@@ -278,3 +278,40 @@ C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CopyComplete
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.dll
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.pdb
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.dll.config
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.pdb
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\EPPlus.Interfaces.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\EPPlus.System.Drawing.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Quartz.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Buffers.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.ComponentModel.Annotations.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Drawing.Common.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.IO.Packaging.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Memory.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Numerics.Vectors.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.presentation.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Quartz.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Buffers.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.IO.Packaging.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Memory.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Numerics.Vectors.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.xml
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.presentation.xml
+D:\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.AssemblyReference.cache
+D:\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CoreCompileInputs.cache
+D:\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CopyComplete
+D:\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.dll
+D:\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.pdb
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.Pdf2Word.dll
+D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.xml

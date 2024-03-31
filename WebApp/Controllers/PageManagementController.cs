@@ -57,13 +57,10 @@ namespace ToolsApp.Areas.Admin.Controllers
                     var model_copy = Mapper.MapFrom(model);
                     model_copy.DatetimeCreate = DateTime.Now;
                     model_copy.UserCreate = User.UserName;
-
                     model_copy.DatetimeUpdate = DateTime.Now;
                     model_copy.UserUpdate = User.UserName;
-
                     db_.Pages.Add(model_copy);
                     db_.SaveChanges();
-
                     return Json(new { status = 1, title = "", text = "Created.", obj = "" }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)

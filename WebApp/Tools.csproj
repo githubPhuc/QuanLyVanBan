@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Words, Version=24.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Words.24.3.0\lib\net461\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words.Pdf2Word, Version=24.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Words.24.3.0\lib\net461\Aspose.Words.Pdf2Word.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
@@ -1095,6 +1101,7 @@
     <Content Include="Content\images\logo_to.png" />
     <Content Include="Content\images\logo_tt1.png" />
     <Content Include="Content\images\noImage.png" />
+    <Content Include="Content\images\S-Office.png" />
     <Content Include="Content\images\sticker-facebook.gif" />
     <Content Include="Content\images\user.svg.png" />
     <Content Include="Content\images\zalo.png" />
@@ -3190,6 +3197,7 @@
     <Compile Include="Authentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="Authentication\CustomPrincipal.cs" />
     <Compile Include="Authentication\User_RoleAuthentication.cs" />
+    <Compile Include="Controllers\DocumentManagermentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagerStaffController.cs" />
@@ -3264,6 +3272,10 @@
     <Content Include="Views\ManagerStaff\_Image_View.cshtml" />
     <Content Include="Views\ManagerStaff\_Insert_View.cshtml" />
     <Content Include="Views\ManagerStaff\_Update_View.cshtml" />
+    <Content Include="Views\DocumentManagerment\Index.cshtml" />
+    <Content Include="Views\DocumentManagerment\_Insert.cshtml" />
+    <Content Include="Views\DocumentManagerment\_Edit.cshtml" />
+    <Content Include="Views\DocumentManagerment\GetList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

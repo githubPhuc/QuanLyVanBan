@@ -1,0 +1,70 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var list = ViewBag.list as IEnumerable<ToolsApp.EntityFramework.thongtinvanban>;
+    QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
+}
+
+<table id="myTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Loại Văn Bản</th>
+            <th>Văn Bản Di Chuyển</th>
+            <th>Phòng Ban</th>
+            <th>Nguồn Văn Bản</th>
+            <th>Số Văn Bản Nội Bộ</th>
+            <th>Bút Phê</th>
+            <th>Tài Liệu Đính Kèm</th>
+            <th>Ngày Phòng Ban Soạn Thảo</th>
+            <th>Ngày Tạo</th>
+            <th>Ngày Cập Nhật</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var STT = 1; }
+        @foreach (var item in list)
+        {
+        
+                var loaiVanBan = db_.loaivanbans.FirstOrDefault(a => a.Id == item.idLoaiVanBan).TenLoai;
+                var phongBan = db_.DanhSachPhongbans.FirstOrDefault(a => a.ID == item.IdPhongBan).TenPhongBan;
+        <tr>
+            <td style="max-width:40px!important">
+                <a onclick="Edit('@item.')" class="btn">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <a onclick="Delete('@item.Id')" class="btn">
+                    <i class="far fa-trash-alt"></i> Delete
+                </a>
+            </td>
+            <td>@loaiVanBan</td>
+            <td>
+                @item.IdVanBanDiChuyen;
+            </td>
+            <td>
+                @phongBan
+            </td>
+            <td>@item.NguonVB</td>
+            <td>@item.SoVBNoiBo</td>
+            <td>@item.ButPhe</td>
+            <td>
+                <a href="#" class="view-document" data-file="@item.TaiLieuDinhKem" target="_blank">Xem tài liệu</a>
+            </td>
+            <td>@item.NgayPhongBanSoanThao</td>
+            <td>@item.DatetimeCreate</td>
+            <td>@item.DatetimeUpdate</td>
+        </tr>
+
+        
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $(".view-document").click(function (e) {
+            e.preventDefault();
+            var fileName = $(this).data("file");
+            window.location.href = "/DocumentManagerment/ViewDocument?fileName=" + fileName;
+            window.open(pdfUrl, '_blank');
+        });
+    });
+</script>

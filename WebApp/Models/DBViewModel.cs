@@ -509,4 +509,23 @@ namespace ToolsApp.Models
         public string isShow { get; set; }
         
     }
+    public class ThongTinVanBanModels
+    {
+        public int Id { get; set; }
+        public int idLoaiVanBan { get; set; }
+        public int IdVanBanDiChuyen { get; set; }
+        public int IdPhongBan { get; set; }
+        public string NguonVB { get; set; }
+        public int SoVBNoiBo { get; set; }
+        public string ButPhe { get; set; }
+        public string TaiLieuDinhKem { get; set; }
+        public DateTime NgayPhongBanSoanThao { get; set; }
+        public int UserCreate  { get; set; }
+        public DateTime DatetimeCreate { get; set; }
+        public int UserUpdate { get; set; }
+        public DateTime  DatetimeUpdate { get; set; }
+        public bool isDelete { get; set; }
+        public int UserDelete { get; set; }
+        public DateTime DatetimeDelete { get; set; }
+    }
 }   

@@ -1,0 +1,91 @@
+﻿
+@{
+    var loaiVanBans =  ViewBag.loaiVanBans  as List<ToolsApp.EntityFramework.loaivanban>;
+    var vanbandichuyens =  ViewBag.vanbandichuyens as List<ToolsApp.EntityFramework.VanBanDiChuyen>;
+    var phongBans =  ViewBag.phongBans as List<ToolsApp.EntityFramework.DanhSachPhongban>;
+}
+<div class="row col-lg-12" style="margin-bottom:5px">
+    <form id="insertForm" style="width:100%">
+        <div class="col-md-12 col-sm-12">
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Chọn Văn Phòng</label>
+                <select id="IdPhongBan" name="IdPhongBan" class="form-control chosen-select" style="width: 100%;">
+                    @foreach (var item in phongBans)
+                    {
+                        <option value="@item.ID">@item.TenPhongBan</option>
+                    }
+                </select>
+            </div>
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Văn Bản Di Chuyển</label>
+                <select id="IdVanBanDiChuyen" name="IdVanBanDiChuyen" class="form-control chosen-select" style="width: 100%;">
+                    @foreach (var item in vanbandichuyens)
+                    {
+                        <option value="@item.Id">@item.Id</option>
+
+                    }
+                </select>
+            </div>
+
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Nguồn Văn Bản:</label>
+                <div class="col-md-12 col-sm-12 ten">
+                    <input value="" class="form-control" type="text" id="NguonVB" name="NguonVB" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Số Văn Bản Nội Bộ</label>
+                <div class="col-md-12 col-sm-12 ten">
+                    <input value="" class="form-control" type="number" id="SoVBNoiBo" name="SoVBNoiBo" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Bút Phê</label>
+                <div class="col-md-12 col-sm-12 ten">
+                    <input value="" class="form-control" type="text" id="ButPhe" name="ButPhe" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Tài Liệu Đính Kèm</label>
+                <div class="col-md-12 col-sm-12 ten">
+                    <input value="" class="form-control" type="file" id="TaiLieuDinhKem" name="TaiLieuDinhKem" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Loại Văn Bản</label>
+                <select id="idLoaiVanBan" name="idLoaiVanBan" class="form-control chosen-select" style="width: 100%;">
+                    @foreach (var item in loaiVanBans)
+                    {
+                        <option value="@item.Id">@item.TenLoai</option>
+
+                    }
+                </select>
+            </div>
+            <div class="row" style="margin-bottom:5px">
+                <label class="col-md-12 col-sm-12">Ngày Phòng Ban Soạn Thảo</label>
+                <div class="col-md-12 col-sm-12 ten">
+                    <input value="" class="form-control" type="datetime-local" id="NgayPhongBanSoanThao" name="NgayPhongBanSoanThao" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript">
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "125%" },
+        'search_contains': true
+    }
+    for (var selector in config) {
+        $(selector).chosen(config);
+    }
+
+
+
+
+</script>

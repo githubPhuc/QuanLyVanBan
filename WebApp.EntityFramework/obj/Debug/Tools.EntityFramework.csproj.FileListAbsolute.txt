@@ -218,3 +218,19 @@ C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.E
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.CopyComplete
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.dll
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.pdb
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\ToolsApp.EntityFramework.dll.config
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\ToolsApp.EntityFramework.dll
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\ToolsApp.EntityFramework.pdb
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.dll
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.dll
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.presentation.dll
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.xml
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.xml
+D:\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.presentation.xml
+D:\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.AssemblyReference.cache
+D:\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.CoreCompileInputs.cache
+D:\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.CopyComplete
+D:\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.dll
+D:\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.pdb
