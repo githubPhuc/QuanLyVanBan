@@ -9,7 +9,7 @@ namespace ToolsApp.Helper
     
     public class UserService
     {
-        QuanLyVanBanEntities db_ = new QuanLyVanBanEntities();
+        QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
         
     }
 }

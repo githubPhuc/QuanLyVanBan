@@ -58,58 +58,58 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DanhSachPhongban.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="DiaDiem.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="loaivanban.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="Page.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuanLyVanBan.Context.cs">
+    <Compile Include="QuanLiVanBan.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyVanBan.Context.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="QuanLyVanBan.cs">
+    <Compile Include="QuanLiVanBan.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
-    <Compile Include="QuanLyVanBan.Designer.cs">
+    <Compile Include="QuanLiVanBan.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyVanBan.edmx</DependentUpon>
+      <DependentUpon>QuanLiVanBan.edmx</DependentUpon>
     </Compile>
     <Compile Include="thongtinvanban.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Page.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
     <Compile Include="VanBanDiChuyen.cs">
-      <DependentUpon>QuanLyVanBan.tt</DependentUpon>
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="QuanLyVanBan.edmx">
+    <EntityDeploy Include="QuanLiVanBan.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuanLyVanBan.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuanLiVanBan.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="QuanLyVanBan.edmx.diagram">
-      <DependentUpon>QuanLyVanBan.edmx</DependentUpon>
+    <None Include="QuanLiVanBan.edmx.diagram">
+      <DependentUpon>QuanLiVanBan.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -120,15 +120,15 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="QuanLyVanBan.Context.tt">
+    <Content Include="QuanLiVanBan.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanLyVanBan.edmx</DependentUpon>
-      <LastGenOutput>QuanLyVanBan.Context.cs</LastGenOutput>
+      <DependentUpon>QuanLiVanBan.edmx</DependentUpon>
+      <LastGenOutput>QuanLiVanBan.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="QuanLyVanBan.tt">
+    <Content Include="QuanLiVanBan.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanLyVanBan.edmx</DependentUpon>
-      <LastGenOutput>QuanLyVanBan.cs</LastGenOutput>
+      <DependentUpon>QuanLiVanBan.edmx</DependentUpon>
+      <LastGenOutput>QuanLiVanBan.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

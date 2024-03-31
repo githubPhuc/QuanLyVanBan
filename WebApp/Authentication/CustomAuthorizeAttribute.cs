@@ -20,7 +20,7 @@ namespace ToolsApp.Authentication
         {
             if (filterContext.HttpContext.Request.IsAuthenticated)
             {
-                using (var _db = new ToolsApp.EntityFramework.QuanLyVanBanEntities())
+                using (var _db = new ToolsApp.EntityFramework.QuanLiVanBanEntities())
                 {
                     var user_fun = _db.Users.FirstOrDefault(p => p.UserName == CurrentUser.UserName );
 

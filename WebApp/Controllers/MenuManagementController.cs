@@ -16,7 +16,7 @@ namespace ToolsApp.Areas.Admin.Controllers
     [CustomAuthorize(Function = "MenuManagement/Index")]
     public class MenuManagementController : BaseController
     {
-        QuanLyVanBanEntities db_ = new QuanLyVanBanEntities();
+        QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
         // GET: UserManagement
         public ActionResult Index()
         {

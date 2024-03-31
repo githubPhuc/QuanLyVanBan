@@ -1,19 +1,18 @@
 ﻿
 
 @{
-    var data = ViewBag.data as ToolsApp.EntityFramework.Department;
+   
 }
 
 <div class="row" style="margin-bottom:5px">
     <div class="col-md-12 col-sm-4">
+
         <div class="row" style="margin-bottom:5px">
-            <label class="col-md-12 col-sm-12">Số điện thoại</label>
+            <label class="col-md-12 col-sm-12">Tài khoản:</label>
             <div class="col-md-12 col-sm-12 ten">
-                <input placeholder="Số điện thoại sẽ dùng làm tên tài khoản cho nhân viên" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" value="" class="form-control" type="text" id="username" name="username" />
+                <input value="" class="form-control" type="text" id="UserName" name="UserName" />
             </div>
         </div>
-
-
         <div class="row" style="margin-bottom:5px">
             <label class="col-md-12 col-sm-12">Mật khẩu:</label>
             <div class="col-md-12 col-sm-12 ten">
@@ -23,20 +22,28 @@
         <div class="row" style="margin-bottom:5px">
             <label class="col-md-12 col-sm-12">Tên nhân viên</label>
             <div class="col-md-12 col-sm-12 ten">
-                <input value="" class="form-control" type="text" id="fullName" name="fullName" />
+                <input value="" class="form-control" type="text" id="HoNV" name="HoNV" />
             </div>
         </div>
         <div class="row" style="margin-bottom:5px">
             <label class="col-md-12 col-sm-12">Email</label>
             <div class="col-md-12 col-sm-12 ten">
-                <input oninput="this.value = this.value.trim()" value="@data.Email" class="form-control" type="text" id="email" name="email" />
+                <input oninput="this.value = this.value.trim()" value="" class="form-control" type="text" id="email" name="email" />
             </div>
         </div>
         <div class="row" style="margin-bottom:5px">
-            <label class="col-md-12 col-sm-12">Công ty</label>
+            <label class="col-md-12 col-sm-12">Số điện thoại</label>
             <div class="col-md-12 col-sm-12 ten">
-                <select id="idDepartment" name="idDepartment" class="form-control chosen-select" style="width: 100%;">
-                    <option value="@data.Id"> @data.Name</option>
+                <input placeholder="Số điện thoại sẽ dùng làm tên tài khoản cho nhân viên" oninput="this.value = this.value.replace(/[^0-123456789]/g, '');" value="" class="form-control" type="text" id="username" name="username" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Quyền quản trị</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <select id="AccoutType" name="AccoutType" class="form-control chosen-select" style="width: 100%;">
+                    <option value="">--Vui lòng chọn quyền--</option>
+                    <option value="">--Admin--</option>
+                    <option value="">--User--</option>
                 </select>
             </div>
         </div>

@@ -14,7 +14,7 @@ namespace ToolsApp.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        QuanLyVanBanEntities db_ = new QuanLyVanBanEntities();
+        QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
         // GET: Home
         public ActionResult Index(string Id = "")
         {

@@ -21,6 +21,7 @@ namespace ToolsApp.EntityFramework
         public Nullable<System.DateTime> DatetimeCreate { get; set; }
         public Nullable<int> UserUpdate { get; set; }
         public Nullable<System.DateTime> DatetimeUpdate { get; set; }
+        public Nullable<bool> isDelete { get; set; }
         public Nullable<int> UserDelete { get; set; }
         public Nullable<System.DateTime> DatetimeDelete { get; set; }
         public Nullable<bool> isRoleCreate { get; set; }
@@ -28,7 +29,6 @@ namespace ToolsApp.EntityFramework
         public Nullable<bool> isRoleExport { get; set; }
         public Nullable<bool> isRoleExportAll { get; set; }
         public Nullable<bool> isRoleDelete { get; set; }
-        public Nullable<bool> isDelete { get; set; }
     
         public virtual Page Page { get; set; }
         public virtual User User { get; set; }

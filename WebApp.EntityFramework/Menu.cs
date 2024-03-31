@@ -31,9 +31,9 @@ namespace ToolsApp.EntityFramework
         public Nullable<System.DateTime> DatetimeCreate { get; set; }
         public Nullable<int> UserUpdate { get; set; }
         public Nullable<System.DateTime> DatetimeUpdate { get; set; }
+        public Nullable<bool> isDelete { get; set; }
         public Nullable<int> UserDelete { get; set; }
         public Nullable<System.DateTime> DatetimeDelete { get; set; }
-        public Nullable<bool> isDelete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Menu> Menu1 { get; set; }

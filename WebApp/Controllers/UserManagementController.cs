@@ -16,7 +16,7 @@ namespace ToolsApp.Areas.Admin.Controllers
     [CustomAuthorize(Function = "UserManagement/Index")]
     public class UserManagementController : BaseController
     {
-        QuanLyVanBanEntities db_ = new QuanLyVanBanEntities();
+        QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
 
 
         // GET: UserManagement

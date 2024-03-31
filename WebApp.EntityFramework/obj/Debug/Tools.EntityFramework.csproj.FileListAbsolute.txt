@@ -202,3 +202,19 @@ D:\2_Phuc_Source\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFrame
 D:\2_Phuc_Source\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.CopyComplete
 D:\2_Phuc_Source\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.dll
 D:\2_Phuc_Source\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.pdb
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\ToolsApp.EntityFramework.dll.config
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\ToolsApp.EntityFramework.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\ToolsApp.EntityFramework.pdb
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.presentation.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\bin\Debug\zxing.presentation.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.AssemblyReference.cache
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.CoreCompileInputs.cache
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\Tools.EntityFramework.csproj.CopyComplete
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.EntityFramework\obj\Debug\ToolsApp.EntityFramework.pdb

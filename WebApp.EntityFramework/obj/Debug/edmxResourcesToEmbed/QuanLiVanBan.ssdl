@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLiVanBanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DanhSachPhongban">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPhongBan" Type="nvarchar" MaxLength="50" />
+    <Property Name="KhoiPhongBan" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserCreate" Type="int" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" />
+    <Property Name="UserUpdate" Type="int" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="datetime2" Precision="7" />
+    <Property Name="UserDelete" Type="int" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="DiaDiem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar(max)" />
+    <Property Name="SoDienThoai" Type="varchar" MaxLength="10" />
+    <Property Name="TenDiaDiem" Type="nvarchar(max)" />
+    <Property Name="UserCreate" Type="int" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" />
+    <Property Name="UserUpdate" Type="int" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="int" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="loaivanban">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="PageId" Type="int" />
+    <Property Name="Icon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OrderNo" Type="int" />
+    <Property Name="MenuId" Type="int" />
+    <Property Name="UserCreate" Type="int" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" />
+    <Property Name="UserUpdate" Type="int" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="int" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Info" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Controler" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Action" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserCreate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UserUpdate" Type="nvarchar(max)" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="UserDelete" Type="nvarchar(max)" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="thongtinvanban">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idLoaiVanBan" Type="int" />
+    <Property Name="IdVanBanDiChuyen" Type="int" />
+    <Property Name="IdPhongBan" Type="int" />
+    <Property Name="NguonVB" Type="nvarchar(max)" />
+    <Property Name="SoVBNoiBo" Type="int" />
+    <Property Name="ButPhe" Type="nvarchar(max)" />
+    <Property Name="TaiLieuDinhKem" Type="nvarchar(max)" />
+    <Property Name="NgayPhongBanSoanThao" Type="datetime" />
+    <Property Name="UserCreate" Type="int" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" />
+    <Property Name="UserUpdate" Type="int" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="int" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="User_Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="PageId" Type="int" Nullable="false" />
+    <Property Name="UserCreate" Type="int" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" />
+    <Property Name="UserUpdate" Type="int" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="int" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+    <Property Name="isRoleCreate" Type="bit" />
+    <Property Name="isRoleEdit" Type="bit" />
+    <Property Name="isRoleExport" Type="bit" />
+    <Property Name="isRoleExportAll" Type="bit" />
+    <Property Name="isRoleDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccoutType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SoDienThoai" Type="nvarchar(max)" />
+    <Property Name="HoNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="NoiSinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChiThuongTru" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChiTamTru" Type="nvarchar" MaxLength="50" />
+    <Property Name="DanToc" Type="nvarchar" MaxLength="50" />
+    <Property Name="TonGiao" Type="nvarchar" MaxLength="50" />
+    <Property Name="CCCD" Type="int" />
+    <Property Name="NgayCap" Type="date" />
+    <Property Name="NoiCap" Type="nvarchar" MaxLength="500" />
+    <Property Name="MaSoBHXH" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrinhDoVanHoa" Type="nvarchar" MaxLength="150" />
+    <Property Name="TrinhDoChuyenMon" Type="nvarchar" MaxLength="150" />
+    <Property Name="NganhHoc" Type="nvarchar" MaxLength="150" />
+    <Property Name="NoiDaoTao" Type="nvarchar" MaxLength="150" />
+    <Property Name="TrinhDoChinhTri" Type="nvarchar" MaxLength="150" />
+    <Property Name="NgayVaoDangDuBi" Type="date" />
+    <Property Name="NgayVaoDangChinhThuc" Type="date" />
+    <Property Name="PhongBan" Type="nvarchar" MaxLength="500" />
+    <Property Name="ChucDanh" Type="nvarchar" MaxLength="500" />
+    <Property Name="NgayVaoLam" Type="date" />
+    <Property Name="GhiChu" Type="nvarchar(max)" />
+    <Property Name="HieuLuc" Type="bit" />
+    <Property Name="UserCreate" Type="int" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" />
+    <Property Name="UserUpdate" Type="int" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="int" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="VanBanDiChuyen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDiaDiemNhan" Type="int" />
+    <Property Name="IdDiaDiemGui" Type="int" />
+    <Property Name="NguoiKy" Type="int" />
+    <Property Name="NgayKy" Type="datetime" />
+    <Property Name="IsTrangThaiDenDi" Type="bit" />
+    <Property Name="NgayXuLy" Type="datetime" />
+    <Property Name="UserCreate" Type="int" Nullable="false" />
+    <Property Name="DatetimeCreate" Type="datetime2" Precision="7" />
+    <Property Name="UserUpdate" Type="int" />
+    <Property Name="DatetimeUpdate" Type="datetime2" Precision="7" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="UserDelete" Type="int" />
+    <Property Name="DatetimeDelete" Type="datetime2" Precision="7" />
+  </EntityType>
+  <Association Name="FK_Menu_Menu_MenuId">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="0..1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_AspNetUsers_userId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Page" Type="Self.User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Page_Page_PageId">
+    <End Role="Page" Type="Self.Page" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Page" Type="Self.User_Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Page">
+        <PropertyRef Name="PageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLiVanBanModelStoreContainer">
+    <EntitySet Name="DanhSachPhongban" EntityType="Self.DanhSachPhongban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DiaDiem" EntityType="Self.DiaDiem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loaivanban" EntityType="Self.loaivanban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="thongtinvanban" EntityType="Self.thongtinvanban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Page" EntityType="Self.User_Page" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VanBanDiChuyen" EntityType="Self.VanBanDiChuyen" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Menu_Menu_MenuId" Association="Self.FK_Menu_Menu_MenuId">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Menu1" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Page_PageId" Association="Self.FK_Menu_Page_PageId">
+      <End Role="Page" EntitySet="Page" />
+      <End Role="Menu" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_AspNetUsers_userId" Association="Self.FK_User_Page_AspNetUsers_userId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Page_Page_PageId" Association="Self.FK_User_Page_Page_PageId">
+      <End Role="Page" EntitySet="Page" />
+      <End Role="User_Page" EntitySet="User_Page" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

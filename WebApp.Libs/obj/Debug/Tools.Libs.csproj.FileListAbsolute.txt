@@ -244,3 +244,37 @@ D:\2_Phuc_Source\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CoreCompil
 D:\2_Phuc_Source\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CopyComplete
 D:\2_Phuc_Source\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.dll
 D:\2_Phuc_Source\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.pdb
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.dll.config
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.pdb
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Quartz.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Buffers.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Drawing.Common.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.IO.Packaging.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Memory.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.presentation.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Quartz.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Buffers.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.IO.Packaging.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Memory.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.presentation.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.AssemblyReference.cache
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CoreCompileInputs.cache
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CopyComplete
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.pdb

@@ -13,9 +13,9 @@ namespace ToolsApp.Controllers
 {
     public class LoginController : BaseController
     {
-        
 
-        QuanLyVanBanEntities db = new QuanLyVanBanEntities();
+
+        QuanLiVanBanEntities db = new QuanLiVanBanEntities();
         // GET: Login
         [AllowAnonymous]
         public ActionResult Index(string returnUrl = "")

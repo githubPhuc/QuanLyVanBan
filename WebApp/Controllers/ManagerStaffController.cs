@@ -19,8 +19,7 @@ namespace ToolsApp.Controllers
     [CustomAuthorize(Function = "ManagerStaff/Index")]
     public class ManagerStaffController : BaseController
     {
-        QuanLyVanBanEntities db_ = new QuanLyVanBanEntities();
-        // GET: ManagerStaff
+        QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
         public ActionResult Index()
         {
             return View();
@@ -37,7 +36,7 @@ namespace ToolsApp.Controllers
             var list = db_.Users.Where(a =>
                             (string.IsNullOrEmpty(UsernameSearch) || a.UserName.ToUpper().Contains(UsernameSearch.ToUpper())) &&
                             (string.IsNullOrEmpty(AccountType) || a.AccoutType.ToUpper().Contains(AccountType.ToUpper())) &&
-                            (string.IsNullOrEmpty(FullnameSearch) || (a.HoNV + a.TenNV).ToUpper().Contains(FullnameSearch.ToUpper()))
+                            (string.IsNullOrEmpty(FullnameSearch) || (a.HoNV +" "+ a.TenNV).ToUpper().Contains(FullnameSearch.ToUpper()))
                         ).ToList();
             ViewBag.list = list;
             var dataUser = db_.Users.Where(a => a.UserName == User.UserName).FirstOrDefault();
@@ -68,39 +67,83 @@ namespace ToolsApp.Controllers
         [AllowAnonymous]
         public async Task<JsonResult> Register(RegisterViewModel model)
         {
-            if (string.IsNullOrEmpty(model.HoNV)&& string.IsNullOrEmpty(model.TenNV))
-            {
-                return Json(new { status = -1, title = "", text = "Chưa nhập Họ và tên.", obj = "" }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(model.UserName))
-                {
-                    return Json(new { status = -1, title = "", text = "Vui lòng nhập Username", obj = "" }, JsonRequestBehavior.AllowGet);
-                }
-
-                else
-                {
-                    if (string.IsNullOrEmpty(model.PasswordHash))
-                    {
-                        return Json(new { status = -1, title = "", text = "Vui lòng nhập Password", obj = "" }, JsonRequestBehavior.AllowGet);
-
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(model.Email))
-                        {
-                            return Json(new { status = -1, title = "", text = "Vui lòng nhập Email", obj = "" }, JsonRequestBehavior.AllowGet);
-
-                        }
-
-                    }
-                }
-            }
-      
-            model.AccoutType = "User";
             try
             {
+                if (string.IsNullOrEmpty(model.HoNV) && string.IsNullOrEmpty(model.TenNV))
+                {
+                    return Json(new { status = -1, title = "", text = "Chưa nhập Họ và tên.", obj = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(model.UserName))
+                    {
+                        return Json(new { status = -1, title = "", text = "Vui lòng nhập Username", obj = "" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    else
+                    {
+                        if (string.IsNullOrEmpty(model.PasswordHash))
+                        {
+                            return Json(new { status = -1, title = "", text = "Vui lòng nhập Password", obj = "" }, JsonRequestBehavior.AllowGet);
+
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(model.Email))
+                            {
+                                return Json(new { status = -1, title = "", text = "Vui lòng nhập Email", obj = "" }, JsonRequestBehavior.AllowGet);
+
+                            }
+                            if (string.IsNullOrEmpty(model.AccoutType))
+                            {
+                                return Json(new { status = -1, title = "", text = "Vui lòng chọn AccoutType", obj = "" }, JsonRequestBehavior.AllowGet);
+                            }
+                            var pass = ToolsApp.Utilities.UtilsLocal.mahoaS(model.PasswordHash);
+                            var dataUser =await db_.Users.Where(a=>a.UserName==model.UserName).FirstOrDefaultAsync();
+                            if(dataUser != null)
+                            {
+                                return Json(new { status = -1, title = "", text = "Vui lòng chọn AccoutType", obj = "" }, JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                var data = new User()
+                                {
+                                    UserName = model.UserName,
+                                    AccoutType = model.AccoutType,
+                                    CCCD = model.CCCD,
+                                    ChucDanh = model.ChucDanh,
+                                    DanToc = model.DanToc,
+                                    DiaChiTamTru = model.DiaChiTamTru,
+                                    DiaChiThuongTru = model.DiaChiThuongTru,
+                                    SoDienThoai = model.SoDienThoai,
+                                    MaSoBHXH = model.MaSoBHXH,
+                                    Email = model.Email,
+                                    GhiChu = model.GhiChu,
+                                    GioiTinh = model.GioiTinh,
+                                    HieuLuc = true,
+                                    HoNV = model.HoNV,
+                                    TenNV = model.TenNV,
+                                    NganhHoc = model.NganhHoc,
+                                    NgaySinh = model.NgaySinh,
+                                    NgayCap = model.NgayCap,
+                                    NoiCap = model.NoiCap,
+                                    NgayVaoLam = model.NgayVaoLam,
+                                    NoiDaoTao = model.NoiDaoTao,
+                                    PasswordHash = pass,
+                                    PhongBan = model.PhongBan,
+                                    NgayVaoDangChinhThuc = model.NgayVaoDangChinhThuc
+                                };
+                                db_.Users.Add(data); 
+                                await db_.SaveChangesAsync();
+                                return Json(new { status = 1, title = "", text = "Tạo tài khoản thành công", obj = "" }, JsonRequestBehavior.AllowGet);
+                            }
+
+
+                        }
+                    }
+                }
+
+
                 return Json(new { status = -1, title = "", text = "Lỗi: Không cấu trúc api", obj = "" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
