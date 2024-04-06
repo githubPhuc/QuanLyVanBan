@@ -2530,3 +2530,6 @@ D:\QuanLyVanBan\WebApp\obj\Debug\ToolsApp.pdb
 D:\QuanLyVanBan\WebApp\bin\Aspose.Words.dll
 D:\QuanLyVanBan\WebApp\bin\Aspose.Words.Pdf2Word.dll
 D:\QuanLyVanBan\WebApp\bin\Aspose.Words.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp\bin\Aspose.Words.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp\bin\Aspose.Words.Pdf2Word.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp\bin\Aspose.Words.xml

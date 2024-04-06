@@ -541,3 +541,40 @@ D:\QuanLyVanBan\WebApp.Utilities\obj\Debug\Tools.Utilities.csproj.CoreCompileInp
 D:\QuanLyVanBan\WebApp.Utilities\obj\Debug\Tools.Utilities.csproj.CopyComplete
 D:\QuanLyVanBan\WebApp.Utilities\obj\Debug\ToolsApp.Utilities.dll
 D:\QuanLyVanBan\WebApp.Utilities\obj\Debug\ToolsApp.Utilities.pdb
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\ToolsApp.Utilities.dll.config
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\ToolsApp.Utilities.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\ToolsApp.Utilities.pdb
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\EntityFramework.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Security.AccessControl.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Security.Permissions.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.Helpers.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.Mvc.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.Razor.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.WebPages.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\zxing.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\zxing.presentation.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\EntityFramework.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Security.AccessControl.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Security.Permissions.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.Helpers.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.Mvc.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.Razor.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.WebPages.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\zxing.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\bin\Debug\zxing.presentation.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\obj\Debug\Tools.Utilities.csproj.AssemblyReference.cache
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\obj\Debug\Tools.Utilities.csproj.CoreCompileInputs.cache
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\obj\Debug\Tools.Utilities.csproj.CopyComplete
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\obj\Debug\ToolsApp.Utilities.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Utilities\obj\Debug\ToolsApp.Utilities.pdb

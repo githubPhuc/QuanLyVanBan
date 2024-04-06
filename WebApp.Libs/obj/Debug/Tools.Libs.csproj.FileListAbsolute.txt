@@ -315,3 +315,6 @@ D:\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.pdb
 D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.dll
 D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.Pdf2Word.dll
 D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.xml
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.Pdf2Word.dll
+C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.xml

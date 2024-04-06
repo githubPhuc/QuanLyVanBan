@@ -2,8 +2,7 @@
 
 
 @{
-    var data = ViewBag.model as ToolsApp.EntityFramework.AspNetUser;
-    var lst = ViewBag.list as List<ToolsApp.EntityFramework.Department>;
+    var data = ViewBag.model as ToolsApp.EntityFramework.User;
 }
 <input id="Id" name="Id" value="@data.Id" style="display:none" />
 <div class="row" style="margin-bottom:5px">
@@ -18,7 +17,13 @@
         <div class="row" style="margin-bottom:5px">
             <label class="col-md-12 col-sm-12">Tên nhân viên</label>
             <div class="col-md-12 col-sm-12 ten">
-                <input value="@data.Fullname" class="form-control" type="text" id="fullName" name="fullName" />
+                <input value="@data.HoNV" class="form-control" type="text" id="fullName" name="fullName" />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <label class="col-md-12 col-sm-12">Tên nhân viên</label>
+            <div class="col-md-12 col-sm-12 ten">
+                <input value="@data.TenNV" class="form-control" type="text" id="fullName" name="fullName" />
             </div>
         </div>
         <div class="row" style="margin-bottom:5px">
@@ -31,22 +36,10 @@
         <div class="row" style="margin-bottom:5px">
             <label class="col-md-12 col-sm-12">Phone</label>
             <div class="col-md-12 col-sm-12 ten">
-                <input disabled oninput="this.value = this.value().trim()" value="@data.PhoneNumber" class="form-control" type="text" id="phone" name="phone" />
+                <input disabled oninput="this.value = this.value().trim()" value="@data.SoDienThoai" class="form-control" type="text" id="phone" name="phone" />
             </div>
         </div>
 
-        <div class="row" style="margin-bottom:5px">
-            <label class="col-md-12 col-sm-12">Chức vụ</label>
-            <div class="col-md-12 col-sm-12 ten">
-                <select id="idDepartment" name="idDepartment" class="form-control chosen-select" style="width: 100%;">
-                    @foreach (var item in lst)
-                    {
-                        <option value="@item.Id" @(item.Id == data.idDepartment ? "selected=\"selected\"" : "")> @item.Name</option>
-                    }
-                </select>
-            </div>
-
-        </div>
 
 
 

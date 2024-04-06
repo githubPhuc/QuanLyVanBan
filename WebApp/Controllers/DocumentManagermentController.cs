@@ -10,11 +10,12 @@ using ToolsApp.EntityFramework;
 using ToolsApp.Models;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Aspose.Words;
+using System.Data.Entity;
 namespace ToolsApp.Controllers
 {
     [Authorize]
     [CustomAuthorize(Function = "DocumentManagerment/Index")]
-    public class DocumentManagermentController : Controller
+    public class DocumentManagermentController : BaseController
     {
         QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
         public ActionResult Index()
@@ -31,7 +32,7 @@ namespace ToolsApp.Controllers
         {
             var list = db_.thongtinvanbans.Where(a =>
                   (IdPhongBanSearch == "" || IdPhongBanSearch == null || a.IdPhongBan.ToString().Contains(IdPhongBanSearch)) &&
-                  (IdLoaiVanBanSearch == "" || IdLoaiVanBanSearch == null || a.idLoaiVanBan.ToString().Contains(IdLoaiVanBanSearch))).ToList();
+                  (IdLoaiVanBanSearch == "" || IdLoaiVanBanSearch == null || a.idLoaiVanBan.ToString().Contains(IdLoaiVanBanSearch))&&a.isDelete== false).ToList();
             ViewBag.list = list;
             return PartialView();
         }
@@ -47,6 +48,15 @@ namespace ToolsApp.Controllers
         }
         public ActionResult _Edit(int Id)
         {
+            var loaiVanBans = db_.loaivanbans.ToList();
+            var vanbandichuyens = db_.VanBanDiChuyens.ToList();
+            var phongBans = db_.DanhSachPhongbans.ToList();
+            var vanBans = db_.thongtinvanbans.FirstOrDefault(a=>a.Id == Id);
+            ViewBag.vanBans = vanBans;
+            ViewBag.loaiVanBans = loaiVanBans;
+            ViewBag.vanbandichuyens = vanbandichuyens;
+            ViewBag.phongBans = phongBans;
+
             return PartialView();
         }
         public ActionResult ViewDocument(string fileName)
@@ -135,7 +145,8 @@ namespace ToolsApp.Controllers
                     item.TaiLieuDinhKem = model.TaiLieuDinhKem;
                     item.NgayPhongBanSoanThao = model.NgayPhongBanSoanThao;
                     item.DatetimeCreate = DateTime.Now;
-                    item.UserCreate = 2002;
+                    item.isDelete = false;
+                    item.UserCreate = User.UserId;
                     db_.thongtinvanbans.Add(item);
                     db_.SaveChanges();
                     return Json(new { success = true, message = "Thêm mới thành công!" });
@@ -150,6 +161,112 @@ namespace ToolsApp.Controllers
             {
                 return Json(new { success = false, message = "Dữ liệu không hợp lệ!" });
             }
+
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public JsonResult _UpdateFun(ThongTinVanBanModels model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Xử lý tải lên file và lưu vào thư mục
+                    var file = Request.Files["TaiLieuDinhKem"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        string uploadDir = Server.MapPath("~/Uploads");
+                        if (!Directory.Exists(uploadDir))
+                        {
+                            Directory.CreateDirectory(uploadDir);
+                        }
+                        string fileName = Path.GetFileNameWithoutExtension(file.FileName) + "_" + Guid.NewGuid() + Path.GetExtension(file.FileName);
+                        string filePath = Path.Combine(uploadDir, Path.GetFileName(fileName));
+
+                        file.SaveAs(filePath);
+                        model.TaiLieuDinhKem = "/Uploads/" + fileName;      
+
+                    }
+                    else
+                    {
+                        if (model.NguonVB == "")
+                        {
+                            return Json(new { success = false, message = "Vui lòng nhập nguồn văn bản" });
+                        }
+                        else
+                        {
+                            if (model.TaiLieuDinhKem == null)
+                            {
+                                return Json(new { success = false, message = "Vui lòng chọn tài liệu đính kèm" });
+
+                            }
+
+                        }
+                    }
+
+
+                    var item = db_.thongtinvanbans.FirstOrDefault(x => x.Id == model.Id);
+                    if (item != null)
+                    {
+                        item.IdPhongBan = model.IdPhongBan;
+                        item.idLoaiVanBan = model.idLoaiVanBan;
+                        item.IdVanBanDiChuyen = model.IdVanBanDiChuyen;
+                        item.NguonVB = model.NguonVB;
+                        item.SoVBNoiBo = model.SoVBNoiBo;
+                        item.ButPhe = model.ButPhe;
+                        item.TaiLieuDinhKem = model.TaiLieuDinhKem;
+                        item.NgayPhongBanSoanThao = model.NgayPhongBanSoanThao;
+                        item.DatetimeUpdate = DateTime.Now;
+                        item.UserUpdate = User.UserId;
+                        db_.Entry(item).State = EntityState.Modified;
+                        db_.SaveChanges();
+                        return Json(new { success = true, message = "Cập nhật thành công!" });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Cập nhật thất bại!" });
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    return Json(new { success = false, message = ex.Message });
+                }
+            }
+            else
+            {
+                return Json(new { success = false, message = "Dữ liệu không hợp lệ!" });
+            }
+
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public JsonResult _DeleteFun(int Id)
+        {
+            
+                try
+                {
+                    var item = db_.thongtinvanbans.FirstOrDefault(x => x.Id == Id);
+                    if (item != null)
+                    {                        
+                        item.isDelete = true;
+                        db_.Entry(item).State = EntityState.Modified;
+                        db_.SaveChanges();
+                        return Json(new { success = true, message = "Cập nhật thành công!" });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Cập nhật thất bại!" });
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    return Json(new { success = false, message = ex.Message });
+                }
+           
 
         }
     }

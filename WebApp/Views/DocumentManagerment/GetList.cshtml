@@ -29,10 +29,10 @@
                 var phongBan = db_.DanhSachPhongbans.FirstOrDefault(a => a.ID == item.IdPhongBan).TenPhongBan;
         <tr>
             <td style="max-width:40px!important">
-                <a onclick="Edit('@item.')" class="btn">
+                <a onclick="Upload('@item.Id')" class="btn">
                     <i class="fas fa-edit"></i> Edit
                 </a>
-                <a onclick="Delete('@item.Id')" class="btn">
+                <a onclick="DeleteAction('@item.Id')" class="btn">
                     <i class="far fa-trash-alt"></i> Delete
                 </a>
             </td>

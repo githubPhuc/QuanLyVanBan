@@ -113,6 +113,33 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalTitleUpdate"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalContentUpdate">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" id="btSave" onclick="UpdateAction()" class="btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 @section scripts {
     <script>
@@ -135,8 +162,16 @@
             $myModalContent: $("#myModalContent"),
             $myModalTitle: $("#myModalTitle")
         }
+        var myModalUpdate = {
+            $modal: $('#myModalUpdate'),
+            $myModalContent: $("#myModalContentUpdate"),
+            $myModalTitle: $("#myModalTitleUpdate")
+        }
         function Insert() {
             loadModal('Thêm thông tin văn bản', '@Url.Action("_Insert")', myModalInsert)
+        }
+        function Upload(id) {
+            loadModal('Cập nhật thông tin văn bản', '@Url.Action("_Edit")', myModalUpdate, id)
         }
         function InsertAction() {
             var form = document.getElementById('insertForm');
@@ -150,6 +185,50 @@
                 success: function (res) {
                     if (res.success) {
                         notify(res.message, "success");
+                        loadData(...paramsLoadData);
+                    } else {
+                        notify(res.message, "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    notify("Error occurred while processing request.", "error");
+                }
+            });
+        }
+        function UpdateAction() {
+            var form = document.getElementById('updateForm');
+            var formData = new FormData(form);
+            $.ajax({
+                url: '@Url.Action("_UpdateFun")',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if (res.success) {
+                        notify(res.message, "success");
+                        loadData(...paramsLoadData);
+                    } else {
+                        notify(res.message, "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    notify("Error occurred while processing request.", "error");
+                }
+            });
+        }
+        function DeleteAction(Id) {
+            
+            $.ajax({
+                url: '@Url.Action("_DeleteFun")',
+                type: 'POST',
+                data: {Id:Id},
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if (res.success) {
+                        notify(res.message, "success");
+                        loadData(...paramsLoadData);
                     } else {
                         notify(res.message, "error");
                     }
