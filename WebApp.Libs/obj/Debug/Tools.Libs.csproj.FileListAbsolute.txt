@@ -318,3 +318,40 @@ D:\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.xml
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.dll
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.Pdf2Word.dll
 C:\Users\Phuc Tran\Desktop\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.dll.config
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\ToolsApp.Libs.pdb
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.Pdf2Word.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\EPPlus.Interfaces.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\EPPlus.System.Drawing.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Quartz.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Buffers.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.ComponentModel.Annotations.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Drawing.Common.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.IO.Packaging.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Memory.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Numerics.Vectors.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.presentation.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Aspose.Words.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\Quartz.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Buffers.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.IO.Packaging.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Memory.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Numerics.Vectors.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\bin\Debug\zxing.presentation.xml
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.AssemblyReference.cache
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.CoreCompileInputs.cache
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\obj\Debug\Tools.Libs.csproj.Up2Date
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.dll
+D:\1-SourceCodePhuc\QuanLyVanBan\WebApp.Libs\obj\Debug\ToolsApp.Libs.pdb

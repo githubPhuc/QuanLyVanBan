@@ -253,11 +253,11 @@ namespace ToolsApp.Controllers
                         item.isDelete = true;
                         db_.Entry(item).State = EntityState.Modified;
                         db_.SaveChanges();
-                        return Json(new { success = true, message = "Cập nhật thành công!" });
+                        return Json(new { success = true, message = "Xóa thành công!" });
                     }
                     else
                     {
-                        return Json(new { success = false, message = "Cập nhật thất bại!" });
+                        return Json(new { success = false, message = "Xóa thất bại!" });
 
                     }
                 }

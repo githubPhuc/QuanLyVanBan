@@ -218,25 +218,29 @@
             });
         }
         function DeleteAction(Id) {
-            
-            $.ajax({
-                url: '@Url.Action("_DeleteFun")',
-                type: 'POST',
-                data: {Id:Id},
-                processData: false,
-                contentType: false,
-                success: function (res) {
-                    if (res.success) {
-                        notify(res.message, "success");
-                        loadData(...paramsLoadData);
-                    } else {
-                        notify(res.message, "error");
+            if (confirm("Bạn có chắc chắn muốn xóa dữ liệu không?")) {
+                $.ajax({
+                    url: '@Url.Action("_DeleteFun")',
+                    type: 'POST',
+                    data: {
+                        Id: Id
+                    },
+                    success: function (res) {
+                        if (res.success) {
+                            notify(res.message, "success");
+                            loadData(...paramsLoadData);
+                        } else {
+                            notify(res.message, "error");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        notify("Error occurred while processing request.", "error");
                     }
-                },
-                error: function (xhr, status, error) {
-                    notify("Error occurred while processing request.", "error");
-                }
-            });
+                });
+            }
+            else {
+                return false;
+            }
         }
     </script>
 }
