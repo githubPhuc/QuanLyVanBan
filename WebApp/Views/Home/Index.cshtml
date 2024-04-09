@@ -4,15 +4,60 @@
 
 
 }
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin="" />
-<div id="home">
 
-
-   
-
-</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary border-no-color card-outline">
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tháng</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off" id="month" name="month" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>năm</label>
+                                    <input class="form-control form-control-md" type="text" autocomplete="off" id="year" name="year" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <b>KẾT QUẢ</b>
+                        </h3>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-body-chart table-responsive">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pad">
+                        <div class="row">
+                            <div class="col-md-12 mt-4 table-body-table table-responsive">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
@@ -21,7 +66,159 @@
         crossorigin=""></script>
 
 @section scripts{
-        
+    <script>
+         var paramsLoadData = [
+             true,
+             '@Url.Action("getChart")',
+             '#month',
+             '#year',
+
+        ];
+        var paramsGetTable = [
+            true,
+            '@Url.Action("getTable")',
+            '#month',
+            '#year',
+
+        ];
+
+         $(document).ready(function () {
+             loadDataChart(...paramsLoadData);
+             loadDataTable(...paramsGetTable);
+
+             $("#myModal").on("hidden.bs.modal", function () {
+                 loadDataChart(false);
+                 loadDataTable(false);
+             });
+
+             $("#btnSearch").click(function () {
+                 loadDataChart(...paramsLoadData);
+                 loadDataTable(...paramsLoadData);
+             });
+
+         });
+        function loadDataChart(isDelete, Action, ...searchKey) {
+            var data = {};
+            for (var i = 0; i < searchKey.length; i++) {
+                var id = searchKey[i].slice(1);
+                var name = id;
+                var value = $('#' + id).val();
+                data[name] = value;
+            }
+            console.log(data)
+            if (isDelete == true) {
+                try {
+
+                    $.ajax({
+                        url: Action,
+                        timeout: 2000000,
+                        data: data,
+                        beforeSend: function () {
+                            $(".divLoading").addClass("loading");
+                        },
+                        success: function (response) {
+                            $(".divLoading").removeClass("loading");
+                            $('.table-body-chart').html(response);
+                        },
+                        error: function (message) {
+                            $(".divLoading").removeClass("loading");
+                        }
+                    });
+                } catch (e) {
+
+                }
+            }
+            else {
+                //không làm gì cả
+            }
+        }
+        function loadDataTable(isDelete, Action, ...searchKey) {
+            var data = {};
+            for (var i = 0; i < searchKey.length; i++) {
+                var id = searchKey[i].slice(1);
+                var name = id;
+                var value = $('#' + id).val();
+                data[name] = value;
+            }
+            console.log(data)
+            if (isDelete == true) {
+                try {
+
+                    $.ajax({
+                        url: Action,
+                        timeout: 2000000,
+                        data: data,
+                        beforeSend: function () {
+                            $(".divLoading").addClass("loading");
+                        },
+                        success: function (response) {
+                            $(".divLoading").removeClass("loading");
+                            $('.table-body-table').html(response);
+                            $("#myTable").DataTable({
+
+                                destroy: true,
+                                "order": [[1, "desc"]],
+                                "language": {
+                                    "sProcessing": "Đang xử lý...",
+                                    "sLengthMenu": " Hiển thị _MENU_ dữ liệu",
+                                    "sZeroRecords": "Không tìm thấy kết quả",
+                                    "sEmptyTable": "Không có dữ liệu",
+                                    "sInfo": "Hiển thị _START_ tới _END_ của _TOTAL_ dữ liệu",
+                                    "sInfoEmpty": "Hiển thị 0 tới 0 của 0 dữ liệu",
+                                    "sInfoFiltered": "(được lọc từ _MAX_ dữ liệu)",
+                                    "sInfoPostFix": "",
+                                    "sSearch": "Tìm kiếm:",
+                                    "sUrl": "",
+                                    "sInfoThousands": ",",
+                                    "sLoadingRecords": "Đang tải...",
+                                    "oPaginate": {
+                                        "sFirst": "Đầu tiên",
+                                        "sLast": "Cuối cùng",
+                                        "sNext": "Sau",
+                                        "sPrevious": "Trước"
+                                    },
+                                    "oAria": {
+                                        "sSortAscending": ":Sắp xếp thứ tự tăng dần",
+                                        "sSortDescending": ": Sắp xếp thứ tự giảm dần"
+                                    }
+                                },
+                                "lengthMenu": [5, 10, 25, 50, 75, 100],
+                                "columnDefs": [
+                                    {
+                                        "targets": [0,],
+                                        orderable: false
+                                    },
+                                ],
+                                "info": false,
+                                "processing": false,
+                                "serverSide": false,
+                                "bFilter": true,
+                                "bPaginate": true,
+                                "bLengthChange": true,
+                                "bInfo": true,
+                                "responsive": true,
+                                "lengthChange": true,
+                                "autoWidth": false,
+                                "stateSave": true,
+                                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                                "initComplete": function (oSettings) {
+
+                                }
+                            })
+                        },
+                        error: function (message) {
+                            $(".divLoading").removeClass("loading");
+                        }
+                    });
+                } catch (e) {
+
+                }
+            }
+            else {
+                //không làm gì cả
+            }
+        }
+    </script>
     <script src="~/Content/plugins/chart.js/Chart.bundle.js"></script>
     <script src="~/Content/plugins/chart.js/Chart.min.js"></script>
     <script src="~/Content/plugins/chart.js/Chart.js"></script>

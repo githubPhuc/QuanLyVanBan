@@ -263,5 +263,25 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="User_Page" EntitySet="User_Page" />
     </AssociationSet>
+    <FunctionImport Name="sp_thongkeChart" ReturnType="Collection(QuanLiVanBanModel.sp_thongkeChart_Result)">
+      <Parameter Name="month" Mode="In" Type="Int32" />
+      <Parameter Name="year" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_thongke" ReturnType="Collection(QuanLiVanBanModel.sp_thongke_Result)">
+      <Parameter Name="month" Mode="In" Type="Int32" />
+      <Parameter Name="year" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="sp_thongkeChart_Result">
+    <Property Type="Int32" Name="Thang" Nullable="true" />
+    <Property Type="Int32" Name="SoVanBanDen" Nullable="true" />
+    <Property Type="Int32" Name="SoVanBanDi" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_thongke_Result">
+    <Property Type="String" Name="IdList" Nullable="true" />
+    <Property Type="Int32" Name="NumPage" Nullable="true" />
+    <Property Type="String" Name="IsTrangThaiDenDi" Nullable="false" MaxLength="14" />
+    <Property Type="DateTime" Name="NgayXuLy" Nullable="true" Precision="23" />
+    <Property Type="String" Name="NguoiKy" Nullable="true" MaxLength="101" />
+  </ComplexType>
 </Schema>

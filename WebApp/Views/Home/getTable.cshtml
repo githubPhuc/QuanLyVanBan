@@ -1,0 +1,104 @@
+﻿
+@{
+    var list = ViewBag.data as List<ToolsApp.EntityFramework.sp_thongke_Result>;
+}
+<div class="card-body">
+    <table id="myTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Trạng thái văn bản</th>
+                <th>Ngày xữ lý</th>
+                <th>Số văn bản</th>
+                <th>Người ký</th>
+                <th>Người ký</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var STT = 1; }
+            @foreach (var item in list)
+            {
+                <tr>
+                    <td>@STT</td>
+                    <td>@item.IsTrangThaiDenDi</td>
+                    <td>@item.NgayXuLy </td>
+                    <td>@item.NumPage</td>
+                    <td>@item.NguoiKy</td>
+                    <td>@item.IdList</td>
+                    <td><input value="@item.IdList" name="IdList[@STT]" id="IdList[@STT]" style="display:none;" /><button class="btn btn-primary" onclick="loadDataList(@STT)"><i class="fas fa-list"></i></button></td>
+                </tr>
+                STT++;
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModalPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal-css">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { name = "frm", id = "frm", enctype = "multipart/form-data" }))
+            {
+
+                <div class="modal-header custom-modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold" id="myModalPasswordTitle"></h4>
+                    <button type="button" style="color: white" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div id="myModalPasswordContent">
+                    </div>
+
+                </div>
+                <div class="modal-footer modal-custom-footer footer d-flex ">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<script>
+     var paramsLoadData = [
+         true,
+         '@Url.Action("getChart")',
+         '#month',
+         '#year',
+
+    ];
+    function loadDataList(STT) {
+        var modalParams = {
+            $modal: $('#myModalPassword'),
+            $myModalContent: $("#myModalPasswordContent"),
+            $myModalTitle: $("#myModalPasswordTitle")
+        }
+        if (modalParams && Object.keys(modalParams).length !== 0) {
+            modalParams.$myModalContent.html("");
+            modalParams.$myModalTitle.html("");
+        }
+        var row = $('#IdList\\[' + STT + '\\]').closest('tr');
+        var stringInput = row.find('input').val();
+        $.ajax({
+            url: '@Url.Action("getList")',
+            timeout: 2000000,
+            data: { stringInput: stringInput },
+             beforeSend: function (xhr) {
+                 $(".divLoading").addClass("loading");
+             },
+         }).done(function (data) {
+             if (modalParams && Object.keys(modalParams).length !== 0) {
+                 modalParams.$myModalContent.html(data);
+                 modalParams.$modal.modal();
+                
+
+             }
+             $(".divLoading").removeClass("loading");
+
+         }).fail(function (message) {
+             $(".divLoading").removeClass("loading");
+         });
+
+    }
+</script>
+

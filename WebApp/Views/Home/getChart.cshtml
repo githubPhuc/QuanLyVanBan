@@ -1,0 +1,65 @@
+﻿@{ 
+    var data = ViewBag.data as List<ToolsApp.EntityFramework.sp_thongkeChart_Result>;
+    var dataSoVBDi = ViewBag.dataSoVBDi as List<int>;
+    var dataSoVBDen = ViewBag.dataSoVBDen as List<int>;
+}
+
+
+<div class="card-body">
+    <canvas id="myChart" height="250" style="display: block; width: auto; height: 500px;" class="chartjs-render-monitor"></canvas>
+    
+</div>
+<script>
+    var chartData = @Html.Raw(Json.Encode(ViewBag.data));
+    var dataSoVBDen = @Html.Raw(Json.Encode(ViewBag.dataSoVBDen));
+    var dataSoVBDi = @Html.Raw(Json.Encode(ViewBag.dataSoVBDi));
+    var ctx = document.getElementById("myChart")
+    var lineChartData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [{
+            label: 'Số văn bản đến',
+            borderColor: "MediumSeaGreen",
+            backgroundColor: "MediumSeaGreen",
+            fill: false,
+            data: dataSoVBDen,
+            yAxisID: 'y-axis-1',
+        }, {
+            label: 'Số văn bản đi',
+            borderColor: "Tomato",
+            backgroundColor: "Tomato",
+            fill: false,
+            data: dataSoVBDi,
+            yAxisID: 'y-axis-2'
+        }]
+    };
+
+    window.myLine = Chart.Line(ctx, {
+        data: lineChartData,
+        options: {
+            responsive: true,
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+                display: true,
+                text: 'Processes'
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-1',
+                }, {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    id: 'y-axis-2',
+
+                    gridLines: {
+                        drawOnChartArea: false, // only want the grid lines for one axis to show up
+                    },
+                }],
+            }
+        }
+    });
+</script>

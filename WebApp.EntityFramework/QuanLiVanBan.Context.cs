@@ -12,6 +12,8 @@ namespace ToolsApp.EntityFramework
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class QuanLiVanBanEntities : DbContext
     {
@@ -34,5 +36,31 @@ namespace ToolsApp.EntityFramework
         public virtual DbSet<User_Page> User_Page { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<VanBanDiChuyen> VanBanDiChuyens { get; set; }
+    
+        public virtual ObjectResult<sp_thongkeChart_Result> sp_thongkeChart(Nullable<int> month, Nullable<int> year)
+        {
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_thongkeChart_Result>("sp_thongkeChart", monthParameter, yearParameter);
+        }
+    
+        public virtual ObjectResult<sp_thongke_Result> sp_thongke(Nullable<int> month, Nullable<int> year)
+        {
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_thongke_Result>("sp_thongke", monthParameter, yearParameter);
+        }
     }
 }

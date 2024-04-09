@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLiVanBanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLiVanBanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DanhSachPhongban">
           <Key>
             <PropertyRef Name="ID" />
@@ -234,6 +234,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_thongke" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_thongkeChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="QuanLiVanBanModelStoreContainer">
           <EntitySet Name="DanhSachPhongban" EntityType="Self.DanhSachPhongban" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiaDiem" EntityType="Self.DiaDiem" Schema="dbo" store:Type="Tables" />
@@ -261,8 +269,7 @@
             <End Role="User_Page" EntitySet="User_Page" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLiVanBanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -529,7 +536,27 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="User_Page" EntitySet="User_Page" />
           </AssociationSet>
+          <FunctionImport Name="sp_thongkeChart" ReturnType="Collection(QuanLiVanBanModel.sp_thongkeChart_Result)">
+            <Parameter Name="month" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_thongke" ReturnType="Collection(QuanLiVanBanModel.sp_thongke_Result)">
+            <Parameter Name="month" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_thongkeChart_Result">
+          <Property Type="Int32" Name="Thang" Nullable="true" />
+          <Property Type="Int32" Name="SoVanBanDen" Nullable="true" />
+          <Property Type="Int32" Name="SoVanBanDi" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_thongke_Result">
+          <Property Type="String" Name="IdList" Nullable="true" />
+          <Property Type="Int32" Name="NumPage" Nullable="true" />
+          <Property Type="String" Name="IsTrangThaiDenDi" Nullable="false" MaxLength="14" />
+          <Property Type="DateTime" Name="NgayXuLy" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NguoiKy" Nullable="true" MaxLength="101" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -722,6 +749,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_thongkeChart" FunctionName="QuanLiVanBanModel.Store.sp_thongkeChart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLiVanBanModel.sp_thongkeChart_Result">
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="SoVanBanDen" ColumnName="SoVanBanDen" />
+                <ScalarProperty Name="SoVanBanDi" ColumnName="SoVanBanDi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_thongke" FunctionName="QuanLiVanBanModel.Store.sp_thongke">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QuanLiVanBanModel.sp_thongke_Result">
+                <ScalarProperty Name="IdList" ColumnName="IdList" />
+                <ScalarProperty Name="NumPage" ColumnName="NumPage" />
+                <ScalarProperty Name="IsTrangThaiDenDi" ColumnName="IsTrangThaiDenDi" />
+                <ScalarProperty Name="NgayXuLy" ColumnName="NgayXuLy" />
+                <ScalarProperty Name="NguoiKy" ColumnName="NguoiKy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

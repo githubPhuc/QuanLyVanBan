@@ -1,0 +1,110 @@
+﻿@using ToolsApp.EntityFramework;
+@{
+    var list = ViewBag.data as IEnumerable<ToolsApp.EntityFramework.thongtinvanban>;
+    QuanLiVanBanEntities db_ = new QuanLiVanBanEntities();
+}
+<div class="card-body">
+    <table id="myTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Loại Văn Bản</th>
+                <th>Văn bản đến hoặc đi</th>
+                <th>Phòng Ban</th>
+                <th>Nguồn Văn Bản</th>
+                <th>Số Văn Bản Nội Bộ</th>
+                <th>Bút Phê</th>
+                <th>Tài Liệu Đính Kèm</th>
+                <th>Ngày Phòng Ban Soạn Thảo</th>
+                <th>Ngày Tạo</th>
+                <th>Ngày Cập Nhật</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{ var STT = 1; }
+            @foreach (var item in list)
+            {
+
+                var loaiVanBan = db_.loaivanbans.FirstOrDefault(a => a.Id == item.idLoaiVanBan).TenLoai;
+                var phongBan = db_.DanhSachPhongbans.FirstOrDefault(a => a.ID == item.IdPhongBan).TenPhongBan;
+                <tr>
+                    <td>@loaiVanBan</td>
+                    <td>
+                        @item.IdVanBanDiChuyen;
+                    </td>
+                    <td>
+                        @phongBan
+                    </td>
+                    <td>@item.NguonVB</td>
+                    <td>@item.SoVBNoiBo</td>
+                    <td>@item.ButPhe</td>
+                    <td>
+                        <a href="#" class="view-document" data-file="@item.TaiLieuDinhKem" target="_blank">Xem tài liệu</a>
+                    </td>
+                    <td>@item.NgayPhongBanSoanThao</td>
+                    <td>@item.DatetimeCreate</td>
+                    <td>@item.DatetimeUpdate</td>
+                </tr>
+
+
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#myTable").DataTable({
+
+            destroy: true,
+            "order": [[1, "desc"]],
+            "language": {
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": " Hiển thị _MENU_ dữ liệu",
+                "sZeroRecords": "Không tìm thấy kết quả",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfo": "Hiển thị _START_ tới _END_ của _TOTAL_ dữ liệu",
+                "sInfoEmpty": "Hiển thị 0 tới 0 của 0 dữ liệu",
+                "sInfoFiltered": "(được lọc từ _MAX_ dữ liệu)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm kiếm:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Đang tải...",
+                "oPaginate": {
+                    "sFirst": "Đầu tiên",
+                    "sLast": "Cuối cùng",
+                    "sNext": "Sau",
+                    "sPrevious": "Trước"
+                },
+                "oAria": {
+                    "sSortAscending": ":Sắp xếp thứ tự tăng dần",
+                    "sSortDescending": ": Sắp xếp thứ tự giảm dần"
+                }
+            },
+            "lengthMenu": [5, 10, 25, 50, 75, 100],
+            "columnDefs": [
+                {
+                    "targets": [0,],
+                    orderable: false
+                },
+            ],
+            "info": false,
+            "processing": false,
+            "serverSide": false,
+            "bFilter": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bInfo": true,
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "stateSave": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            "initComplete": function (oSettings) {
+
+            }
+
+        })
+    });
+  
+</script>

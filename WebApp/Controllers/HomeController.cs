@@ -18,22 +18,46 @@ namespace ToolsApp.Controllers
         // GET: Home
         public ActionResult Index(string Id = "")
         {
-            int currentYear = DateTime.Now.Year;
-            int lowestYear = 2000; // Năm bắt đầu
-
-            List<SelectListItem> years = new List<SelectListItem>();
-            for (int year = currentYear; year >= lowestYear; year--)
-            {
-                years.Add(new SelectListItem { Text = year.ToString(), Value = year.ToString() });
-            }
-            ViewBag.Years = years;
-            var data_SumUser = db_.Users.ToList();
-            ViewData["data_SumUser"] = data_SumUser.Where(a => a.AccoutType == "User").ToList().Count();
-            ViewData["data_SumAdmin"] = data_SumUser.Where(a => a.AccoutType == "Admin" && a.UserName != "Admin").ToList().Count();
-            ViewData["data_SumManager"] = data_SumUser.Where(a => a.AccoutType == "Admin" && a.UserName != "Admin").ToList().Count();
-      
+            var data = db_.sp_thongkeChart(0,0).ToList();
             return View();
         }
-       
+        public ActionResult getChart(int month = 0, int year = 2024)
+        {
+            var data = db_.sp_thongkeChart(0, DateTime.Now.Year).ToList();
+            ViewBag.data = data;
+            List<int> dataSoVBDi = new List<int>();
+            List<int> dataSoVBDen = new List<int>();
+            foreach (var item in data)
+            {
+                dataSoVBDi.Add(item.SoVanBanDi??0);
+                dataSoVBDen.Add(item.SoVanBanDen??0);
+            }
+            ViewBag.dataSoVBDi = dataSoVBDi;
+            ViewBag.dataSoVBDen = dataSoVBDen;
+            return PartialView();
+        }
+        public ActionResult getTable(int month=0,int year = 2024)
+        {
+            var data = db_.sp_thongke(month, year).ToList();
+            ViewBag.data = data;
+            return PartialView();
+        }
+        public ActionResult getList(string stringInput)
+        {
+            string[] stringArray = stringInput.Split(',');
+            List<int> intList = new List<int>();
+            foreach (string numStr in stringArray)
+            {
+                int numInt;
+                if (int.TryParse(numStr, out numInt))
+                {
+                    intList.Add(numInt);
+                }
+            }
+            var data = db_.thongtinvanbans.Where(a => intList.Contains(a.Id)).ToList();
+            ViewBag.data = data;
+            return PartialView();
+        }
+
     }
 }

@@ -3279,6 +3279,9 @@
     <Content Include="Uploads\báo-cáo.docx" />
     <Content Include="Uploads\báo-cáo.pdf" />
     <Content Include="Uploads\CV_FRONTEND_DUONGQUOCTIEN.pdf" />
+    <Content Include="Views\Home\getChart.cshtml" />
+    <Content Include="Views\Home\getTable.cshtml" />
+    <Content Include="Views\Home\getList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

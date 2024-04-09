@@ -229,6 +229,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_thongke" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="month" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_thongkeChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="month" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="QuanLiVanBanModelStoreContainer">
     <EntitySet Name="DanhSachPhongban" EntityType="Self.DanhSachPhongban" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DiaDiem" EntityType="Self.DiaDiem" Schema="dbo" store:Type="Tables" />

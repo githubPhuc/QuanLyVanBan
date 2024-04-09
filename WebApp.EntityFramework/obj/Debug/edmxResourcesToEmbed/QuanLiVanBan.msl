@@ -187,5 +187,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_thongkeChart" FunctionName="QuanLiVanBanModel.Store.sp_thongkeChart">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLiVanBanModel.sp_thongkeChart_Result">
+          <ScalarProperty Name="Thang" ColumnName="Thang" />
+          <ScalarProperty Name="SoVanBanDen" ColumnName="SoVanBanDen" />
+          <ScalarProperty Name="SoVanBanDi" ColumnName="SoVanBanDi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_thongke" FunctionName="QuanLiVanBanModel.Store.sp_thongke">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLiVanBanModel.sp_thongke_Result">
+          <ScalarProperty Name="IdList" ColumnName="IdList" />
+          <ScalarProperty Name="NumPage" ColumnName="NumPage" />
+          <ScalarProperty Name="IsTrangThaiDenDi" ColumnName="IsTrangThaiDenDi" />
+          <ScalarProperty Name="NgayXuLy" ColumnName="NgayXuLy" />
+          <ScalarProperty Name="NguoiKy" ColumnName="NguoiKy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

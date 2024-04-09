@@ -88,6 +88,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLiVanBan.edmx</DependentUpon>
     </Compile>
+    <Compile Include="sp_thongkeChart_Result.cs">
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_thongke_Result.cs">
+      <DependentUpon>QuanLiVanBan.tt</DependentUpon>
+    </Compile>
     <Compile Include="thongtinvanban.cs">
       <DependentUpon>QuanLiVanBan.tt</DependentUpon>
     </Compile>
