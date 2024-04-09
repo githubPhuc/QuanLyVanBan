@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{09FB5F94-F36B-4EAB-8559-596D15D88473}|WebApp.EntityFramework\\Tools.EntityFramework.csproj|D:\\1-SourceCodePhuc\\QuanLyVanBan\\webapp.entityframework\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{09FB5F94-F36B-4EAB-8559-596D15D88473}|WebApp.EntityFramework\\Tools.EntityFramework.csproj|solutionrelative:webapp.entityframework\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|D:\\1-SourceCodePhuc\\QuanLyVanBan\\webapp\\views\\documentmanagerment\\getlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|solutionrelative:webapp\\views\\documentmanagerment\\getlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|d:\\1-sourcecodephuc\\quanlyvanban\\webapp\\controllers\\documentmanagermentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|D:\\1-SourceCodePhuc\\QuanLyVanBan\\webapp\\controllers\\documentmanagermentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|solutionrelative:webapp\\controllers\\documentmanagermentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09FB5F94-F36B-4EAB-8559-596D15D88473}|WebApp.EntityFramework\\Tools.EntityFramework.csproj|d:\\1-sourcecodephuc\\quanlyvanban\\webapp.entityframework\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{09FB5F94-F36B-4EAB-8559-596D15D88473}|WebApp.EntityFramework\\Tools.EntityFramework.csproj|solutionrelative:webapp.entityframework\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|D:\\1-SourceCodePhuc\\QuanLyVanBan\\webapp\\views\\documentmanagerment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|D:\\1-SourceCodePhuc\\QuanLyVanBan\\webapp\\views\\infomationuser\\user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|solutionrelative:webapp\\views\\infomationuser\\user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|D:\\1-SourceCodePhuc\\QuanLyVanBan\\webapp\\views\\documentmanagerment\\getlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|solutionrelative:webapp\\views\\documentmanagerment\\getlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E4FB8FA2-A819-4AAF-B7BE-EA91802B8AC5}|WebApp\\Tools.csproj|D:\\1-SourceCodePhuc\\QuanLyVanBan\\webapp\\views\\documentmanagerment\\_edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -134,34 +134,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\DocumentManagerment\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebApp\\Views\\DocumentManagerment\\Index.cshtml",
-              "ToolTip": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\DocumentManagerment\\Index.cshtml",
-              "RelativeToolTip": "WebApp\\Views\\DocumentManagerment\\Index.cshtml",
-              "ViewState": "AQIAAM8AAAAAEGZmZmYKwPEAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-07T07:54:11.725Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DocumentManagermentController.cs",
-              "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Controllers\\DocumentManagermentController.cs",
-              "RelativeDocumentMoniker": "WebApp\\Controllers\\DocumentManagermentController.cs",
-              "ToolTip": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Controllers\\DocumentManagermentController.cs",
-              "RelativeToolTip": "WebApp\\Controllers\\DocumentManagermentController.cs",
-              "ViewState": "AQIAAMQAAAAAAAAAAAAAAPgAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T07:54:11.898Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 7,
@@ -188,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "_Insert.cshtml",
               "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\DocumentManagerment\\_Insert.cshtml",
               "RelativeDocumentMoniker": "WebApp\\Views\\DocumentManagerment\\_Insert.cshtml",
@@ -196,12 +170,11 @@
               "RelativeToolTip": "WebApp\\Views\\DocumentManagerment\\_Insert.cshtml",
               "ViewState": "AQIAABsAAACAzMzMzEwpwEcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-07T07:54:12.293Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-07T07:54:12.293Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "User.cshtml",
               "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\InfomationUser\\User.cshtml",
               "RelativeDocumentMoniker": "WebApp\\Views\\InfomationUser\\User.cshtml",
@@ -209,12 +182,11 @@
               "RelativeToolTip": "WebApp\\Views\\InfomationUser\\User.cshtml",
               "ViewState": "AQIAAJQAAAAAAAAAAAAAAKoAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-07T07:54:12.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-07T07:54:12.313Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "CrudsFunction.js",
               "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Scripts\\CrudsFunction.js",
               "RelativeDocumentMoniker": "WebApp\\Scripts\\CrudsFunction.js",
@@ -222,33 +194,58 @@
               "RelativeToolTip": "WebApp\\Scripts\\CrudsFunction.js",
               "ViewState": "AQIAAPUAAAAAYGZmZmYIwFgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-07T07:54:12.293Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-07T07:54:12.293Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "App.Config",
               "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp.EntityFramework\\App.Config",
               "RelativeDocumentMoniker": "WebApp.EntityFramework\\App.Config",
               "ToolTip": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp.EntityFramework\\App.Config",
               "RelativeToolTip": "WebApp.EntityFramework\\App.Config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAACAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2024-04-07T07:54:12.293Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "GetList.cshtml",
               "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\DocumentManagerment\\GetList.cshtml",
               "RelativeDocumentMoniker": "WebApp\\Views\\DocumentManagerment\\GetList.cshtml",
               "ToolTip": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\DocumentManagerment\\GetList.cshtml",
               "RelativeToolTip": "WebApp\\Views\\DocumentManagerment\\GetList.cshtml",
-              "ViewState": "AQIAABMAAAAAMDMzMzPrvyIAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002242|",
-              "WhenOpened": "2024-04-07T07:54:11.709Z"
+              "ViewState": "AQIAAAQAAAAAMDMzMzPrvwsAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-07T07:54:11.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DocumentManagermentController.cs",
+              "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Controllers\\DocumentManagermentController.cs",
+              "RelativeDocumentMoniker": "WebApp\\Controllers\\DocumentManagermentController.cs",
+              "ToolTip": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Controllers\\DocumentManagermentController.cs",
+              "RelativeToolTip": "WebApp\\Controllers\\DocumentManagermentController.cs",
+              "ViewState": "AQIAAMQAAAAAAAAAAAAAAPgAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T07:54:11.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\DocumentManagerment\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebApp\\Views\\DocumentManagerment\\Index.cshtml",
+              "ToolTip": "D:\\1-SourceCodePhuc\\QuanLyVanBan\\WebApp\\Views\\DocumentManagerment\\Index.cshtml",
+              "RelativeToolTip": "WebApp\\Views\\DocumentManagerment\\Index.cshtml",
+              "ViewState": "AQIAAM8AAAAAEGZmZmYKwPEAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-07T07:54:11.725Z"
             },
             {
               "$type": "Document",
